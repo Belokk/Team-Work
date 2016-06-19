@@ -1,4 +1,4 @@
-﻿namespace NingaRacer.MonoGame
+﻿namespace NinjaRacer.MonoGame
 {
     using System;
 
@@ -6,7 +6,7 @@
     /// <summary>
     /// The main class.
     /// </summary>
-    public static class Startup
+    public static class StartUp
     {
         /// <summary>
         /// The main entry point for the application.

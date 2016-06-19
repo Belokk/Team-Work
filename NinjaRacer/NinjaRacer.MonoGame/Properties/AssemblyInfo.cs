@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NingaRacer.MonoGame")]
-[assembly: AssemblyProduct("NingaRacer.MonoGame")]
+[assembly: AssemblyTitle("NinjaRacer.MonoGame")]
+[assembly: AssemblyProduct("NinjaRacer.MonoGame")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3329d5fa-20f3-4b28-9a12-613a99e2382e")]
+[assembly: Guid("7c1e98b8-3d28-4016-b50c-987c39a212ea")]
 
 // Version information for an assembly consists of the following four values:
 //

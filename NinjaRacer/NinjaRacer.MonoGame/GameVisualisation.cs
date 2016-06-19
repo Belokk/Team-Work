@@ -1,4 +1,4 @@
-﻿namespace NingaRacer.MonoGame
+﻿namespace NinjaRacer.MonoGame
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    internal class GameVisualisation
+   internal class GameVisualisation
     {
     }
 }

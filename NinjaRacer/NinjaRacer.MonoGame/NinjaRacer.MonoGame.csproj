@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{58EA58D3-25EB-4D9E-A389-005B51BC210B}</ProjectGuid>
+    <ProjectGuid>{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NingaRacer.MonoGame</RootNamespace>
-    <AssemblyName>NingaRacer.MonoGame</AssemblyName>
+    <RootNamespace>NinjaRacer.MonoGame</RootNamespace>
+    <AssemblyName>NinjaRacer.MonoGame</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="GameLoop.cs" />
     <Compile Include="GameVisualisation.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,20 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NinjaRacer.Core\NinjaRacer.Core.csproj">
-      <Project>{f4836eaa-6059-47e5-9040-d9b27d6f50ce}</Project>
-      <Name>NinjaRacer.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NinjaRacer.Models\NinjaRacer.Models.csproj">
-      <Project>{b315ae4f-d8ba-43ce-95cc-81b17ecf5ae3}</Project>
-      <Name>NinjaRacer.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NinjaRacer.Utilities\NinjaRacer.Utilities.csproj">
-      <Project>{45d0bb65-8d58-4717-9d16-48cffd63c665}</Project>
-      <Name>NinjaRacer.Utilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
