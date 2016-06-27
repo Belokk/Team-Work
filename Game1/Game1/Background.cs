@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace Game1
+﻿namespace Game1
 {
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+   
     public class Background
     {
         public Texture2D texture;
@@ -15,13 +15,13 @@ namespace Game1
 
     }
 
-    public class Scrolling : Background
+    public class Road : Background
     {
         int windowHeight;
         public int speed = 10; //scroll speed
         private int lastDevisable;
         //TODO: Speed updater
-        public Scrolling(Texture2D newTexture, Rectangle newRectangle, int windowHeight)
+        public Road(Texture2D newTexture, Rectangle newRectangle, int windowHeight)
         {
             texture = newTexture;          
             rectangle = newRectangle;

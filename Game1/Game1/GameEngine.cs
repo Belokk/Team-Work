@@ -2,25 +2,29 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Game1
+namespace NinjaRacer
 {
+
+    using Models;
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class GameEngine : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         //Scrolling Background
-        Scrolling scrollingFirst;
-        Scrolling scrollingSecond;
+        Track scrollingFirst;  // to rename
+        Track scrollingSecond;
         //Car
         private Texture2D car;
         //Initial car placement
-        private int carXValue = 160;
-        private int carYValue = 350;
-        
-        public Game1()
+        private int carXPosition = 160; // to do const
+        private int carYPozition = 350;
+
+        private int roadSpeed = 10;
+
+        public GameEngine()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 412; //width of the window
@@ -36,7 +40,7 @@ namespace Game1
 
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
-        
+
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -46,8 +50,8 @@ namespace Game1
 
             car = Content.Load<Texture2D>("car");
             //Loading the two backgrounds that will scroll(they are the same)
-            scrollingFirst = new Scrolling(Content.Load<Texture2D>("newBG"), new Rectangle(0, 0, 412, 550), graphics.PreferredBackBufferHeight);
-            scrollingSecond = new Scrolling(Content.Load<Texture2D>("newBG1"), new Rectangle(0, -550, 412, 550), graphics.PreferredBackBufferHeight);
+            scrollingFirst = new Track(Content.Load<Texture2D>("newBG"), new Rectangle(0, 0, 412, 550), roadSpeed, graphics.PreferredBackBufferHeight);
+            scrollingSecond = new Track(Content.Load<Texture2D>("newBG1"), new Rectangle(0, -550, 412, 550), roadSpeed, graphics.PreferredBackBufferHeight);
         }
 
         /// UnloadContent will be called once per game and is the place to unload
@@ -66,7 +70,7 @@ namespace Game1
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-                  
+
             // TODO: Add your update logic here   
 
             scrollingFirst.Update();
@@ -78,27 +82,28 @@ namespace Game1
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 //move right
-                if(carXValue < graphics.PreferredBackBufferWidth - car.Width - 40) //move only if within the window
-                    carXValue += 3; //speed
+                if (carXPosition < graphics.PreferredBackBufferWidth - car.Width - 40) //move only if within the window
+                    carXPosition += 3; //speed
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 //move left
-                if (carXValue > 35) //move only if within the window
-                    carXValue -= 3; //speed
+                if (carXPosition > 35) //move only if within the window
+                    carXPosition -= 3; //speed
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 //move up
-                if (carYValue > 3) //move only if within the window
-                    carYValue -= 3; //speed
+                if (carYPozition > 150) //move only if within the window  // max speed 150
+                    carYPozition -= 3; //speed
+
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 //move down
-                if (carYValue < graphics.PreferredBackBufferHeight - car.Height - 3) //move only if within the window
-                    carYValue += 4; //speed
-                
+                if (carYPozition < graphics.PreferredBackBufferHeight - car.Height - 3) //move only if within the window
+                    carYPozition += 4; //speed
+
             }
 
             base.Update(gameTime);
@@ -111,10 +116,26 @@ namespace Game1
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             scrollingFirst.Draw(spriteBatch);
-            scrollingSecond.Draw(spriteBatch);
-            spriteBatch.Draw(car, new Vector2(carXValue,carYValue), Color.White);
+          //  scrollingSecond.Draw(spriteBatch);
+            spriteBatch.Draw(car, new Vector2(carXPosition, carYPozition), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
+
+        //private bool IsInRoadRange(int maxValue, int , int bufferValue)
+        //{
+        //    bool isOnTheRoad = false;
+
+
+        ////move right
+        //if (carXPosition < graphics.PreferredBackBufferWidth - car.Width - 40) //move only if within the window
+
+        //    //move left
+        //    if (carXPosition > 35) //move only if within the window
+        //        carXPosition -= 3; //speed
+
+
+        //return isOnTheRoad;
+        //  }
     }
 }

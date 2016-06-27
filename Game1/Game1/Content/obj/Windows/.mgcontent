@@ -4,8 +4,8 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Lubomir/Documents/Visual Studio 2015/Projects/C#-OOP/Game1/Game1/Content/newBG.jpg</File>
-    <File>C:/Users/Lubomir/Documents/Visual Studio 2015/Projects/C#-OOP/Game1/Game1/Content/car.png</File>
-    <File>C:/Users/Lubomir/Documents/Visual Studio 2015/Projects/C#-OOP/Game1/Game1/Content/newBG1.jpg</File>
+    <File>D:/Telerik2016/TeamWorks/Belokk-Akpha/Team-Work/Game1/Game1/Content/newBG.jpg</File>
+    <File>D:/Telerik2016/TeamWorks/Belokk-Akpha/Team-Work/Game1/Game1/Content/car.png</File>
+    <File>D:/Telerik2016/TeamWorks/Belokk-Akpha/Team-Work/Game1/Game1/Content/newBG1.jpg</File>
   </SourceFiles>
 </SourceFileCollection>
