@@ -9,7 +9,7 @@
 
     public abstract class MovingObject : Contracts.IDrawable, IMovable
     {
-       public Vector2 position;
+        public Vector2 position;
         public Rectangle rectangle;
         private int speed;
         private Texture2D texture;
@@ -76,6 +76,6 @@
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        public abstract void Update();  //  TODO interface may be or to add to method in  IMovable
+        public abstract void Update();
     }
 }

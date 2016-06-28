@@ -5,14 +5,9 @@
 
     interface IMovable
     {
-        Texture2D Texture { get; }
-
-        Vector2 Position { get; }
-
-        Rectangle Rectangle { get; }
-
         int Speed { get; }
 
-        // TODO put update here?
+        void Update();
+
     }
 }

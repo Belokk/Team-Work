@@ -41,7 +41,9 @@
     <Compile Include="Background.cs" />
     <Compile Include="Contracts\IDrawable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
+    <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="GameEngine.cs" />
+    <Compile Include="Infrastructure\Constants\Grafic.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\GameField.cs" />
     <Compile Include="Models\MovingObject.cs" />
