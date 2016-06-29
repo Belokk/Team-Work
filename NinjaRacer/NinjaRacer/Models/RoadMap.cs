@@ -6,7 +6,7 @@
     using Contracts;
     using System;
 
-    public class RoadMAp : MovingObject, IMovable, Contracts.IDrawable
+    public class RoadMAp : MovingObject, IMovable, Contracts.IRendeble
     {
         private readonly int TrackHeight;
         private readonly int lastDevisable;

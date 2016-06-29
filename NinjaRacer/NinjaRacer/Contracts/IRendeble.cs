@@ -4,7 +4,7 @@ namespace NinjaRacer.Contracts
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public interface IDrawable
+    public interface IRendeble
     {
         Texture2D Texture { get; }
 

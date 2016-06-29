@@ -19,7 +19,7 @@
         RoadMAp First;  // to rename
         RoadMAp Second;
 
-        private Car car;
+        private PlayerCar car;
         private int carInitialX = Grafic.CarInitialPositionX;
         private int carInitialY = Grafic.CarInitialPozitionY;
 
@@ -52,8 +52,8 @@
             //  car = Content.Load<Texture2D>("car");  //TODO
             //var carW = 
             // var carX = carInitialX - carW;
-            car = new Car(Content.Load<Texture2D>("car"),
-                new Vector2(carInitialX - 36, carInitialY), Movement.CarSpeed);
+            car = new PlayerCar(Content.Load<Texture2D>("car"),
+                new Vector2(carInitialX - 36, carInitialY), Movement.CarAxeleration);
 
 
             //Loading the two backgrounds that will scroll(they are the same)

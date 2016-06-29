@@ -1,18 +1,15 @@
 ﻿namespace NinjaRacer.Models.Vechicles
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Infrastructure.Constants;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
 
-    internal class Car : MovingObject
+    internal class PlayerCar : Vechicle
     {
-        public Car(Texture2D texture, Vector2 position, int speed)
+
+
+        public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
         }
@@ -57,10 +54,9 @@
                 }
             }
         }
-        public int GetCarSize()
-        {
-            return this.Texture.Width;
-        }
+       
+
+
     }
 }
 
