@@ -3,7 +3,7 @@
 ##### Application: "Ninja Racer Game"
 *//TODO:Discription
 
-## Project Description
+## Project Description......
 Design and implement an object-oriented application by choice. Here are some suggestions:
 - A game:
   - The world can be fantasy, sci-fi, modern, etc.
