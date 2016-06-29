@@ -1,4 +1,4 @@
-﻿namespace NinjaRacer.MonoGame
+﻿namespace NinjaRacer
 {
     using System;
 
