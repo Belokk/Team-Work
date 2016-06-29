@@ -38,7 +38,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CheckGit.cs" />
     <Compile Include="Contracts\IRendeble.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="GameVisualization.cs" />
