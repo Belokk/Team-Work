@@ -7,12 +7,12 @@
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class GameLoop : Game
+    public class GameVisualization : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        public GameLoop()
+        public GameVisualization()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

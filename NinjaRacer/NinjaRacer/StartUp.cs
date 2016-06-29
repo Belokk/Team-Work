@@ -14,7 +14,7 @@
         [STAThread]
         public static void Main()
         {
-            using (var game = new GameLoop())
+            using (var game = new GameVisualization())
             {
                 game.Run();
             }

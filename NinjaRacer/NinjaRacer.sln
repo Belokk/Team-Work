@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaRacer.MonoGame", "NinjaRacer.MonoGame\NinjaRacer.MonoGame.csproj", "{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaRacer.Core", "NinjaRacer.Core\NinjaRacer.Core.csproj", "{F4836EAA-6059-47E5-9040-D9B27D6F50CE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaRacer.Models", "NinjaRacer.Models\NinjaRacer.Models.csproj", "{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaRacer.Utilities", "NinjaRacer.Utilities\NinjaRacer.Utilities.csproj", "{45D0BB65-8D58-4717-9D16-48CFFD63C665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaRacer", "NinjaRacer\NinjaRacer.csproj", "{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,28 +15,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Debug|x86.ActiveCfg = Debug|x86
-		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Debug|x86.Build.0 = Debug|x86
-		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Release|Any CPU.ActiveCfg = Release|x86
-		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Release|x86.ActiveCfg = Release|x86
-		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Release|x86.Build.0 = Release|x86
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Debug|x86.Build.0 = Debug|Any CPU
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Release|x86.ActiveCfg = Release|Any CPU
-		{F4836EAA-6059-47E5-9040-D9B27D6F50CE}.Release|x86.Build.0 = Release|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Debug|x86.Build.0 = Debug|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Release|x86.ActiveCfg = Release|Any CPU
-		{B315AE4F-D8BA-43CE-95CC-81B17ECF5AE3}.Release|x86.Build.0 = Release|Any CPU
 		{45D0BB65-8D58-4717-9D16-48CFFD63C665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45D0BB65-8D58-4717-9D16-48CFFD63C665}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45D0BB65-8D58-4717-9D16-48CFFD63C665}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -49,6 +23,12 @@ Global
 		{45D0BB65-8D58-4717-9D16-48CFFD63C665}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45D0BB65-8D58-4717-9D16-48CFFD63C665}.Release|x86.ActiveCfg = Release|Any CPU
 		{45D0BB65-8D58-4717-9D16-48CFFD63C665}.Release|x86.Build.0 = Release|Any CPU
+		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Debug|x86.ActiveCfg = Debug|x86
+		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Debug|x86.Build.0 = Debug|x86
+		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Release|Any CPU.ActiveCfg = Release|x86
+		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Release|x86.ActiveCfg = Release|x86
+		{F14A29EB-4BBB-48CC-8C60-DF7FA7A0844D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
