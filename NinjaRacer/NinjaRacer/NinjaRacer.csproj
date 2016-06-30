@@ -38,7 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IRendeble.cs" />
+    <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="GameVisualization.cs" />
     <Compile Include="GameEngine.cs" />
@@ -46,8 +46,8 @@
     <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="Models\MovingObject.cs" />
     <Compile Include="Models\RoadMap.cs" />
-    <Compile Include="Models\Vechicles\PlayerCar.cs" />
-    <Compile Include="Models\Vechicles\Vechicle.cs" />
+    <Compile Include="Models\Vehicles\PlayerCar.cs" />
+    <Compile Include="Models\Vehicles\Vehicle.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,7 +6,7 @@
     using Microsoft.Xna.Framework.Input;
 
     using Models;
-    using Models.Vechicles;
+    using Models.Vehicles;
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -16,8 +16,8 @@
         SpriteBatch spriteBatch;
 
         //Scrolling Background
-        RoadMAp First;  // to rename
-        RoadMAp Second;
+        RoadMap FirstRoadMap;
+        RoadMap SecondRoadMap;
 
         private PlayerCar car;
         private int carInitialX = Grafic.CarInitialPositionX;
@@ -29,7 +29,7 @@
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = Grafic.WindowWidth;
-            graphics.PreferredBackBufferHeight = Grafic.WindowHight;
+            graphics.PreferredBackBufferHeight = Grafic.WindowHeight;
             Content.RootDirectory = Grafic.RootDirectory;
         }
 
@@ -53,15 +53,15 @@
             //var carW = 
             // var carX = carInitialX - carW;
             car = new PlayerCar(Content.Load<Texture2D>("car"),
-                new Vector2(carInitialX - 36, carInitialY), Movement.CarAxeleration);
+                new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
 
 
             //Loading the two backgrounds that will scroll(they are the same)
-            First = new RoadMAp(Content.Load<Texture2D>("newBG"),
+            FirstRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
                 new Rectangle(200, 0, 400, 600),
                 roadSpeed,
-               graphics.PreferredBackBufferHeight);
-            Second = new RoadMAp(Content.Load<Texture2D>("newBG"),
+                graphics.PreferredBackBufferHeight);
+            SecondRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
                 new Rectangle(200, -600, 400, 600),
                 roadSpeed,
                 graphics.PreferredBackBufferHeight);
@@ -86,8 +86,8 @@
 
             // TODO: Add your update logic here   
             // TODO: List of IDrowlable and update with foreach loop
-            First.Update();
-            Second.Update();
+            FirstRoadMap.Update();
+            SecondRoadMap.Update();
             car.Update();
 
             base.Update(gameTime);
@@ -99,9 +99,9 @@
             GraphicsDevice.Clear(Color.Green);
 
             spriteBatch.Begin();
-            // TODO: List of IDrowlable and  with foreach loop
-            First.Draw(spriteBatch);
-            Second.Draw(spriteBatch);
+            // TODO: List of IDrawable and  with foreach loop
+            FirstRoadMap.Draw(spriteBatch);
+            SecondRoadMap.Draw(spriteBatch);
             car.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);

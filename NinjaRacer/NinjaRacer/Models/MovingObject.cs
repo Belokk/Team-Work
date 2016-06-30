@@ -7,7 +7,7 @@
 
     using Contracts;
 
-    public abstract class MovingObject : Contracts.IRendeble, IMovable
+    public abstract class MovingObject : IRenderable, IMovable
     {
         public Vector2 position;
         public Rectangle rectangle;

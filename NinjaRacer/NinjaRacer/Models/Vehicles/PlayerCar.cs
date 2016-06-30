@@ -1,14 +1,12 @@
-﻿namespace NinjaRacer.Models.Vechicles
+﻿namespace NinjaRacer.Models.Vehicles
 {
     using Infrastructure.Constants;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
 
-    internal class PlayerCar : Vechicle
+    internal class PlayerCar : Vehicle
     {
-
-
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
@@ -40,7 +38,7 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 ///move up
-                if (this.position.Y > Grafic.BuferHight)
+                if (this.position.Y > Grafic.BufferHeight)
                 {
                     this.position.Y -= this.Speed;
                 }
@@ -48,15 +46,12 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 ///move down
-                if (this.position.Y < Grafic.WindowHight - this.Texture.Height)
+                if (this.position.Y < Grafic.WindowHeight - this.Texture.Height)
                 {
                     this.position.Y += this.Speed;
                 }
             }
         }
-       
-
-
     }
 }
 
