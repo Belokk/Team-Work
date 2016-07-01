@@ -5,6 +5,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
+    using SoundsAndVisuals;
     using Models;
     using Models.Vehicles;
     /// <summary>
@@ -19,6 +20,8 @@
         RoadMap FirstRoadMap;
         RoadMap SecondRoadMap;
 
+        public HUD Hud { get; private set; }
+
         private PlayerCar car;
         private int carInitialX = Grafic.CarInitialPositionX;
         private int carInitialY = Grafic.CarInitialPozitionY;
@@ -31,6 +34,7 @@
             graphics.PreferredBackBufferWidth = Grafic.WindowWidth;
             graphics.PreferredBackBufferHeight = Grafic.WindowHeight;
             Content.RootDirectory = Grafic.RootDirectory;
+            Hud = new HUD();
         }
 
         protected override void Initialize()
@@ -65,6 +69,8 @@
                 new Rectangle(200, -600, 400, 600),
                 roadSpeed,
                 graphics.PreferredBackBufferHeight);
+
+            this.Hud.LoadContent(this.Content);
         }
 
         /// UnloadContent will be called once per game and is the place to unload
@@ -89,6 +95,7 @@
             FirstRoadMap.Update();
             SecondRoadMap.Update();
             car.Update();
+            Hud.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -103,6 +110,7 @@
             FirstRoadMap.Draw(spriteBatch);
             SecondRoadMap.Draw(spriteBatch);
             car.Draw(spriteBatch);
+            Hud.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

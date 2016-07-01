@@ -48,6 +48,7 @@
     <Compile Include="Models\RoadMap.cs" />
     <Compile Include="Models\Vehicles\PlayerCar.cs" />
     <Compile Include="Models\Vehicles\Vehicle.cs" />
+    <Compile Include="SoundsAndVisuals\HUD.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Bonuses\" />
-    <Folder Include="Models\Contracts\" />
     <Folder Include="Models\Obstacle\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
