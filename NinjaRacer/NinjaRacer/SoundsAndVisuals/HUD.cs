@@ -11,8 +11,8 @@
     public class HUD : IRenderable
     {
         public const int InititalPlayerScore = 0;
-        public const int CoordX = 500;
-        public const int CoordY = 400;
+        public const int CoordX = 650;
+        public const int CoordY = 20;
         private int playerScore;
 
         //Constructor
