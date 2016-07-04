@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IColidable.cs" />
+    <Compile Include="Contracts\IObstacle.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="GameVisualization.cs" />

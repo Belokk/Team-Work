@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NinjaRacer.Models.Obstacle
+﻿namespace NinjaRacer.Models.Obstacle
 {
-    class TrafficCar
+    using Contracts;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+
+    public class TrafficCar : MovingObject, IObstacle, IRenderable, IMovable
     {
     }
 }

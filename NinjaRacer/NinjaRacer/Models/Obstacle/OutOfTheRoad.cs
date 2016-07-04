@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NinjaRacer.Models.Obstacle
+﻿namespace NinjaRacer.Models.Obstacle
 {
-    class OutOfTheRoad
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+
+    public class OutOfTheRoad
     {
     }
 }

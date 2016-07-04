@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NinjaRacer.Models.Obstacle
+﻿namespace NinjaRacer.Models.Obstacle
 {
-    class Animal
+    using System;
+    using Contracts;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+
+    public class Animal : MovingObject, IObstacle ,IRenderable, IMovable
     {
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
