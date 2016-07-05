@@ -16,5 +16,13 @@
         {
             throw new NotImplementedException();
         }
+
+        public Animal(Texture2D texture, Vector2 position, int speed) : base(texture, position, speed)
+        {
+        }
+
+        public Animal(Texture2D texture, Rectangle rectangle, int speed) : base(texture, rectangle, speed)
+        {
+        }
     }
 }
