@@ -8,10 +8,16 @@
         public const int CarInitialPositionX = 400;
         public const int CarInitialPozitionY = 450;
         public const int BufferWidth = 200;
-        public const int BufferHeight = 150;
+        public const int BufferHeight = 100;
         public const int LeftOutOfRoadPosition = 200;
         public const int RightOutOfRoadPosition = 600;
-        
+        public const int InititalPlayerScore = 0;
+        public const int InitialPlayerHealth = 160;
+        public const int HealthBarCoordX = 620;
+        public const int HealthBarCoordY = 100;
+        public const int ScoreCoordX = 620;
+        public const int ScoreCoordY = 50;
+
         public const string RootDirectory = "Content";
     }
 }

@@ -7,7 +7,7 @@
 
     public class BigHole : IObstacle, IRenderable
     {
-        public Vector2 Position
+        public Vector2 ScorePosition
         {
             get
             {

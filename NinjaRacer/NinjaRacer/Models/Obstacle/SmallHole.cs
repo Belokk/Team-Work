@@ -7,7 +7,7 @@
 
     public class SmallHole : IObstacle, IRenderable
     {
-        public Vector2 Position
+        public Vector2 ScorePosition
         {
             get
             {
