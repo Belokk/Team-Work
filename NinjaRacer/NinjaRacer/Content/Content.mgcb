@@ -25,6 +25,12 @@
 /processorParam:TextureFormat=Color
 /build:car.png
 
+#begin georgia.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:georgia.spritefont
+
 #begin newBG2.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -49,7 +55,7 @@
 /processorParam:TextureFormat=Color
 /build:newBG3.jpg
 
-#begin hole.png
+#begin healthbar.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,5 +65,17 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:hole.png
+/build:healthbar.png
+
+#begin smallRoadHole.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:smallRoadHole.png
 
