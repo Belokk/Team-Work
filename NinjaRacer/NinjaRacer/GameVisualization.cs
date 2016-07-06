@@ -1,4 +1,6 @@
-﻿namespace NinjaRacer
+﻿using NinjaRacer.Models.Obstacle;
+
+namespace NinjaRacer
 {
     using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
@@ -17,9 +19,10 @@
         SpriteBatch spriteBatch;
 
         //Scrolling Background
+        //Scrolling Background
         RoadMap FirstRoadMap;
         RoadMap SecondRoadMap;
-
+        BigHole hole;
         public HUD Hud { get; private set; }
 
         private PlayerCar car;
@@ -69,6 +72,8 @@
                 new Rectangle(200, -600, 400, 600),
                 roadSpeed,
                 graphics.PreferredBackBufferHeight);
+            
+            hole = new BigHole(Content.Load<Texture2D>("hole"),new Rectangle(240, 20, 20, 20), roadSpeed, graphics.PreferredBackBufferHeight);
 
             this.Hud.LoadContent(this.Content);
         }
@@ -96,6 +101,7 @@
             SecondRoadMap.Update();
             car.Update();
             Hud.Update(gameTime);
+            hole.Update();
 
             base.Update(gameTime);
         }
@@ -111,6 +117,7 @@
             SecondRoadMap.Draw(spriteBatch);
             car.Draw(spriteBatch);
             Hud.Draw(spriteBatch);
+            hole.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

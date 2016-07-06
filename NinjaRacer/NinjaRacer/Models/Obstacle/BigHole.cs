@@ -5,35 +5,10 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class BigHole : IObstacle, IRenderable
+    public class BigHole : RoadMap
     {
-        public Vector2 Position
+        public BigHole(Texture2D texture, Rectangle rectangle, int speed, int trackHeight) : base(texture, rectangle, speed, trackHeight)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Rectangle Rectangle
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Texture2D Texture
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
         }
     }
 }
