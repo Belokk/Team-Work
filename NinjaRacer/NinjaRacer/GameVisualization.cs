@@ -23,8 +23,8 @@
 
 
         //Scrolling Background
-        RoadMap FirstRoadMap;
-        RoadMap SecondRoadMap;
+       // RoadMap FirstRoadMap;
+       // RoadMap SecondRoadMap;
 
         public HUD Hud { get; private set; }
 
