@@ -28,7 +28,7 @@
             this.Speed = speed;
         }
 
-        public Vector2 Position
+        public Vector2 ScorePosition
         {
             get
             {

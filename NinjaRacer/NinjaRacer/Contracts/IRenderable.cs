@@ -8,8 +8,6 @@ namespace NinjaRacer.Contracts
     {
         Texture2D Texture { get; }
 
-        Vector2 Position { get; }
-
         Rectangle Rectangle { get; }
 
         void Draw(SpriteBatch spriteBatch);

@@ -7,6 +7,9 @@
 
     internal class PlayerCar : Vehicle
     {
+        private int score;
+        private int health;
+
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
@@ -52,6 +55,9 @@
                 }
             }
         }
+
+        public int Health { get { return this.health; } private set { this.health = value; } }
+        public int Score { get { return this.score; } private set { this.score = value; } }
     }
 }
 
