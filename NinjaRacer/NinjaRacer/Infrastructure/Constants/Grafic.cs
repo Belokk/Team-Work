@@ -5,7 +5,7 @@
         public const int WindowWidth = 800;
         public const int WindowHeight = 600;
 
-        public const int CarInitialPositionX = 400;
+        public const int CarInitialPositionX = 390;
         public const int CarInitialPozitionY = 450;
         public const int BufferWidth = 200;
         public const int BufferHeight = 100;
