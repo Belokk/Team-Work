@@ -28,7 +28,7 @@
             this.Speed = speed;
         }
 
-        public Vector2 Position
+        public Vector2 ScorePosition
         {
             get
             {
@@ -86,6 +86,6 @@
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        public abstract void Update();
+        public abstract void Update(GameTime gameTime);
     }
 }

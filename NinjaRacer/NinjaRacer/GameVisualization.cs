@@ -1,6 +1,4 @@
-﻿using NinjaRacer.Models.Obstacle;
-
-namespace NinjaRacer
+﻿namespace NinjaRacer
 {
     using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
@@ -15,21 +13,26 @@ namespace NinjaRacer
     /// </summary>
     public class GameVisualization : Game
     {
+
+
+        private readonly RoadMap road = RoadMap.GetInstance();
+
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //Scrolling Background
+
         //Scrolling Background
         RoadMap FirstRoadMap;
         RoadMap SecondRoadMap;
-        BigHole hole;
+
         public HUD Hud { get; private set; }
 
         private PlayerCar car;
         private int carInitialX = Grafic.CarInitialPositionX;
         private int carInitialY = Grafic.CarInitialPozitionY;
 
-        private int roadSpeed = Movement.RoadSpeed;
+      //  private int roadSpeed = Movement.RoadSpeed;
 
         public GameVisualization()
         {
@@ -59,21 +62,21 @@ namespace NinjaRacer
             //  car = Content.Load<Texture2D>("car");  //TODO
             //var carW = 
             // var carX = carInitialX - carW;
+
+            this.road.LoadContent(this.Content);
             car = new PlayerCar(Content.Load<Texture2D>("car"),
                 new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
 
 
             //Loading the two backgrounds that will scroll(they are the same)
-            FirstRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
-                new Rectangle(200, 0, 400, 600),
-                roadSpeed,
-                graphics.PreferredBackBufferHeight);
-            SecondRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
-                new Rectangle(200, -600, 400, 600),
-                roadSpeed,
-                graphics.PreferredBackBufferHeight);
-            
-            hole = new BigHole(Content.Load<Texture2D>("hole"),new Rectangle(240, 20, 20, 20), roadSpeed, graphics.PreferredBackBufferHeight);
+            //FirstRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
+            //    new Rectangle(200, 0, 400, 600),
+            //    roadSpeed,
+            //    graphics.PreferredBackBufferHeight);
+            //SecondRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
+            //    new Rectangle(200, -600, 400, 600),
+            //    roadSpeed,
+            //    graphics.PreferredBackBufferHeight);
 
             this.Hud.LoadContent(this.Content);
         }
@@ -97,11 +100,11 @@ namespace NinjaRacer
 
             // TODO: Add your update logic here   
             // TODO: List of IDrowlable and update with foreach loop
-            FirstRoadMap.Update();
-            SecondRoadMap.Update();
-            car.Update();
+            //  FirstRoadMap.Update();
+            //  SecondRoadMap.Update();
+            road.Update(gameTime);
+            car.Update(gameTime);
             Hud.Update(gameTime);
-            hole.Update();
 
             base.Update(gameTime);
         }
@@ -113,11 +116,11 @@ namespace NinjaRacer
 
             spriteBatch.Begin();
             // TODO: List of IDrawable and  with foreach loop
-            FirstRoadMap.Draw(spriteBatch);
-            SecondRoadMap.Draw(spriteBatch);
+            //FirstRoadMap.Draw(spriteBatch);
+            //SecondRoadMap.Draw(spriteBatch);
+            road.Draw(spriteBatch);
             car.Draw(spriteBatch);
             Hud.Draw(spriteBatch);
-            hole.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

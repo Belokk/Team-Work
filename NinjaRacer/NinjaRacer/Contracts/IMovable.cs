@@ -7,7 +7,7 @@
     {
         int Speed { get; }
 
-        void Update();
+        void Update(GameTime gameTime);
 
     }
 }

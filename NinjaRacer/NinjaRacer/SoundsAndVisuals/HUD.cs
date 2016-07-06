@@ -10,24 +10,31 @@
 
     public class HUD : IRenderable
     {
-        public const int InititalPlayerScore = 0;
-        public const int CoordX = 650;
-        public const int CoordY = 20;
         private int playerScore;
+        private int playerHealth;
 
         //Constructor
         public HUD()
         {
-            this.PlayerScore = InititalPlayerScore;
+            this.PlayerScore = Grafic.InititalPlayerScore;
             this.ShowHud = true;
             this.PlayerScoreFont = null;
-            this.Position = new Vector2(CoordX, CoordY);
+            this.PlayerHealth = Grafic.InitialPlayerHealth;
         }
 
-        public int PlayerScore
+        public Texture2D HealthTexture { get; private set; }
+        public Rectangle HealthRectangle { get; private set; }
+
+        public int PlayerScore // to be connected with Player.Score
         {
             get { return this.playerScore; }
             set { this.playerScore = value; }
+        }
+
+        public int PlayerHealth // to be connected with Player.Health
+        {
+            get { return this.playerHealth; }
+            set { this.playerHealth = value; }
         }
 
         public bool ShowHud { get; set; }
@@ -38,6 +45,7 @@
         public void LoadContent(ContentManager Content)
         {
             this.PlayerScoreFont = Content.Load<SpriteFont>("georgia");
+            this.HealthTexture = Content.Load<Texture2D>("healthbar");
         }
 
         //Update
@@ -45,18 +53,22 @@
         {
             //Get KeyboardState
             KeyboardState keyState = Keyboard.GetState();
+
+            this.HealthRectangle = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y,
+                this.PlayerHealth, this.HealthTexture.Width);
         }
 
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            //if we are showing our HUD (if showHUD==true) then display our HUD
-            if (this.ShowHud)
-            {
-                spriteBatch.DrawString(this.PlayerScoreFont, string.Format("Score {0}", this.PlayerScore), this.Position, Color.White);
-            }
+            spriteBatch.DrawString(this.PlayerScoreFont, string.Format("Score {0}", this.PlayerScore), this.ScorePosition, Color.White);
+            spriteBatch.Draw(this.HealthTexture, this.HealthRectangle, Color.White);
+
         }
-        public Vector2 Position { get; private set; }
+
+        public readonly Vector2 ScorePosition = new Vector2(Grafic.ScoreCoordX, Grafic.ScoreCoordY);
+
+        public readonly Vector2 HealthBarPosition = new Vector2(Grafic.HealthBarCoordX, Grafic.HealthBarCoordY);
 
         public Rectangle Rectangle
         {
@@ -73,5 +85,6 @@
                 throw new NotImplementedException();
             }
         }
+
     }
 }

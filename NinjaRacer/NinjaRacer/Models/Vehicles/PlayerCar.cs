@@ -7,6 +7,9 @@
 
     internal class PlayerCar : Vehicle
     {
+        private int score;
+        private int health;
+
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
@@ -17,7 +20,7 @@
             spriteBatch.Draw(this.Texture, this.position);
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
@@ -52,6 +55,9 @@
                 }
             }
         }
+
+        public int Health { get { return this.health; } private set { this.health = value; } }
+        public int Score { get { return this.score; } private set { this.score = value; } }
     }
 }
 
