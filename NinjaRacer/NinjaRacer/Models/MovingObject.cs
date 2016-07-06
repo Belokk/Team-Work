@@ -86,6 +86,6 @@
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        public abstract void Update();
+        public abstract void Update(GameTime gameTime);
     }
 }

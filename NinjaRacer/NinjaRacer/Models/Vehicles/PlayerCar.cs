@@ -17,7 +17,7 @@
             spriteBatch.Draw(this.Texture, this.position);
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
