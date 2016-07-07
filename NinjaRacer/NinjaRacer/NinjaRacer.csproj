@@ -48,9 +48,7 @@
     <Compile Include="Infrastructure\Constants\Grafic.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="Models\MovingObject.cs" />
-    <Compile Include="Models\Obstacle\Animal.cs" />
     <Compile Include="Models\Obstacle\BigHole.cs" />
-    <Compile Include="Models\Obstacle\Human.cs" />
     <Compile Include="Models\Obstacle\OutOfTheRoad.cs" />
     <Compile Include="Models\Obstacle\SmallHole.cs" />
     <Compile Include="Models\Obstacle\TrafficBike.cs" />
