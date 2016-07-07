@@ -13,26 +13,24 @@
     /// </summary>
     public class GameVisualization : Game
     {
-
-
         private readonly RoadMap road = RoadMap.GetInstance();
-
+        private PlayerCar playerCar = PlayerCar.GetInstance();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
 
         //Scrolling Background
-       // RoadMap FirstRoadMap;
-       // RoadMap SecondRoadMap;
+        // RoadMap FirstRoadMap;
+        // RoadMap SecondRoadMap;
 
         public HUD Hud { get; private set; }
 
-        private PlayerCar car;
-        private int carInitialX = Graphic.CarInitialPositionX;
-        private int carInitialY = Graphic.CarInitialPozitionY;
+        //   private PlayerCar car;
+        //  private int carInitialX = Graphic.CarInitialPositionX;
+        //  private int carInitialY = Graphic.CarInitialPozitionY;
 
-      //  private int roadSpeed = Movement.RoadSpeed;
+        //  private int roadSpeed = Movement.RoadSpeed;
 
         public GameVisualization()
         {
@@ -59,24 +57,12 @@
 
             // TODO: use this.Content to load your game content here
 
-            //  car = Content.Load<Texture2D>("car");  //TODO
-            //var carW = 
-            // var carX = carInitialX - carW;
 
             this.road.LoadContent(this.Content, "newBG3");
-            car = new PlayerCar(Content.Load<Texture2D>("car"),
-                new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
+            this.playerCar.LoadContent(this.Content, "car");
 
-
-            //Loading the two backgrounds that will scroll(they are the same)
-            //FirstRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
-            //    new Rectangle(200, 0, 400, 600),
-            //    roadSpeed,
-            //    graphics.PreferredBackBufferHeight);
-            //SecondRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
-            //    new Rectangle(200, -600, 400, 600),
-            //    roadSpeed,
-            //    graphics.PreferredBackBufferHeight);
+            //car = new PlayerCar(Content.Load<Texture2D>("car"),
+            //    new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
 
             this.Hud.LoadContent(this.Content, "healthbar");
         }
@@ -103,7 +89,7 @@
             //  FirstRoadMap.Update();
             //  SecondRoadMap.Update();
             road.Update(gameTime);
-            car.Update(gameTime);
+            playerCar.Update(gameTime);
             Hud.Update(gameTime);
 
             base.Update(gameTime);
@@ -118,10 +104,12 @@
             // TODO: List of IDrawable and  with foreach loop
             //FirstRoadMap.Draw(spriteBatch);
             //SecondRoadMap.Draw(spriteBatch);
-            road.Draw(spriteBatch);
-            car.Draw(spriteBatch);
+
+            this.road.Draw(spriteBatch);
+            this.playerCar.Draw(spriteBatch);
             Hud.Draw(spriteBatch);
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

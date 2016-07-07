@@ -40,7 +40,7 @@
 
             return instance;
         }
-        
+                
         //Draw
         public override void Draw(SpriteBatch spriteBatch)
         {

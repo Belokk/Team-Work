@@ -8,34 +8,58 @@
     using Contracts;
     using Abstract;
     using System;
-    using Microsoft.Xna.Framework.Content;
 
     internal class PlayerCar : Vehicle, IMovable, ICollidable
     {
 
         private int score;
         private int health;
+        private int acseleration;
+
+        private static PlayerCar instance = null;
+
+        private const float width = 90; //74 Width of the ship texture in pixels. Will change if ship pic is changed.
+        private const float height = 152; // Height of the ship texture in pixels. Will change if ship pic is changed.
 
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
             this.Health = Graphic.InitialPlayerHealth;
             this.Score = Graphic.InititalPlayerScore;
+            this.acseleration = 1;
         }
 
-        public int Health
+        //car = new PlayerCar(Content.Load<Texture2D>("car"),
+        //    new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
+
+        private PlayerCar()
+            : this(null, new Vector2(400- width/2,600- height-100),5)
         {
-            get
+        }
+
+        public static PlayerCar GetInstance()
+        {
+            if (instance == null)
             {
-                return this.Health1;
+                instance = new PlayerCar();
             }
 
-            private set
-            {
-                // TODO Custom exception Car Crash
-                this.Health1 = value;
-            }
+            return instance;
         }
+        //public int Health
+        //{
+        //    get
+        //    {
+        //        return this.Health1;
+        //    }
+
+        //    private set
+        //    {
+        //        // TODO Custom exception Car Crash
+        //        this.Health1 = value;
+        //    }
+        //}
+
         public int Score
         {
             get
@@ -50,7 +74,7 @@
             }
         }
 
-        public int Health1
+        public int Health
         {
             get
             {
@@ -62,6 +86,8 @@
                 health = value;
             }
         }
+
+
 
         public override void Update(GameTime gameTime)
         {

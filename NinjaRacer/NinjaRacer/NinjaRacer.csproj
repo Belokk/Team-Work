@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICollidable.cs" />
+    <Compile Include="Contracts\IControllable.cs" />
     <Compile Include="Contracts\IObstacle.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
