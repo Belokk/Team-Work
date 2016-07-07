@@ -28,6 +28,7 @@
             this.Speed = speed;
         }
 
+        // Da f*ck.... Why....must be Position!
         public Vector2 ScorePosition
         {
             get
