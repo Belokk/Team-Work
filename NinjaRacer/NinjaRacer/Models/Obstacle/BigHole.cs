@@ -2,36 +2,13 @@
 {
     using System;
     using Contracts;
+    using Abstract;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class BigHole : IObstacle, IRenderable
+    public class BigHole : Hole, IObstacle, IRenderable
     {
-        public Vector2 ScorePosition
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Rectangle Rectangle
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Texture2D Texture
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Update()
         {
             throw new NotImplementedException();
         }

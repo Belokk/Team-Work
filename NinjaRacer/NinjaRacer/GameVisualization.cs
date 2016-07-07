@@ -63,7 +63,7 @@
             //var carW = 
             // var carX = carInitialX - carW;
 
-            this.road.LoadContent(this.Content);
+            this.road.LoadContent(this.Content, "newBG3");
             car = new PlayerCar(Content.Load<Texture2D>("car"),
                 new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
 

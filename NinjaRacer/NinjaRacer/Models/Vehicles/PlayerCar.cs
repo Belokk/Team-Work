@@ -1,23 +1,57 @@
 ﻿namespace NinjaRacer.Models.Vehicles
 {
-    using Infrastructure.Constants;
-    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
-    internal class PlayerCar : Vehicle
+    using Infrastructure.Constants;
+    using Contracts;
+    using Abstract;
+    using System;
+
+    internal class PlayerCar : Vehicle, IMovable, ICollidable
     {
+
         private int score;
         private int health;
 
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
+            this.Health = Grafic.InitialPlayerHealth;
+            this.Score = Grafic.InititalPlayerScore;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, this.position);
+        }
+
+        public int Health
+        {
+            get
+            {
+                return this.health;
+            }
+
+            private set
+            {
+                // TODO Custom exception Car Crash
+                this.health = value;
+            }
+        }
+        public int Score
+        {
+            get
+            {
+                return this.score;
+
+            }
+            private set
+            {
+                // TODO Exeption
+                this.score = value;
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -56,8 +90,10 @@
             }
         }
 
-        public int Health { get { return this.health; } private set { this.health = value; } }
-        public int Score { get { return this.score; } private set { this.score = value; } }
+        public void CollisionDetection()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
