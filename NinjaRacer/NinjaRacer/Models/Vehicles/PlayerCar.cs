@@ -5,8 +5,11 @@
     using Microsoft.Xna.Framework.Input;
 
     using Infrastructure.Constants;
+    using Contracts;
+    using Abstract;
+    using System;
 
-    internal class PlayerCar : Vehicle
+    internal class PlayerCar : Vehicle, IMovable, ICollidable
     {
 
         private int score;
@@ -87,7 +90,10 @@
             }
         }
 
-
+        public void CollisionDetection()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

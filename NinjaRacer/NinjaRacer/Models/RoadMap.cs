@@ -5,7 +5,9 @@
 
     using Infrastructure.Constants;
     using Contracts;
+    using Abstract;
     using Microsoft.Xna.Framework.Content;
+
     public class RoadMap : MovingObject, IMovable, IRenderable
     {
         GraphicsDevice grafic;
