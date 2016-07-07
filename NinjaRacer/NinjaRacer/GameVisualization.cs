@@ -29,6 +29,8 @@
         public HUD Hud { get; private set; }
 
         private PlayerCar car;
+
+        // can be constantas 
         private int carInitialX = Grafic.CarInitialPositionX;
         private int carInitialY = Grafic.CarInitialPozitionY;
 
@@ -112,7 +114,7 @@
         /// This is called when the game should draw itself.
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Green);
+            //GraphicsDevice.Clear(Color.Green);
 
             spriteBatch.Begin();
             // TODO: List of IDrawable and  with foreach loop

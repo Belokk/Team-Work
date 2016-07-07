@@ -8,7 +8,7 @@
     using Microsoft.Xna.Framework.Content;
     public class RoadMap : MovingObject, IMovable, IRenderable
     {
-        GraphicsDevice grafic;
+        //GraphicsDevice grafic;
         private const float FirstCoordY = 0;
         private const float SecondCoordY = -600;
         private const float CoordX = 200;
@@ -64,8 +64,9 @@
         //Draw
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, this.position, Color.White);
-            spriteBatch.Draw(this.Texture, this.SecondPosition, Color.White);
+            // We don't need Color.White //
+            spriteBatch.Draw(this.Texture, this.position);
+            spriteBatch.Draw(this.Texture, this.SecondPosition);
         }
 
         // Update
