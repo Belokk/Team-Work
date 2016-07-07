@@ -18,7 +18,7 @@
         public MovingObject(Texture2D texture, Vector2 position, int speed)
         {
             this.Texture = texture;
-            this.position = position;
+            this.Position = position;
             this.Speed = speed;
         }
 
@@ -29,7 +29,7 @@
             this.Speed = speed;
         }
 
-        public Vector2 ScorePosition
+        public Vector2 Position
         {
             get
             {

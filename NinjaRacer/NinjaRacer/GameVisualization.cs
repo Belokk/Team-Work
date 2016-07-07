@@ -1,38 +1,36 @@
 ﻿namespace NinjaRacer
 {
-    using Infrastructure.Constants;
+    using System;
+    using System.Collections.Generic;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
     using SoundsAndVisuals;
     using Models;
+    using Models.Abstract;
     using Models.Vehicles;
+    using Models.Bonuses;
+    using Infrastructure.Constants;
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class GameVisualization : Game
     {
-
-
         private readonly RoadMap road = RoadMap.GetInstance();
-
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private PlayerCar player;
+        private HUD hud;
+        private readonly IList<BonusObject> bonusesList;
 
-        //Scrolling Background
-       // RoadMap FirstRoadMap;
-       // RoadMap SecondRoadMap;
-
-        public HUD Hud { get; private set; }
-
-        private PlayerCar car;
         private int carInitialX = Graphic.CarInitialPositionX;
         private int carInitialY = Graphic.CarInitialPozitionY;
+        public const int TypesOfBonuses = 2;
 
-      //  private int roadSpeed = Movement.RoadSpeed;
+        //  private int roadSpeed = Movement.RoadSpeed;
 
         public GameVisualization()
         {
@@ -40,7 +38,54 @@
             graphics.PreferredBackBufferWidth = Graphic.WindowWidth;
             graphics.PreferredBackBufferHeight = Graphic.WindowHeight;
             Content.RootDirectory = Graphic.RootDirectory;
-            Hud = new HUD();
+            this.bonusesList = new List<BonusObject>();
+            this.RandomGenerator = new Random();
+        }
+
+        public IList<BonusObject> BonusesList
+        {
+            get
+            {
+                return new List<BonusObject>(this.bonusesList);
+            }
+        }
+
+        public Random RandomGenerator { get; private set; }
+
+        public void LoadBonuses()
+        {
+            //Creating random variables for X and Y axis of our bonuses
+            int coordY = 0; // Bonuses will appear on the top part of the screen;
+            int randX = this.RandomGenerator.Next(200, 400);
+            int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
+
+            //if there are less than 2 bonuses on the screen, then create more until there are 2 again
+            if (this.BonusesList.Count < 2) // 2 - min bonuses on screen
+            {
+                switch (randBonus)
+                {
+                    case 0:
+                        this.bonusesList.Add(new BonusScore(this.Content.Load<Texture2D>("pointsBonus"), new Vector2(randX, coordY), 4));
+                        break;
+                    case 1:
+                        this.bonusesList.Add(new BonusScore(this.Content.Load<Texture2D>("pointsBonus"), new Vector2(randX, coordY), 4));
+                        break;
+                        // Extend with more, if there is more than 2 types of bonus;
+                        //case 2:
+                        //    // bonusesList.Add(new SomeOtherKindOfBonus();)
+                        //    break;
+                }
+            }
+
+            // If any of the bonuses in the list were destroyed (or invisible), then remove them from the list
+            for (int i = 0; i < this.BonusesList.Count; i++)
+            {
+                if (!this.bonusesList[i].IsVisible)
+                {
+                    this.bonusesList.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         protected override void Initialize()
@@ -58,27 +103,15 @@
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-
-            //  car = Content.Load<Texture2D>("car");  //TODO
-            //var carW = 
-            // var carX = carInitialX - carW;
+            
 
             this.road.LoadContent(this.Content, "newBG3");
-            car = new PlayerCar(Content.Load<Texture2D>("car"),
-                new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
 
+            player = new PlayerCar(Content.Load<Texture2D>("car"),
+                new Vector2(carInitialX - 36, carInitialY), Movement.CarSpeed);
 
-            //Loading the two backgrounds that will scroll(they are the same)
-            //FirstRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
-            //    new Rectangle(200, 0, 400, 600),
-            //    roadSpeed,
-            //    graphics.PreferredBackBufferHeight);
-            //SecondRoadMap = new RoadMap(Content.Load<Texture2D>("newBG"),
-            //    new Rectangle(200, -600, 400, 600),
-            //    roadSpeed,
-            //    graphics.PreferredBackBufferHeight);
-
-            this.Hud.LoadContent(this.Content, "healthbar");
+            hud = new HUD(player);
+            this.hud.LoadContent(this.Content, "healthbar");
         }
 
         /// UnloadContent will be called once per game and is the place to unload
@@ -98,13 +131,27 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            foreach (BonusObject bonus in this.BonusesList)
+            {
+                //check if any bonuses are colliding with player
+                // if they are set visible to false
+                if (bonus.Position.X == player.Position.X && bonus.Position.X == player.Position.Y)
+                {
+                    bonus.DistributeBonusEffect(this.player);
+                    bonus.DestroyObject();
+                }
+
+                bonus.Update(gameTime);
+            }
+
             // TODO: Add your update logic here   
             // TODO: List of IDrowlable and update with foreach loop
             //  FirstRoadMap.Update();
             //  SecondRoadMap.Update();
             road.Update(gameTime);
-            car.Update(gameTime);
-            Hud.Update(gameTime);
+            player.Update(gameTime);
+            hud.Update(gameTime);
+            this.LoadBonuses();
 
             base.Update(gameTime);
         }
@@ -119,8 +166,12 @@
             //FirstRoadMap.Draw(spriteBatch);
             //SecondRoadMap.Draw(spriteBatch);
             road.Draw(spriteBatch);
-            car.Draw(spriteBatch);
-            Hud.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
+            foreach (BonusObject bonus in this.BonusesList)
+            {
+                bonus.Draw(spriteBatch);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }

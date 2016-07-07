@@ -10,11 +10,10 @@
     using System;
     using Microsoft.Xna.Framework.Content;
 
-    internal class PlayerCar : Vehicle, IMovable, ICollidable
+    public class PlayerCar : Vehicle, IMovable, ICollidable
     {
-
-        private int score;
-        private int health;
+        private int score = Graphic.InititalPlayerScore;
+        private int health = Graphic.InitialPlayerHealth;
 
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
@@ -23,34 +22,27 @@
             this.Score = Graphic.InititalPlayerScore;
         }
 
-        public int Health
-        {
-            get
-            {
-                return this.Health1;
-            }
-
-            private set
-            {
-                // TODO Custom exception Car Crash
-                this.Health1 = value;
-            }
-        }
         public int Score
         {
             get
             {
                 return this.score;
-
             }
-            private set
+
+            set
             {
-                // TODO Exeption
-                this.score = value;
+                if (value < 0)
+                {
+                    throw new ArgumentException("Player's score cannot be a negative number.");
+                }
+                else
+                {
+                    this.score = value;
+                }
             }
         }
 
-        public int Health1
+        public int Health
         {
             get
             {
@@ -59,7 +51,14 @@
 
             set
             {
-                health = value;
+                if (value < 0)
+                {
+                    throw new ArgumentException("Player's health cannot be a negative number.");
+                }
+                else
+                {
+                    this.health = value;
+                }
             }
         }
 
