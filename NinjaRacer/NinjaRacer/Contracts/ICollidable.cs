@@ -3,7 +3,8 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    interface IObstacle : ICollidable, IRenderable
+    interface ICollidable
     {
+        void CollisionDetection();
     }
 }
