@@ -3,6 +3,7 @@
     using System;
     using Contracts;
     using Vehicles;
+    using SoundsAndVisuals;
     using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -14,8 +15,6 @@
             this.IsVisible = true;
         }
 
-        public Rectangle BoundingBox { get; set; }
-
         public bool IsVisible { get; set; }
 
         public void DestroyObject()
@@ -23,14 +22,11 @@
             this.IsVisible = false;
         }
 
-        public abstract void DistributeBonusEffect(PlayerCar p);
+        public abstract void DetectCollision(PlayerCar playerCar);
 
         // Update
         public override void Update(GameTime gameTime)
         {
-            // Set bounding box for collision
-            this.BoundingBox = new Rectangle((int)this.position.X, (int)this.position.Y, this.Texture.Width, this.Texture.Height);
-
             // update movement
             this.position.Y = this.position.Y + this.Speed;
             if (this.position.Y >= Graphic.WindowHeight)
@@ -46,11 +42,6 @@
             {
                 spriteBatch.Draw(this.Texture, this.Position, Color.White);
             }
-        }
-
-        public void CollisionDetection()
-        {
-            throw new NotImplementedException();
         }
     }
 }

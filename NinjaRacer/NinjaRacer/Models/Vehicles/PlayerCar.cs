@@ -10,7 +10,7 @@
     using System;
     using Microsoft.Xna.Framework.Content;
 
-    public class PlayerCar : Vehicle, IMovable, ICollidable
+    public class PlayerCar : Vehicle, IMovable
     {
         private int score = Graphic.InititalPlayerScore;
         private int health = Graphic.InitialPlayerHealth;
@@ -99,11 +99,6 @@
             //        this.position.Y += this.Speed;
             //    }
             //}
-        }
-
-        public void CollisionDetection()
-        {
-            throw new NotImplementedException();
         }
     }
 }

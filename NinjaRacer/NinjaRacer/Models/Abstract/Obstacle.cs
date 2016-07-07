@@ -4,36 +4,16 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
+    using Models.Vehicles;
     using NinjaRacer.Contracts;
 
-    public abstract class Obstacle : IObstacle, IRenderable, ICollidable
+    public abstract class Obstacle : MovingObject, IRenderable, IObstacle
     {
-        private int damagePoints;
-        
-        public Vector2 Position
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public int damagePoints;
 
-        public Rectangle Rectangle
+        public Obstacle(Texture2D texture, Vector2 position, int speed, int demagePoints) : base(texture, position, speed)
         {
-            private set { }
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Texture2D Texture
-        {
-            private set { }
-            get
-            {
-                throw new NotImplementedException();
-            }
+            this.DamagePoints = demagePoints;
         }
 
         public int DamagePoints
@@ -42,10 +22,9 @@
             {
                 return this.damagePoints;
             }
-
             set
             {
-                if (value > 0)
+                if(value > 0)
                 {
                     this.damagePoints = value;
                 }
@@ -56,22 +35,17 @@
             }
         }
 
+        public virtual void DetectCollision(PlayerCar playerCar)
+        {
+            if (this.BoundingBox.Intersects(playerCar.BoundingBox))
+            {
+                playerCar.Health -= this.DamagePoints;
+            }
+        }
 
-        public virtual void CollisionDetection()
+        public override void Update(GameTime gameTime)
         {
             throw new NotImplementedException();
-        }
-
-        public virtual void LoadContent(ContentManager content, string fileName)
-        {
-            this.Texture = content.Load<Texture2D>(fileName);
-        }
-
-        public abstract void Update();
-
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.Texture, this.Rectangle, Color.White);
         }
     }
 }

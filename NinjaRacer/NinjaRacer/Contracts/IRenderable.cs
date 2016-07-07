@@ -9,7 +9,7 @@ namespace NinjaRacer.Contracts
     {
         Texture2D Texture { get; }
 
-        Rectangle Rectangle { get; }
+        Rectangle BoundingBox { get; }
 
         void LoadContent(ContentManager content, string fileName);
 
