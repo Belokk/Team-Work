@@ -8,7 +8,6 @@
     using Microsoft.Xna.Framework.Content;
     public class RoadMap : MovingObject, IMovable, IRenderable
     {
-        GraphicsDevice grafic;
         private const float FirstCoordY = 0;
         private const float SecondCoordY = -600;
         private const float CoordX = 200;
@@ -18,16 +17,14 @@
         private Vector2 secondPosition;
         private static RoadMap instance = null;
 
-        public const int RoadMapSpeed = 5;
-
         private RoadMap(Texture2D texture, Vector2 position, int speed)
-            : base(null, new Vector2(200, FirstCoordY), RoadMapSpeed)
+            : base(null, new Vector2(200, FirstCoordY), Grafic.RoadMapSpeed)
         {
             this.secondPosition = new Vector2(200, SecondCoordY);
         }
 
         private RoadMap()
-            : this(null, new Vector2(200, FirstCoordY), RoadMapSpeed)
+            : this(null, new Vector2(200, FirstCoordY), Grafic.RoadMapSpeed)
         {
         }
 

@@ -5,7 +5,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Animal : MovingObject, IObstacle ,IRenderable, IMovable
+    public class Animal : MovingObject, IObstacle, IRenderable, IMovable
     {
         public override void Draw(SpriteBatch spriteBatch)
         {

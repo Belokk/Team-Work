@@ -11,6 +11,7 @@
         public const int BufferHeight = 100;
         public const int LeftOutOfRoadPosition = 200;
         public const int RightOutOfRoadPosition = 600;
+        public const int RoadMapSpeed = 5;
         public const int InititalPlayerScore = 0;
         public const int InitialPlayerHealth = 160;
         public const int HealthBarCoordX = 620;
