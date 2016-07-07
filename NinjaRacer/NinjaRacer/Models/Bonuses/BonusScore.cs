@@ -3,20 +3,26 @@
     using Contracts;
     using Abstract;
     using Vehicles;
+    using SoundsAndVisuals;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using System;
 
     public class BonusScore : BonusObject, IMovable, ICollidable, IDestructable
     {
-        private const int ScoreBonus = 50;
+        private const int scoreBonus = 50;
 
         public BonusScore(Texture2D texture, Vector2 position, int speed) : base(texture, position, speed)
         {
         }
 
-        public override void DistributeBonusEffect(PlayerCar player)
+        public override void DetectCollision(PlayerCar player)
         {
-            player.Score += ScoreBonus;
+            if (player.BoundingBox.Intersects(this.BoundingBox))
+            {
+                player.Score += scoreBonus;
+                this.DestroyObject();
+            }
         }
     }
 }

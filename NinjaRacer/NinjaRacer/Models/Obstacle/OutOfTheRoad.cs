@@ -2,19 +2,16 @@
 {
     using Contracts;
     using Abstract;
+    using Models.Vehicles;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public class OutOfTheRoad : Obstacle
+    public class OutOfTheRoad : ICollidable
     {
-        //TODO: Collision Detection
-        public override void CollisionDetection()
-        {
-            throw new NotImplementedException();
-        }
+        //TODO: Collision Detection for leaving the road
 
-        public override void Update()
+        public void DetectCollision(PlayerCar playerCar)
         {
             throw new NotImplementedException();
         }

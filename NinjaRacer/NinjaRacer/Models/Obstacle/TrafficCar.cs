@@ -7,25 +7,21 @@
     using System;
     using Microsoft.Xna.Framework.Content;
 
-    public class TrafficCar : MovingObject, IObstacle, IRenderable, IMovable
+    public class TrafficCar : Obstacle, IRenderable, IMovable
     {
 
-        public TrafficCar(Texture2D texture, Vector2 position, int speed) : base(texture, position, speed)
+        public TrafficCar(Texture2D texture, Vector2 position, int speed, int damagePoints) : base(texture, position, speed, damagePoints)
         {
         }
 
-        public TrafficCar(Texture2D texture, Rectangle rectangle, int speed) : base(texture, rectangle, speed)
-        {
-        }
-
-        public void CollisionDetection()
+        public void DetectCollision()
         {
             throw new NotImplementedException();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, this.Rectangle, Color.White);
+            spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);
         }
 
         public override void LoadContent(ContentManager content, string fileName)

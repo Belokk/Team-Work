@@ -135,12 +135,8 @@
             {
                 //check if any bonuses are colliding with player
                 // if they are set visible to false
-                if (bonus.Position.X == player.Position.X && bonus.Position.X == player.Position.Y)
-                {
-                    bonus.DistributeBonusEffect(this.player);
-                    bonus.DestroyObject();
-                }
 
+                bonus.DetectCollision(this.player);
                 bonus.Update(gameTime);
             }
 
@@ -148,10 +144,11 @@
             // TODO: List of IDrowlable and update with foreach loop
             //  FirstRoadMap.Update();
             //  SecondRoadMap.Update();
+
             road.Update(gameTime);
             player.Update(gameTime);
-            hud.Update(gameTime);
             this.LoadBonuses();
+            hud.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -166,12 +163,12 @@
             //FirstRoadMap.Draw(spriteBatch);
             //SecondRoadMap.Draw(spriteBatch);
             road.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
             foreach (BonusObject bonus in this.BonusesList)
             {
                 bonus.Draw(spriteBatch);
             }
+            player.Draw(spriteBatch);
+            hud.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

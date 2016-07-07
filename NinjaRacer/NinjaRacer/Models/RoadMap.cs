@@ -44,7 +44,7 @@
         //Draw
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, this.position, Color.White);
+            spriteBatch.Draw(this.Texture, this.Position, Color.White);
             spriteBatch.Draw(this.Texture, this.SecondPosition, Color.White);
         }
 
@@ -56,7 +56,7 @@
             this.secondPosition.Y = this.secondPosition.Y + this.Speed;
 
             // Scrolling background (Repeating)
-            if (this.position.Y >= Graphic.WindowHeight)
+            if (this.Position.Y >= Graphic.WindowHeight)
             {
                 this.position.Y = 0;
                 this.secondPosition.Y = -Graphic.WindowHeight;

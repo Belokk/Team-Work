@@ -11,11 +11,11 @@
 
     public class HUD : IRenderable
     {
-        private int playerScore;
-        private int playerHealth;
+        private PlayerCar player;
 
         public HUD(PlayerCar player)
         {
+            this.player = player;
             this.PlayerScore = player.Score;
             this.ShowHud = true;
             this.PlayerScoreFont = null;
@@ -23,18 +23,18 @@
         }
 
         public Texture2D Texture { get; private set; }
-        public Rectangle Rectangle { get; private set; }
+        public Rectangle BoundingBox { get; private set; }
 
-        public int PlayerScore // to be connected with Player.Score
+        public int PlayerScore
         {
-            get { return this.playerScore; }
-            set { this.playerScore = value; }
+            get { return this.player.Score; }
+            set { this.player.Score = value; }
         }
 
         public int PlayerHealth // to be connected with Player.Health
         {
-            get { return this.playerHealth; }
-            set { this.playerHealth = value; }
+            get { return this.player.Health; }
+            set { this.player.Health = value; }
         }
 
         public bool ShowHud { get; set; }
@@ -51,7 +51,7 @@
         //Update
         public void Update(GameTime gameTime)
         {
-            this.Rectangle = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y,
+            this.BoundingBox = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y,
                 this.PlayerHealth, this.Texture.Width);
         }
 
@@ -59,7 +59,7 @@
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(this.PlayerScoreFont, string.Format("Score {0}", this.PlayerScore), this.ScorePosition, Color.White);
-            spriteBatch.Draw(this.Texture, this.Rectangle, Color.White);
+            spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);
         }
 
         public readonly Vector2 ScorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
