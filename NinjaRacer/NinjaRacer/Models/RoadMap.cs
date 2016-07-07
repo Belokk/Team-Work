@@ -39,7 +39,6 @@
             }
 
             return instance;
-
         }
 
         // Load Content
