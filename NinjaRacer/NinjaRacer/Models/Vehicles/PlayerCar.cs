@@ -74,28 +74,31 @@
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                ///move left
+                // move left
+                
                 if (this.position.X > Graphic.BufferWidth)
                 {
                     this.position.X -= this.Speed;
                 }
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                ///move up
-                if (this.position.Y > Graphic.BufferHeight)
-                {
-                    this.position.Y -= this.Speed;
-                }
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                ///move down
-                if (this.position.Y < Graphic.WindowHeight - this.Texture.Height)
-                {
-                    this.position.Y += this.Speed;
-                }
-            }
+            //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
+            //{
+            //    // move up
+            //    if (this.position.Y > Graphic.BufferHeight)
+            //    {
+            //        this.position.Y -= this.Speed;
+            //    }
+            //}
+            //if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
+            //{
+            //    // move down
+
+            //    if (this.position.Y < Graphic.WindowHeight - this.Texture.Height)
+            //    {
+   
+            //        this.position.Y += this.Speed;
+            //    }
+            //}
         }
 
         public void CollisionDetection()

@@ -107,8 +107,10 @@
 
             this.road.LoadContent(this.Content, "newBG3");
 
+            // Changed start position
+
             player = new PlayerCar(Content.Load<Texture2D>("car"),
-                new Vector2(carInitialX - 36, carInitialY), Movement.CarSpeed);
+                new Vector2(carInitialX - 36, carInitialY-50), Movement.CarSpeed);
 
             hud = new HUD(player);
             this.hud.LoadContent(this.Content, "healthbar");

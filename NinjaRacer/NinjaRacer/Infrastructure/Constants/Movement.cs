@@ -2,7 +2,7 @@
 {
     public class Movement
     {
-        public const int RoadSpeed = 5;
-        public const int CarSpeed = 4;
+        public const int RoadSpeed = 10;
+        public const int CarSpeed = 10;
     }
 }
