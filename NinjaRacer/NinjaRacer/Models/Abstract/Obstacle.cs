@@ -3,13 +3,13 @@
     using System;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Content;
     using NinjaRacer.Contracts;
 
     public abstract class Obstacle : IObstacle, IRenderable, ICollidable
     {
         private int damagePoints;
-
-
+        
         public Vector2 Position
         {
             get
@@ -20,6 +20,7 @@
 
         public Rectangle Rectangle
         {
+            private set { }
             get
             {
                 throw new NotImplementedException();
@@ -28,6 +29,7 @@
 
         public Texture2D Texture
         {
+            private set { }
             get
             {
                 throw new NotImplementedException();
@@ -58,6 +60,11 @@
         public virtual void CollisionDetection()
         {
             throw new NotImplementedException();
+        }
+
+        public virtual void LoadContent(ContentManager content, string fileName)
+        {
+            this.Texture = content.Load<Texture2D>(fileName);
         }
 
         public abstract void Update();

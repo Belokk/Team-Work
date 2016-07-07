@@ -10,10 +10,5 @@
             : base(texture, position, speed)
         {
         }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.Texture, this.position);
-        }
     }
 }

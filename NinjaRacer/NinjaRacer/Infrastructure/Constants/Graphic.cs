@@ -1,6 +1,6 @@
 ﻿namespace NinjaRacer.Infrastructure.Constants
 {
-    public class Grafic
+    public class Graphic
     {
         public const int WindowWidth = 800;
         public const int WindowHeight = 600;

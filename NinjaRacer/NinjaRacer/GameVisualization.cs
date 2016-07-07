@@ -29,17 +29,17 @@
         public HUD Hud { get; private set; }
 
         private PlayerCar car;
-        private int carInitialX = Grafic.CarInitialPositionX;
-        private int carInitialY = Grafic.CarInitialPozitionY;
+        private int carInitialX = Graphic.CarInitialPositionX;
+        private int carInitialY = Graphic.CarInitialPozitionY;
 
       //  private int roadSpeed = Movement.RoadSpeed;
 
         public GameVisualization()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = Grafic.WindowWidth;
-            graphics.PreferredBackBufferHeight = Grafic.WindowHeight;
-            Content.RootDirectory = Grafic.RootDirectory;
+            graphics.PreferredBackBufferWidth = Graphic.WindowWidth;
+            graphics.PreferredBackBufferHeight = Graphic.WindowHeight;
+            Content.RootDirectory = Graphic.RootDirectory;
             Hud = new HUD();
         }
 
@@ -78,7 +78,7 @@
             //    roadSpeed,
             //    graphics.PreferredBackBufferHeight);
 
-            this.Hud.LoadContent(this.Content);
+            this.Hud.LoadContent(this.Content, "healthbar");
         }
 
         /// UnloadContent will be called once per game and is the place to unload

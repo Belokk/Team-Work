@@ -16,10 +16,10 @@
         //Constructor
         public HUD()
         {
-            this.PlayerScore = Grafic.InititalPlayerScore;
+            this.PlayerScore = Graphic.InititalPlayerScore;
             this.ShowHud = true;
             this.PlayerScoreFont = null;
-            this.PlayerHealth = Grafic.InitialPlayerHealth;
+            this.PlayerHealth = Graphic.InitialPlayerHealth;
         }
 
         public Texture2D HealthTexture { get; private set; }
@@ -42,10 +42,10 @@
         public SpriteFont PlayerScoreFont { get; set; }
 
         //Load Content
-        public void LoadContent(ContentManager Content)
+        public void LoadContent(ContentManager Content, string fileName)
         {
             this.PlayerScoreFont = Content.Load<SpriteFont>("georgia");
-            this.HealthTexture = Content.Load<Texture2D>("healthbar");
+            this.HealthTexture = Content.Load<Texture2D>(fileName);
         }
 
         //Update
@@ -66,9 +66,9 @@
 
         }
 
-        public readonly Vector2 ScorePosition = new Vector2(Grafic.ScoreCoordX, Grafic.ScoreCoordY);
+        public readonly Vector2 ScorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
 
-        public readonly Vector2 HealthBarPosition = new Vector2(Grafic.HealthBarCoordX, Grafic.HealthBarCoordY);
+        public readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
 
         public Rectangle Rectangle
         {

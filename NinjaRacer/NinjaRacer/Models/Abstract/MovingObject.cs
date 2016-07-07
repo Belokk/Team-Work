@@ -4,6 +4,7 @@
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Content;
 
     using Contracts;
 
@@ -47,7 +48,7 @@
             {
                 return this.texture;
             }
-            set
+            private set
             {
                 this.texture = value;
             }
@@ -84,7 +85,15 @@
             }
         }
 
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public virtual void LoadContent(ContentManager content, string fileName)
+        {
+            this.Texture = content.Load<Texture2D>(fileName);
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.Texture, this.position);
+        }
 
         public abstract void Update(GameTime gameTime);
     }

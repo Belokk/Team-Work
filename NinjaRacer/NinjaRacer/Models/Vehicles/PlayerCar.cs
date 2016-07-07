@@ -8,6 +8,7 @@
     using Contracts;
     using Abstract;
     using System;
+    using Microsoft.Xna.Framework.Content;
 
     internal class PlayerCar : Vehicle, IMovable, ICollidable
     {
@@ -18,26 +19,21 @@
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
-            this.Health = Grafic.InitialPlayerHealth;
-            this.Score = Grafic.InititalPlayerScore;
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.Texture, this.position);
+            this.Health = Graphic.InitialPlayerHealth;
+            this.Score = Graphic.InititalPlayerScore;
         }
 
         public int Health
         {
             get
             {
-                return this.health;
+                return this.Health1;
             }
 
             private set
             {
                 // TODO Custom exception Car Crash
-                this.health = value;
+                this.Health1 = value;
             }
         }
         public int Score
@@ -54,12 +50,25 @@
             }
         }
 
+        public int Health1
+        {
+            get
+            {
+                return health;
+            }
+
+            set
+            {
+                health = value;
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 //move right
-                if (this.position.X < Grafic.WindowWidth - this.Texture.Width - Grafic.BufferWidth)
+                if (this.position.X < Graphic.WindowWidth - this.Texture.Width - Graphic.BufferWidth)
                 {
                     this.position.X += this.Speed;
                 }
@@ -67,7 +76,7 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 ///move left
-                if (this.position.X > Grafic.BufferWidth)
+                if (this.position.X > Graphic.BufferWidth)
                 {
                     this.position.X -= this.Speed;
                 }
@@ -75,7 +84,7 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 ///move up
-                if (this.position.Y > Grafic.BufferHeight)
+                if (this.position.Y > Graphic.BufferHeight)
                 {
                     this.position.Y -= this.Speed;
                 }
@@ -83,7 +92,7 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 ///move down
-                if (this.position.Y < Grafic.WindowHeight - this.Texture.Height)
+                if (this.position.Y < Graphic.WindowHeight - this.Texture.Height)
                 {
                     this.position.Y += this.Speed;
                 }

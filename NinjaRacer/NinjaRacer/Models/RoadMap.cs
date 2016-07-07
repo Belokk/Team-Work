@@ -13,19 +13,19 @@
         private const float FirstCoordY = 0;
         private const float SecondCoordY = -600;
         private const float CoordX = 200;
-        private const int RoadHight = Grafic.WindowHeight;
+        private const int RoadHight = Graphic.WindowHeight;
         private const int RoadWidh = 400;
         private Vector2 secondPosition;
         private static RoadMap instance = null;
 
         private RoadMap(Texture2D texture, Vector2 position, int speed)
-            : base(null, new Vector2(200, FirstCoordY), Grafic.RoadMapSpeed)
+            : base(null, new Vector2(200, FirstCoordY), Graphic.RoadMapSpeed)
         {
             this.secondPosition = new Vector2(CoordX, SecondCoordY);
         }
 
         private RoadMap()
-            : this(null, new Vector2(200, FirstCoordY), Grafic.RoadMapSpeed)
+            : this(null, new Vector2(200, FirstCoordY), Graphic.RoadMapSpeed)
         {
         }
 
@@ -41,12 +41,7 @@
             return instance;
 
         }
-
-        // Load Content
-        public void LoadContent(ContentManager Content, string filename)
-        {
-            this.Texture = Content.Load<Texture2D>(filename);
-        }
+        
         //Draw
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -62,10 +57,10 @@
             this.secondPosition.Y = this.secondPosition.Y + this.Speed;
 
             // Scrolling background (Repeating)
-            if (this.position.Y >= Grafic.WindowHeight)
+            if (this.position.Y >= Graphic.WindowHeight)
             {
                 this.position.Y = 0;
-                this.secondPosition.Y = -Grafic.WindowHeight;
+                this.secondPosition.Y = -Graphic.WindowHeight;
             }
         }
     }
