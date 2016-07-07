@@ -29,19 +29,17 @@
         public HUD Hud { get; private set; }
 
         private PlayerCar car;
-
-        // can be constantas 
-        private int carInitialX = Grafic.CarInitialPositionX;
-        private int carInitialY = Grafic.CarInitialPozitionY;
+        private int carInitialX = Graphic.CarInitialPositionX;
+        private int carInitialY = Graphic.CarInitialPozitionY;
 
       //  private int roadSpeed = Movement.RoadSpeed;
 
         public GameVisualization()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = Grafic.WindowWidth;
-            graphics.PreferredBackBufferHeight = Grafic.WindowHeight;
-            Content.RootDirectory = Grafic.RootDirectory;
+            graphics.PreferredBackBufferWidth = Graphic.WindowWidth;
+            graphics.PreferredBackBufferHeight = Graphic.WindowHeight;
+            Content.RootDirectory = Graphic.RootDirectory;
             Hud = new HUD();
         }
 
@@ -65,7 +63,7 @@
             //var carW = 
             // var carX = carInitialX - carW;
 
-            this.road.LoadContent(this.Content);
+            this.road.LoadContent(this.Content, "newBG3");
             car = new PlayerCar(Content.Load<Texture2D>("car"),
                 new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
 
@@ -80,7 +78,7 @@
             //    roadSpeed,
             //    graphics.PreferredBackBufferHeight);
 
-            this.Hud.LoadContent(this.Content);
+            this.Hud.LoadContent(this.Content, "healthbar");
         }
 
         /// UnloadContent will be called once per game and is the place to unload
@@ -114,7 +112,7 @@
         /// This is called when the game should draw itself.
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.Green);
+            GraphicsDevice.Clear(Color.Green);
 
             spriteBatch.Begin();
             // TODO: List of IDrawable and  with foreach loop

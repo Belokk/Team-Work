@@ -1,9 +1,10 @@
-﻿namespace NinjaRacer.Models.Obstacle
+﻿namespace NinjaRacer.Contracts
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Tree
+    interface ICollidable
     {
+        void CollisionDetection();
     }
 }

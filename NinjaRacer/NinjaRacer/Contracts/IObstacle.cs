@@ -3,7 +3,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    interface IObstacle
+    interface IObstacle : ICollidable, IRenderable
     {
     }
 }
