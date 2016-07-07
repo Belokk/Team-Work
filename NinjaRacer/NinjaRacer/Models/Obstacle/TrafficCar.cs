@@ -5,6 +5,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using System;
+    using Microsoft.Xna.Framework.Content;
 
     public class TrafficCar : MovingObject, IObstacle, IRenderable, IMovable
     {
@@ -25,6 +26,11 @@
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, this.Rectangle, Color.White);
+        }
+
+        public override void LoadContent(ContentManager content, string fileName)
+        {
+            throw new NotImplementedException();
         }
 
         public override void Update(GameTime gameTime)
