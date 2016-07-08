@@ -55,6 +55,7 @@
     <Compile Include="Models\Abstract\Obstacle.cs" />
     <Compile Include="Models\Abstract\Vehicle.cs" />
     <Compile Include="Models\Abstract\MovingObject.cs" />
+    <Compile Include="Models\Bonuses\HealthBonus.cs" />
     <Compile Include="Models\Bonuses\ScoreBonus.cs" />
     <Compile Include="Models\Obstacle\BigHole.cs" />
     <Compile Include="Models\Obstacle\OutOfTheRoad.cs" />

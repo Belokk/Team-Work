@@ -56,7 +56,7 @@
         {
             //Creating random variables for X and Y axis of our bonuses
             int coordY = 0; // Bonuses will appear on the top part of the screen;
-            int randX = this.RandomGenerator.Next(200, 400);
+            int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition - 50);
             int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
 
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
@@ -65,10 +65,10 @@
                 switch (randBonus)
                 {
                     case 0:
-                        this.bonusesList.Add(new BonusScore(this.Content.Load<Texture2D>("pointsBonus"), new Vector2(randX, coordY), 4));
+                        this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>("scoreBonus"), new Vector2(randX, coordY), 4));
                         break;
                     case 1:
-                        this.bonusesList.Add(new BonusScore(this.Content.Load<Texture2D>("pointsBonus"), new Vector2(randX, coordY), 4));
+                        this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>("healthBonus"), new Vector2(randX, coordY), 4));
                         break;
                         // Extend with more, if there is more than 2 types of bonus;
                         //case 2:

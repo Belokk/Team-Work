@@ -31,7 +31,7 @@
             set { this.player.Score = value; }
         }
 
-        public int PlayerHealth // to be connected with Player.Health
+        public int PlayerHealth 
         {
             get { return this.player.Health; }
             set { this.player.Health = value; }
