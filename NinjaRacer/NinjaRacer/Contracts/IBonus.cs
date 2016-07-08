@@ -2,13 +2,11 @@
 {
     using Models.Vehicles;
 
-    interface IBonus
+    interface IBonus : ICollidable
     {
         int BonusPoints { get; }
            
         bool IsVisible { get; set; }
-
-        void DetectCollision(PlayerCar player);
 
         void DestroyObject();
     }
