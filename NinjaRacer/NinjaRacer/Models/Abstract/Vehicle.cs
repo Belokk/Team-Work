@@ -4,7 +4,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    internal abstract class Vehicle : MovingObject, IMovable
+    public abstract class Vehicle : MovingObject, IMovable, IRenderable
     {
         public Vehicle(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
@@ -12,3 +12,4 @@
         }
     }
 }
+    

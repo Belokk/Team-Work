@@ -1,10 +1,8 @@
 ﻿namespace NinjaRacer.Contracts
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-
+    using Models.Vehicles;
     interface ICollidable
-    {
-        void CollisionDetection();
+    {      
+        void DetectCollision(PlayerCar playerCar);
     }
 }

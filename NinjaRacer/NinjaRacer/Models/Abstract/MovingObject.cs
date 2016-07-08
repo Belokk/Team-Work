@@ -11,7 +11,6 @@
     public abstract class MovingObject : IRenderable, IMovable
     {
         public Vector2 position;
-        public Rectangle rectangle;
         private int speed;
         private Texture2D texture;
 
@@ -19,13 +18,6 @@
         {
             this.Texture = texture;
             this.Position = position;
-            this.Speed = speed;
-        }
-
-        public MovingObject(Texture2D texture, Rectangle rectangle, int speed)
-        {
-            this.Texture = texture;
-            this.Rectangle = rectangle;
             this.Speed = speed;
         }
 
@@ -72,16 +64,11 @@
             }
         }
 
-        public Rectangle Rectangle
+        public Rectangle BoundingBox
         {
             get
             {
-                return this.rectangle;
-            }
-
-            set
-            {
-                this.rectangle = value;
+                return new Rectangle((int) this.Position.X, (int) this.Position.Y, this.Texture.Width, this.Texture.Height);
             }
         }
 

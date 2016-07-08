@@ -8,68 +8,37 @@
     using Contracts;
     using Abstract;
     using System;
+    using Microsoft.Xna.Framework.Content;
 
-    internal class PlayerCar : Vehicle, IMovable, ICollidable
+    public class PlayerCar : Vehicle, IMovable
     {
-        private int score;
-        private int health;
-        private int acseleration;
-
-        private static PlayerCar instance = null;
-
-        private const float width = 90; //74 Width of the ship texture in pixels. Will change if ship pic is changed.
-        private const float height = 152; // Height of the ship texture in pixels. Will change if ship pic is changed.
+        private int score = Graphic.InititalPlayerScore;
+        private int health = Graphic.InitialPlayerHealth;
 
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
             this.Health = Graphic.InitialPlayerHealth;
             this.Score = Graphic.InititalPlayerScore;
-            this.acseleration = 1;
         }
-
-        //car = new PlayerCar(Content.Load<Texture2D>("car"),
-        //    new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
-
-        public PlayerCar()
-            : this(null, new Vector2(400 - width / 2, 600 - height - 100), 5)
-        {
-        }
-
-        public static PlayerCar GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new PlayerCar();
-            }
-
-            return instance;
-        }
-        //public int Health
-        //{
-        //    get
-        //    {
-        //        return this.Health1;
-        //    }
-
-        //    private set
-        //    {
-        //        // TODO Custom exception Car Crash
-        //        this.Health1 = value;
-        //    }
-        //}
 
         public int Score
         {
             get
             {
                 return this.score;
-
             }
-            private set
+
+            set
             {
-                // TODO Exeption
-                this.score = value;
+                if (value < 0)
+                {
+                    throw new ArgumentException("Player's score cannot be a negative number.");
+                }
+                else
+                {
+                    this.score = value;
+                }
             }
         }
 
@@ -82,7 +51,14 @@
 
             set
             {
-                health = value;
+                if (value < 0)
+                {
+                    throw new ArgumentException("Player's health cannot be a negative number.");
+                }
+                else
+                {
+                    this.health = value;
+                }
             }
         }
 
@@ -98,33 +74,31 @@
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                ///move left
+                // move left
+                
                 if (this.position.X > Graphic.BufferWidth)
                 {
                     this.position.X -= this.Speed;
                 }
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                ///move up
-                if (this.position.Y > Graphic.BufferHeight)
-                {
-                    this.position.Y -= this.Speed;
-                }
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                ///move down
-                if (this.position.Y < Graphic.WindowHeight - this.Texture.Height)
-                {
-                    this.position.Y += this.Speed;
-                }
-            }
-        }
+            //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
+            //{
+            //    // move up
+            //    if (this.position.Y > Graphic.BufferHeight)
+            //    {
+            //        this.position.Y -= this.Speed;
+            //    }
+            //}
+            //if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
+            //{
+            //    // move down
 
-        public void CollisionDetection()
-        {
-            throw new NotImplementedException();
+            //    if (this.position.Y < Graphic.WindowHeight - this.Texture.Height)
+            //    {
+   
+            //        this.position.Y += this.Speed;
+            //    }
+            //}
         }
     }
 }

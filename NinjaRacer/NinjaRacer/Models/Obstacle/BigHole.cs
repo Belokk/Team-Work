@@ -9,12 +9,16 @@
 
     public class BigHole : Hole, IObstacle, IRenderable
     {
+        public BigHole(Texture2D texture, Vector2 position, int speed, int damagePoints) : base(texture, position, speed, damagePoints)
+        {
+        }
+
         public override void LoadContent(ContentManager content, string fileName)
         {
             throw new NotImplementedException();
         }
 
-        public override void Update()
+        public void Update()
         {
             throw new NotImplementedException();
         }
