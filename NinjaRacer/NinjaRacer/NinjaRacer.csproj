@@ -39,6 +39,7 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CarCrashException.cs" />
     <Compile Include="Contracts\ICollidable.cs" />
     <Compile Include="Contracts\IControllable.cs" />
     <Compile Include="Contracts\IObstacle.cs" />

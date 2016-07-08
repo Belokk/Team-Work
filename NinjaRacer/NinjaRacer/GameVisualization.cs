@@ -14,23 +14,13 @@
     public class GameVisualization : Game
     {
         private readonly RoadMap road = RoadMap.GetInstance();
-        private PlayerCar playerCar = PlayerCar.GetInstance();
+        //  private PlayerCar playerCar = PlayerCar.GetInstance();
+        private PlayerCar playerCar = new PlayerCar();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-
-        //Scrolling Background
-        // RoadMap FirstRoadMap;
-        // RoadMap SecondRoadMap;
-
         public HUD Hud { get; private set; }
-
-        //   private PlayerCar car;
-        //  private int carInitialX = Graphic.CarInitialPositionX;
-        //  private int carInitialY = Graphic.CarInitialPozitionY;
-
-        //  private int roadSpeed = Movement.RoadSpeed;
 
         public GameVisualization()
         {

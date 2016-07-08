@@ -11,7 +11,6 @@
 
     internal class PlayerCar : Vehicle, IMovable, ICollidable
     {
-
         private int score;
         private int health;
         private int acseleration;
@@ -32,8 +31,8 @@
         //car = new PlayerCar(Content.Load<Texture2D>("car"),
         //    new Vector2(carInitialX - 36, carInitialY), Movement.CarAcceleration);
 
-        private PlayerCar()
-            : this(null, new Vector2(400- width/2,600- height-100),5)
+        public PlayerCar()
+            : this(null, new Vector2(400 - width / 2, 600 - height - 100), 5)
         {
         }
 
@@ -86,8 +85,6 @@
                 health = value;
             }
         }
-
-
 
         public override void Update(GameTime gameTime)
         {

@@ -6,8 +6,16 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    internal class GameEngine
+    using Contracts;
+    using Models;
+
+    public class GameEngine
     {
+        private readonly ICollection<IObstacle> obstacles;
+        //  private readonly ICollection<Bo> bonuces;
+
+
+
 
     }
 }
