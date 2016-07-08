@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CarCrashException.cs" />
+    <Compile Include="Contracts\IBonus.cs" />
     <Compile Include="Contracts\ICollidable.cs" />
     <Compile Include="Contracts\IDestructable.cs" />
     <Compile Include="Contracts\IObstacle.cs" />
@@ -49,12 +50,13 @@
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
-    <Compile Include="Models\Abstract\BonusObject.cs" />
+    <Compile Include="Models\Abstract\Bonus.cs" />
     <Compile Include="Models\Abstract\Hole.cs" />
     <Compile Include="Models\Abstract\Obstacle.cs" />
     <Compile Include="Models\Abstract\Vehicle.cs" />
     <Compile Include="Models\Abstract\MovingObject.cs" />
-    <Compile Include="Models\Bonuses\BonusScore.cs" />
+    <Compile Include="Models\Bonuses\HealthBonus.cs" />
+    <Compile Include="Models\Bonuses\ScoreBonus.cs" />
     <Compile Include="Models\Obstacle\BigHole.cs" />
     <Compile Include="Models\Obstacle\OutOfTheRoad.cs" />
     <Compile Include="Models\Obstacle\SmallHole.cs" />

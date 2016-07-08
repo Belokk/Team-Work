@@ -18,15 +18,13 @@
     public class GameVisualization : Game
     {
         private readonly RoadMap road = RoadMap.GetInstance();
-        //  private PlayerCar playerCar = PlayerCar.GetInstance();
-        private PlayerCar playerCar = new PlayerCar();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         private PlayerCar player;
         private HUD hud;
-        private readonly IList<BonusObject> bonusesList;
+        private readonly IList<Bonus> bonusesList;
 
         private int carInitialX = Graphic.CarInitialPositionX;
         private int carInitialY = Graphic.CarInitialPozitionY;
@@ -40,15 +38,15 @@
             graphics.PreferredBackBufferWidth = Graphic.WindowWidth;
             graphics.PreferredBackBufferHeight = Graphic.WindowHeight;
             Content.RootDirectory = Graphic.RootDirectory;
-            this.bonusesList = new List<BonusObject>();
+            this.bonusesList = new List<Bonus>();
             this.RandomGenerator = new Random();
         }
 
-        public IList<BonusObject> BonusesList
+        public IList<Bonus> BonusesList
         {
             get
             {
-                return new List<BonusObject>(this.bonusesList);
+                return new List<Bonus>(this.bonusesList);
             }
         }
 
@@ -135,7 +133,7 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            foreach (BonusObject bonus in this.BonusesList)
+            foreach (Bonus bonus in this.BonusesList)
             {
                 //check if any bonuses are colliding with player
                 // if they are set visible to false
@@ -167,7 +165,7 @@
             //FirstRoadMap.Draw(spriteBatch);
             //SecondRoadMap.Draw(spriteBatch);
             road.Draw(spriteBatch);
-            foreach (BonusObject bonus in this.BonusesList)
+            foreach (Bonus bonus in this.BonusesList)
             {
                 bonus.Draw(spriteBatch);
             }

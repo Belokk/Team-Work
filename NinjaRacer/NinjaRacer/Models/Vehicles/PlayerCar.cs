@@ -53,6 +53,7 @@
             {
                 if (value < 0)
                 {
+                    // custom
                     throw new ArgumentException("Player's health cannot be a negative number.");
                 }
                 else

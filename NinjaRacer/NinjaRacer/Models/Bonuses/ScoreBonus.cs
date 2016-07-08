@@ -8,11 +8,12 @@
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public class BonusScore : BonusObject, IMovable, ICollidable, IDestructable
+    public class BonusScore : Bonus, IMovable, ICollidable, IDestructable
     {
         private const int scoreBonus = 50;
 
-        public BonusScore(Texture2D texture, Vector2 position, int speed) : base(texture, position, speed)
+        public BonusScore(Texture2D texture, Vector2 position, int speed) : 
+            base(texture, position, speed)
         {
         }
 
