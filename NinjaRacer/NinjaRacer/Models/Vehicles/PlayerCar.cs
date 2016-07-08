@@ -68,18 +68,18 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 //move right
-                if (this.position.X < Graphic.WindowWidth - this.Texture.Width - Graphic.BufferWidth)
+                if (this.PositionX < Graphic.WindowWidth - this.Texture.Width - Graphic.BufferWidth)
                 {
-                    this.position.X += this.Speed;
+                    this.PositionX += this.Speed;
                 }
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 // move left
                 
-                if (this.position.X > Graphic.BufferWidth)
+                if (this.PositionX > Graphic.BufferWidth)
                 {
-                    this.position.X -= this.Speed;
+                    this.PositionX -= this.Speed;
                 }
             }
             //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))

@@ -54,8 +54,8 @@
         public override void Update(GameTime gameTime)
         {
             // update movement
-            this.position.Y = this.position.Y + this.Speed;
-            if (this.position.Y >= Graphic.WindowHeight)
+            this.PositionY = this.PositionY + this.Speed;
+            if (this.PositionY >= Graphic.WindowHeight)
             {
                 this.DestroyObject();
             }

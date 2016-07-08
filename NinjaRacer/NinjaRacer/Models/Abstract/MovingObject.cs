@@ -10,7 +10,7 @@
 
     public abstract class MovingObject : IRenderable, IMovable
     {
-        public Vector2 position;
+        private Vector2 position;
         private int speed;
         private Texture2D texture;
 
@@ -19,6 +19,29 @@
             this.Texture = texture;
             this.Position = position;
             this.Speed = speed;
+        }
+
+        public float PositionX
+        {
+            get
+            {
+                return this.position.X;
+            }
+            set
+            {
+                this.position.X = value;
+            }
+        }
+        public float PositionY
+        {
+            get
+            {
+                return this.position.Y;
+            }
+            set
+            {
+                this.position.Y = value;
+            }
         }
 
         public Vector2 Position
@@ -68,7 +91,7 @@
         {
             get
             {
-                return new Rectangle((int) this.Position.X, (int) this.Position.Y, this.Texture.Width, this.Texture.Height);
+                return new Rectangle((int) this.PositionX, (int) this.PositionY, this.Texture.Width, this.Texture.Height);
             }
         }
 
@@ -82,6 +105,9 @@
             spriteBatch.Draw(this.Texture, this.position);
         }
 
-        public abstract void Update(GameTime gameTime);
+        public virtual void Update(GameTime gameTime)
+        {
+            this.PositionY += this.Speed; //All of the moving objects implement this logic or simmilar(can be overriden)
+        }
     }
 }

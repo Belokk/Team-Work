@@ -75,7 +75,7 @@ namespace NinjaRacer.Models
                 {
                     currentSpeed += 1;
                 }
-                this.position.Y += currentSpeed;
+                this.PositionY += currentSpeed;
                 this.secondPosition.Y += currentSpeed;
             }
 
@@ -92,7 +92,7 @@ namespace NinjaRacer.Models
                     currentSpeed -= 1;
                 }
 
-                this.position.Y += currentSpeed;
+                this.PositionY += currentSpeed;
                 this.secondPosition.Y += currentSpeed;
             }
             else
@@ -101,15 +101,15 @@ namespace NinjaRacer.Models
                 {
                     currentSpeed -= 1;
                 }
-                this.position.Y += currentSpeed;
+                this.PositionY += currentSpeed;
 
                 this.secondPosition.Y += currentSpeed;
             }
 
             // Scrolling background (Repeating)
-            if (this.Position.Y >= Graphic.WindowHeight)
+            if (this.PositionY >= Graphic.WindowHeight)
             {
-                this.position.Y = 0;
+                this.PositionY = 0;
                 this.secondPosition.Y = -Graphic.WindowHeight;
             }
         }
