@@ -8,7 +8,8 @@
 
     public class ProgressCar : Vehicle, IMovable
     {
-        public ProgressCar(Texture2D texture, Vector2 position, int speed) : base(texture, position, speed)
+        public ProgressCar(Texture2D texture, Vector2 position, int speed)
+            : base(texture, position, speed)
         {
         }
         public override void Update(GameTime gameTime, int speed)
@@ -20,13 +21,13 @@
 
         }
 
-        // Draw
-        public override void Draw(SpriteBatch spriteBatch)
-        {
+        //// Draw
+        //public override void Draw(SpriteBatch spriteBatch)
+        //{
 
-            spriteBatch.Draw(this.Texture, this.Position, Color.White);
+        //    spriteBatch.Draw(this.Texture, this.Position, Color.White);
             
-        }
+        //}
 
     }
 }
