@@ -67,18 +67,13 @@
             //Player must be moving with certain speed in order bonuses to be spawned
             if (this.BonusesList.Count < 2 && this.road.CurrentSpeed >= Graphic.MinSpeedToSpawnBonuses) // 2 - min bonuses on screen, 
             {
-                switch (randBonus)
+                if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
-                    case 0:
-                        this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>("scoreBonus"), 4));
-                        break;
-                    case 1:
-                        this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>("healthBonus"), 4));
-                        break;
-                        // Extend with more, if there is more than 2 types of bonus;
-                        //case 2:
-                        //    // bonusesList.Add(new SomeOtherKindOfBonus();)
-                        //    break;
+                    this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>("scoreBonus"), 4));
+                }
+                else
+                {
+                    this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>("healthBonus"), 4));
                 }
             }
 
