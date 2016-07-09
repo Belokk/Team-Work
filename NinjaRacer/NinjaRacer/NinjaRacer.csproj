@@ -45,6 +45,7 @@
     <Compile Include="Contracts\IDestructable.cs" />
     <Compile Include="Contracts\IHud.cs" />
     <Compile Include="Contracts\IObstacle.cs" />
+    <Compile Include="Contracts\IPlayer.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="CrashException.cs" />

@@ -6,6 +6,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
+    using Contracts;
     using SoundsAndVisuals;
     using Models;
     using Models.Abstract;
@@ -24,7 +25,7 @@
 
         private PlayerCar player;
         private ProgressCar progressPlayer;
-        private HUD hud;
+        private IHud hud;
         private readonly IList<Bonus> bonusesList;
 
         private int carInitialX = Graphic.CarInitialPositionX;
@@ -150,7 +151,7 @@
                 player.Color = Color.White;
             }
 
-            foreach (Bonus bonus in this.BonusesList)
+            foreach (IBonus bonus in this.BonusesList)
             {
                 //check if any bonuses are colliding with player
                 // if they are set visible to false
@@ -183,7 +184,7 @@
             //SecondRoadMap.Draw(spriteBatch);
             road.Draw(spriteBatch);
 
-            foreach (Bonus bonus in this.BonusesList)
+            foreach (IBonus bonus in this.BonusesList)
             {
                 bonus.Draw(spriteBatch);
             }
