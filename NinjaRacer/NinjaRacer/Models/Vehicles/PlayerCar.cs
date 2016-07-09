@@ -71,20 +71,7 @@
             }
         }
 
-        public Color Color
-        {
-            get
-            {
-                if (this.IsOutOfRoad)
-                {
-                    return Color.Red;
-                }
-                else
-                {
-                    return Color.White;
-                }
-            }
-        }
+        public Color Color { get; set; }
 
         public override void Update(GameTime gameTime, int currentSpeed = 0)
         {

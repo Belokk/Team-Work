@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NinjaRacer.Contracts
+﻿namespace NinjaRacer.Contracts
 {
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
     interface IHud : IRenderable
     {
+        int PlayerSpeed { get; set; }
 
+        int PlayerScore { get; }
+
+        int PlayerHealth { get; }
     }
 }

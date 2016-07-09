@@ -120,7 +120,7 @@
             progressPlayer = new ProgressCar(Content.Load<Texture2D>("progressCar"),
                 new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
 
-            hud = new HUD(player, progressPlayer);
+            hud = new HUD(player, progressPlayer, "georgia");
             this.hud.LoadContent(this.Content, "healthbar");
         }
 
@@ -143,11 +143,16 @@
 
             if (player.IsOutOfRoad)
             {
+                player.Color = Color.Red;
                 if (player.Score >= 1)
                 {
                     player.Score--;
                 }
                 player.Health--;
+            }
+            else
+            {
+                player.Color = Color.White;
             }
 
             foreach (Bonus bonus in this.BonusesList)
