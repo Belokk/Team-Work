@@ -46,6 +46,7 @@
     <Compile Include="Contracts\IObstacle.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
+    <Compile Include="CrashException.cs" />
     <Compile Include="GameVisualization.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
