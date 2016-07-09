@@ -9,7 +9,9 @@
 
     public class BigHole : Hole, IObstacle, IRenderable
     {
-        public BigHole(Texture2D texture, Vector2 position, int speed, int damagePoints) : base(texture, position, speed, damagePoints)
+        private const int BigHoleDamagePoints = 40;
+        public BigHole(Texture2D texture, Vector2 position, int speed, int damagePoints) 
+            : base(texture, position, speed, damagePoints)
         {
         }
 
