@@ -55,12 +55,13 @@
         public void LoadBonuses()
         {
             //Creating random variables for X and Y axis of our bonuses
-            int coordY = 0; // Bonuses will appear on the top part of the screen;
+            int coordY = -100; // Bonuses will be created before they start appearing
             int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition - 50);
             int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
 
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
-            if (this.BonusesList.Count < 2) // 2 - min bonuses on screen
+            //Player must be moving with certain speed in order bonuses to be spawned
+            if (this.BonusesList.Count < 2 && this.road.CurrentSpeed >= Graphic.MinSpeedToSpawnBonuses) // 2 - min bonuses on screen, 
             {
                 switch (randBonus)
                 {
@@ -139,7 +140,7 @@
                 // if they are set visible to false
 
                 bonus.DetectCollision(this.player);
-                bonus.Update(gameTime);
+                bonus.Update(gameTime, road);
             }
 
             // TODO: Add your update logic here   

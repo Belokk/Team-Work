@@ -34,6 +34,18 @@ namespace NinjaRacer.Models
         {
         }
 
+        public int CurrentSpeed
+        {
+            get
+            {
+                return this.currentSpeed;
+            }
+            private set
+            {
+                this.currentSpeed = value;
+            }
+        }
+
         public Vector2 SecondPosition { get { return this.secondPosition; } }
 
         public static RoadMap GetInstance()
@@ -71,39 +83,39 @@ namespace NinjaRacer.Models
             {
                 // acceleration
 
-                if (currentSpeed < Speed)
+                if (this.CurrentSpeed < Speed)
                 {
-                    currentSpeed += 1;
+                    this.CurrentSpeed += 1;
                 }
-                this.PositionY += currentSpeed;
-                this.secondPosition.Y += currentSpeed;
+                this.PositionY += this.CurrentSpeed;
+                this.secondPosition.Y += this.CurrentSpeed;
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 // brake
                              
-                if (currentSpeed > 0 && currentSpeed % 2 == 0)
+                if (this.CurrentSpeed > 0 && this.CurrentSpeed % 2 == 0)
                 {
-                    currentSpeed -= 2;
+                    this.CurrentSpeed -= 2;
                 }
-                else if (currentSpeed > 0 )
+                else if (this.CurrentSpeed > 0 )
                 {
-                    currentSpeed -= 1;
+                    this.CurrentSpeed -= 1;
                 }
 
-                this.PositionY += currentSpeed;
-                this.secondPosition.Y += currentSpeed;
+                this.PositionY += this.CurrentSpeed;
+                this.secondPosition.Y += this.CurrentSpeed;
             }
             else
             {
-                if (currentSpeed > 0)
+                if (this.CurrentSpeed > 0)
                 {
-                    currentSpeed -= 1;
+                    this.CurrentSpeed -= 1;
                 }
-                this.PositionY += currentSpeed;
+                this.PositionY += this.CurrentSpeed;
 
-                this.secondPosition.Y += currentSpeed;
+                this.secondPosition.Y += this.CurrentSpeed;
             }
 
             // Scrolling background (Repeating)

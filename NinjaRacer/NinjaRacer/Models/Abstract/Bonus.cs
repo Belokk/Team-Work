@@ -51,10 +51,10 @@
         public abstract void DetectCollision(PlayerCar playerCar);
 
         // Update
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, RoadMap map)
         {
             // update movement
-            this.PositionY = this.PositionY + this.Speed;
+                this.PositionY = this.PositionY + (map.CurrentSpeed > this.Speed ? this.Speed : map.CurrentSpeed);
             if (this.PositionY >= Graphic.WindowHeight)
             {
                 this.DestroyObject();

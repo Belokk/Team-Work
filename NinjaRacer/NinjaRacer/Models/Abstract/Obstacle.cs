@@ -42,10 +42,5 @@
                 playerCar.Health -= this.DamagePoints;
             }
         }
-
-        public override void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

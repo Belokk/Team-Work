@@ -18,6 +18,7 @@
         public const int HealthBarCoordY = 100;
         public const int ScoreCoordX = 620;
         public const int ScoreCoordY = 50;
+        public const int MinSpeedToSpawnBonuses = 30;
 
         public const string RootDirectory = "Content";
     }
