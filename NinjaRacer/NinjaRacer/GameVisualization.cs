@@ -160,7 +160,7 @@
             road.Update(gameTime);
             player.Update(gameTime);
             this.LoadBonuses();
-            hud.Update(gameTime);
+            hud.Update(gameTime, road);
 
             base.Update(gameTime);
         }
