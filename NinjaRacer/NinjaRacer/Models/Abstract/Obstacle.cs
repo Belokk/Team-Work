@@ -42,7 +42,7 @@
             this.IsVisible = false;
         }
 
-        public virtual void DetectCollision(PlayerCar playerCar)
+        public virtual void DetectCollision(IPlayer playerCar)
         {
             if (this.BoundingBox.Intersects(playerCar.BoundingBox))
             {

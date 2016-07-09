@@ -23,7 +23,7 @@
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private PlayerCar player;
+        private IPlayer player;
         private ProgressCar progressPlayer;
         private IHud hud;
         private readonly IList<Bonus> bonusesList;

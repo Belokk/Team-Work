@@ -1,6 +1,6 @@
 ﻿namespace NinjaRacer.Contracts
 {
-    interface IBonus : IDestructable, ICollidable, IMovable, IRenderable
+    public interface IBonus : IDestructable, ICollidable, IMovable, IRenderable
     {
         int BonusPoints { get; }
     }

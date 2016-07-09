@@ -6,6 +6,7 @@
     using Contracts;
     using Models.Vehicles;
     using Infrastructure.Constants;
+    using System;
 
     public class HUD : IHud, IRenderable
     {
@@ -15,10 +16,10 @@
         private readonly string fontName;
         private int acceleration = 0;
         
-        private PlayerCar player;
+        private IPlayer player;
         private ProgressCar progressPlayer;
 
-        public HUD(PlayerCar player, ProgressCar progressPlayer, string fontName)
+        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName)
         {
             this.player = player;
             this.progressPlayer = progressPlayer;
@@ -48,6 +49,19 @@
         public int PlayerSpeed { get; set; }
         
         public SpriteFont Font { get; set; }
+
+        public Vector2 Position
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         //Load Content
         public void LoadContent(ContentManager Content, string healthBarFileName)

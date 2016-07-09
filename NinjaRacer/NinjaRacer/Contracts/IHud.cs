@@ -1,8 +1,6 @@
 ﻿namespace NinjaRacer.Contracts
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-    interface IHud : IRenderable
+    public interface IHud : IRenderable
     {
         int PlayerSpeed { get; set; }
 

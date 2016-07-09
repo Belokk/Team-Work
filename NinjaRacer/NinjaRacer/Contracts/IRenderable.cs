@@ -9,11 +9,13 @@ namespace NinjaRacer.Contracts
     {
         Texture2D Texture { get; }
 
+        Vector2 Position { get;set; }
+
         Rectangle BoundingBox { get; }
 
         void LoadContent(ContentManager content, string fileName);
 
-        void Update(GameTime gameTime, int currentSpeed);
+        void Update(GameTime gameTime, int currentSpeed=0);
 
         void Draw(SpriteBatch spriteBatch);
     }

@@ -10,7 +10,7 @@
     using System;
     using Microsoft.Xna.Framework.Content;
 
-    public class PlayerCar : Vehicle, IPlayer, IMovable
+    public class PlayerCar : MovingObject, IPlayer, IMovable
     {
         private int score = Graphic.InititalPlayerScore;
         private int health = Graphic.InitialPlayerHealth;
@@ -73,7 +73,7 @@
 
         public Color Color { get; set; }
 
-        public override void Update(GameTime gameTime, int currentSpeed = 0)
+        public new void Update(GameTime gameTime, int speed=0)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
