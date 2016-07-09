@@ -63,7 +63,28 @@
             }
         }
 
-        public Color Color { get; set; }
+        public bool IsOutOfRoad
+        {
+            get
+            {
+                return this.PositionX < Graphic.LeftOutOfRoadPosition || this.PositionX > Graphic.RightOutOfRoadPosition;
+            }
+        }
+        
+        public Color Color
+        {
+            get
+            {
+                if (this.IsOutOfRoad)
+                {
+                    return Color.Red;
+                }
+                else
+                {
+                    return Color.White;
+                }
+            }
+        }
 
         public override void Update(GameTime gameTime)
         {
