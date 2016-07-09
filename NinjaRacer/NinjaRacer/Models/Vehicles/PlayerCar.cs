@@ -12,14 +12,14 @@
 
     public class PlayerCar : MovingObject, IPlayer, IMovable
     {
-        private int score = Graphic.InititalPlayerScore;
-        private int health = Graphic.InitialPlayerHealth;
+        private int score = ScoreAndHealth.InititalPlayerScore;
+        private int health = ScoreAndHealth.InitialPlayerHealth;
 
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
-            this.Health = Graphic.InitialPlayerHealth;
-            this.Score = Graphic.InititalPlayerScore;
+            this.Health = ScoreAndHealth.InitialPlayerHealth;
+            this.Score = ScoreAndHealth.InititalPlayerScore;
         }
 
         public int Score

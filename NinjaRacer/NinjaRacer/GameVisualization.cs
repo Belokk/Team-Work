@@ -5,9 +5,12 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Microsoft.Xna.Framework.Audio;
+    using Microsoft.Xna.Framework.Media;
 
     using Contracts;
     using SoundsAndVisuals;
+    using SoundsAndVisuals.Sounds;
     using Models;
     using Models.Abstract;
     using Models.Vehicles;
@@ -46,6 +49,7 @@
             Content.RootDirectory = Graphic.RootDirectory;
             this.bonusesList = new List<Bonus>();
             this.RandomGenerator = new Random();
+            this.SoundManager = SoundManager.Instance;
         }
 
         public IList<Bonus> BonusesList
@@ -58,6 +62,8 @@
 
         public Random RandomGenerator { get; private set; }
 
+        public SoundManager SoundManager { get; private set; }
+
         public void LoadBonuses()
         {
             //Creating random variables for X and Y axis of our bonuses
@@ -66,7 +72,7 @@
 
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
             //Player must be moving with certain speed in order bonuses to be spawned
-            if (this.BonusesList.Count < 2 && this.road.CurrentSpeed >= Graphic.MinSpeedToSpawnBonuses) // 2 - min bonuses on screen, 
+            if (this.BonusesList.Count < 2 && this.road.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonuses) // 2 - min bonuses on screen, 
             {
                 if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
@@ -104,7 +110,8 @@
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            
+
+            this.SoundManager.LoadContent(this.Content, "bonus", "obstacle", "theme");
 
             this.road.LoadContent(this.Content, "background");
 
@@ -136,9 +143,22 @@
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
+            // if (game.state == menu && Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter)) 
+            {
+                MediaPlayer.Play(this.SoundManager.BGMusic);
+            }
+            // if (game.state == gameOver)
+            else if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                MediaPlayer.Stop();
+            }
 
             if (player.IsOutOfRoad)
             {
+                // pretty annoying because its playing over and over again, maybe should be removed
+                SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
                 player.Color = Color.Red;
                 if (player.Score >= 1)
                 {
@@ -156,7 +176,25 @@
                 //check if any bonuses are colliding with player
                 // if they are set visible to false
 
-                bonus.DetectCollision(this.player);
+                if (player.BoundingBox.Intersects(bonus.BoundingBox))
+                {
+                    if (bonus.GetType().Name == "ScoreBonus")
+                    {
+                        SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+                        player.Score += ScoreAndHealth.ScoreBonus;
+                        bonus.DestroyObject();
+                    }
+                    else if (player.Health < 160) // HealthBonus
+                    {
+                        SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+                        player.Health += ScoreAndHealth.HealthBonus;
+                        if (player.Health > 160)
+                        {
+                            player.Health = 160;
+                        }
+                        bonus.DestroyObject();
+                    }
+                }
                 bonus.Update(gameTime, road.CurrentSpeed);
             }
 
