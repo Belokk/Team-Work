@@ -8,7 +8,7 @@
 
     using Contracts;
 
-    public abstract class MovingObject : IRenderable, IMovable
+    public abstract class MovingObject : IMovable, IRenderable
     {
         private Vector2 position;
         private int speed;
@@ -91,7 +91,7 @@
         {
             get
             {
-                return new Rectangle((int) this.PositionX, (int) this.PositionY, this.Texture.Width, this.Texture.Height);
+                return new Rectangle((int)this.PositionX, (int)this.PositionY, this.Texture.Width, this.Texture.Height);
             }
         }
 
@@ -105,7 +105,7 @@
             spriteBatch.Draw(this.Texture, this.position);
         }
 
-        public virtual void Update(GameTime gameTime, int currentSpeed=0)
+        public virtual void Update(GameTime gameTime, int currentSpeed = 0)
         {
             this.PositionY += this.Speed; //All of the moving objects implement this logic or simmilar(can be overriden)
         }
