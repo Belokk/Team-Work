@@ -149,7 +149,7 @@
                 // if they are set visible to false
 
                 bonus.DetectCollision(this.player);
-                bonus.Update(gameTime, road);
+                bonus.Update(gameTime, road.CurrentSpeed);
             }
 
             // TODO: Add your update logic here   

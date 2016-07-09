@@ -105,7 +105,7 @@
             spriteBatch.Draw(this.Texture, this.position);
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, int currentSpeed=0)
         {
             this.PositionY += this.Speed; //All of the moving objects implement this logic or simmilar(can be overriden)
         }

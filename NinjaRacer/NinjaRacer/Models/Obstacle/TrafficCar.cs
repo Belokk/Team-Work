@@ -29,9 +29,9 @@
             throw new NotImplementedException();
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public override void Update(GameTime gameTime)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

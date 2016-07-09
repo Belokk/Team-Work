@@ -10,6 +10,8 @@
             : base(texture, position, speed)
         {
         }
+
+
     }
 }
     

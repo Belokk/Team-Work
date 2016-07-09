@@ -66,7 +66,7 @@ namespace NinjaRacer.Models
         }
 
         // Update
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, int currentSpeed = 0)
         {
             // Setting speed for background scrolling
 

@@ -70,7 +70,7 @@
                 return this.PositionX < Graphic.LeftOutOfRoadPosition || this.PositionX > Graphic.RightOutOfRoadPosition;
             }
         }
-        
+
         public Color Color
         {
             get
@@ -86,7 +86,7 @@
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, int currentSpeed = 0)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
@@ -99,7 +99,7 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 // move left
-                
+
                 if (this.PositionX > Graphic.BufferWidth)
                 {
                     this.PositionX -= this.Speed;
@@ -119,7 +119,7 @@
 
             //    if (this.position.Y < Graphic.WindowHeight - this.Texture.Height)
             //    {
-   
+
             //        this.position.Y += this.Speed;
             //    }
             //}
