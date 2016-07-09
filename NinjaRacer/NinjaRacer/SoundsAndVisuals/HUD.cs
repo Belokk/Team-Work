@@ -9,59 +9,57 @@
 
     public class HUD : IHud, IRenderable
     {
-        public readonly Vector2 ScorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
-        public readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
-        public readonly Vector2 PlayerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
+        private readonly Vector2 ScorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
+        private readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
+        private readonly Vector2 PlayerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
+        private readonly string fontName;
         private int acceleration = 0;
         
         private PlayerCar player;
         private ProgressCar progressPlayer;
 
-        public HUD(PlayerCar player, ProgressCar progressPlayer)
+        public HUD(PlayerCar player, ProgressCar progressPlayer, string fontName)
         {
             this.player = player;
             this.progressPlayer = progressPlayer;
-            this.PlayerScore = player.Score;
-            this.ShowHud = true;
-            this.PlayerScoreFont = null;
-            this.PlayerHealth = player.Health;
+            this.fontName = fontName;
+            this.Font = null;
         }
 
         public Texture2D Texture { get; private set; }
-        public Rectangle BoundingBox { get; private set; }
+        public Rectangle BoundingBox
+        {
+            get
+            {
+                return new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
+            }
+        }
 
         public int PlayerScore
         {
             get { return this.player.Score; }
-            set { this.player.Score = value; }
         }
 
         public int PlayerHealth
         {
             get { return this.player.Health; }
-            set { this.player.Health = value; }
         }
 
         public int PlayerSpeed { get; set; }
-
-        public bool ShowHud { get; set; }
-
-        public SpriteFont PlayerScoreFont { get; set; }
+        
+        public SpriteFont Font { get; set; }
 
         //Load Content
-        public void LoadContent(ContentManager Content, string fileName)
+        public void LoadContent(ContentManager Content, string healthBarFileName)
         {
-            this.PlayerScoreFont = Content.Load<SpriteFont>("georgia");
-            this.Texture = Content.Load<Texture2D>(fileName);
+            this.Font = Content.Load<SpriteFont>(fontName);
+            this.Texture = Content.Load<Texture2D>(healthBarFileName);
         }
 
         //Updatе
 
         public void Update(GameTime gameTime, int currentSpeed)
         {
-            this.BoundingBox = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
-
-
             this.PlayerSpeed = currentSpeed;
             acceleration += this.PlayerSpeed;
 
@@ -72,26 +70,23 @@
             }
 
             this.progressPlayer.Update(gameTime, this.progressPlayer.Speed);
-
         }
 
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(
-                this.PlayerScoreFont, 
+                this.Font, 
                 string.Format("Score {0}", this.PlayerScore), 
                 this.ScorePosition, Color.White);
 
             spriteBatch.DrawString(
-                this.PlayerScoreFont, 
+                this.Font, 
                 string.Format("Speed {0}", this.PlayerSpeed),
                 this.PlayerSpeedPosition, Color.White);
 
             spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);
             spriteBatch.Draw(this.progressPlayer.Texture, this.progressPlayer.Position, Color.White);
         }
-
-
     }
 }
