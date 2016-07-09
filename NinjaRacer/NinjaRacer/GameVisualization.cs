@@ -32,7 +32,7 @@
 
         private int progressCarInitialX = Graphic.PlayerProgressPositionX;
         private int progressCarInitialY = Graphic.PlayerProgressPositionY;
-        private int progressCarSpeed = 1;
+        private int progressCarSpeed = 0;
         public const int TypesOfBonuses = 2;
 
         //  private int roadSpeed = Movement.RoadSpeed;

@@ -58,19 +58,13 @@
             this.Texture = Content.Load<Texture2D>(fileName);
         }
 
-        //Update
-        public void Update(GameTime gameTime)
-        {
-            this.BoundingBox = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y,
-                this.PlayerHealth, this.Texture.Width);
-
-            this.progressPlayer.Update(gameTime);
-
-        }
+        //Updatе
 
         public void Update(GameTime gameTime, int currentSpeed)
         {
-            this.Update(gameTime);
+            this.BoundingBox = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y,
+    this.PlayerHealth, this.Texture.Width);
+
 
             this.PlayerSpeed = currentSpeed;
             acceleration += this.PlayerSpeed;
@@ -81,6 +75,7 @@
                 this.acceleration = 0;
             }
 
+            this.progressPlayer.Update(gameTime, this.progressPlayer.Speed);
 
         }
 
