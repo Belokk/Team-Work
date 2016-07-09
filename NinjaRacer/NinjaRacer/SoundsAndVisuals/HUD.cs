@@ -64,10 +64,15 @@ namespace NinjaRacer.SoundsAndVisuals
         }
 
         //Update
-        public void Update(GameTime gameTime, RoadMap map)
+        public void Update(GameTime gameTime)
         {
             this.BoundingBox = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y,
                 this.PlayerHealth, this.Texture.Width);
+        }
+
+        public void Update(GameTime gameTime, RoadMap map)
+        {
+            this.Update(gameTime);
 
             this.PlayerSpeed = map.CurrentSpeed;
 
