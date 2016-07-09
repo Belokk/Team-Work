@@ -45,6 +45,7 @@
     <Compile Include="Contracts\IDestructable.cs" />
     <Compile Include="Contracts\IHud.cs" />
     <Compile Include="Contracts\IObstacle.cs" />
+    <Compile Include="Contracts\IPlayer.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="CrashException.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Models\Abstract\Obstacle.cs" />
     <Compile Include="Models\Abstract\Vehicle.cs" />
     <Compile Include="Models\Abstract\MovingObject.cs" />
+    <Compile Include="Models\Bonuses\BonusType.cs" />
     <Compile Include="Models\Bonuses\HealthBonus.cs" />
     <Compile Include="Models\Bonuses\ScoreBonus.cs" />
     <Compile Include="Models\Obstacle\BigHole.cs" />

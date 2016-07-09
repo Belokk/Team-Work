@@ -10,7 +10,7 @@
     using System;
     using Microsoft.Xna.Framework.Content;
 
-    public class PlayerCar : Vehicle, IMovable
+    public class PlayerCar : Vehicle, IPlayer, IMovable
     {
         private int score = Graphic.InititalPlayerScore;
         private int health = Graphic.InitialPlayerHealth;

@@ -6,6 +6,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
+    using Contracts;
     using SoundsAndVisuals;
     using Models;
     using Models.Abstract;
@@ -24,7 +25,7 @@
 
         private PlayerCar player;
         private ProgressCar progressPlayer;
-        private HUD hud;
+        private IHud hud;
         private readonly IList<Bonus> bonusesList;
 
         private int carInitialX = Graphic.CarInitialPositionX;
@@ -67,18 +68,13 @@
             //Player must be moving with certain speed in order bonuses to be spawned
             if (this.BonusesList.Count < 2 && this.road.CurrentSpeed >= Graphic.MinSpeedToSpawnBonuses) // 2 - min bonuses on screen, 
             {
-                switch (randBonus)
+                if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
-                    case 0:
-                        this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>("scoreBonus"), 4));
-                        break;
-                    case 1:
-                        this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>("healthBonus"), 4));
-                        break;
-                        // Extend with more, if there is more than 2 types of bonus;
-                        //case 2:
-                        //    // bonusesList.Add(new SomeOtherKindOfBonus();)
-                        //    break;
+                    this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>("scoreBonus"), 4));
+                }
+                else
+                {
+                    this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>("healthBonus"), 4));
                 }
             }
 
@@ -155,7 +151,7 @@
                 player.Color = Color.White;
             }
 
-            foreach (Bonus bonus in this.BonusesList)
+            foreach (IBonus bonus in this.BonusesList)
             {
                 //check if any bonuses are colliding with player
                 // if they are set visible to false
@@ -188,7 +184,7 @@
             //SecondRoadMap.Draw(spriteBatch);
             road.Draw(spriteBatch);
 
-            foreach (Bonus bonus in this.BonusesList)
+            foreach (IBonus bonus in this.BonusesList)
             {
                 bonus.Draw(spriteBatch);
             }
