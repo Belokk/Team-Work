@@ -88,23 +88,27 @@
 
         public override void Update(GameTime gameTime, int currentSpeed = 0)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                //move right
-                if (this.PositionX <= Graphic.RightOutOfRoadPosition - this.Texture.Width)
+                if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
                 {
-                    this.PositionX += this.Speed;
+                    //move right
+                    if (this.PositionX <= Graphic.RightOutOfRoadPosition - this.Texture.Width)
+                    {
+                        this.PositionX += this.Speed;
+                    }
                 }
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                // move left
+                if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
+                {
+                    // move left
 
-                if (this.PositionX > Graphic.LeftOutOfRoadPosition)
-                {
-                    this.PositionX -= this.Speed;
+                    if (this.PositionX > Graphic.LeftOutOfRoadPosition)
+                    {
+                        this.PositionX -= this.Speed;
+                    }
                 }
             }
+            
             //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             //{
             //    // move up

@@ -20,7 +20,7 @@
         public const int ScoreCoordY = 50;
         public const int PlayerSpeedX = 620;
         public const int PlayerSpeedY = 500;
-        public const int PlayerProgressPositionX = 15;
+        public const int PlayerProgressPositionX = 5;
         public const int PlayerProgressPositionY = 530;
         public const int MinSpeedToSpawnBonuses = 10;
 
