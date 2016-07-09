@@ -67,7 +67,7 @@
         {
             get
             {
-                return this.PositionX < Graphic.LeftOutOfRoadPosition || this.PositionX > Graphic.RightOutOfRoadPosition;
+                return this.PositionX <= Graphic.LeftOutOfRoadPosition || this.PositionX >= Graphic.RightOutOfRoadPosition - this.Texture.Width;
             }
         }
 
@@ -91,7 +91,7 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 //move right
-                if (this.PositionX < Graphic.WindowWidth - this.Texture.Width - Graphic.BufferWidth)
+                if (this.PositionX <= Graphic.RightOutOfRoadPosition - this.Texture.Width)
                 {
                     this.PositionX += this.Speed;
                 }
@@ -100,7 +100,7 @@
             {
                 // move left
 
-                if (this.PositionX > Graphic.BufferWidth)
+                if (this.PositionX > Graphic.LeftOutOfRoadPosition)
                 {
                     this.PositionX -= this.Speed;
                 }
