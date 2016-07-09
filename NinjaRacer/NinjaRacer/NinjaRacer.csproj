@@ -64,7 +64,6 @@
     <Compile Include="Models\Bonuses\ScoreBonus.cs" />
     <Compile Include="Models\Obstacle\BigHole.cs" />
     <Compile Include="Models\Obstacle\SmallHole.cs" />
-    <Compile Include="Models\Obstacle\TrafficCar.cs" />
     <Compile Include="Models\RoadMap.cs" />
     <Compile Include="Models\Vehicles\PlayerCar.cs" />
     <Compile Include="Models\Vehicles\ProgressCar.cs" />
