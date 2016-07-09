@@ -134,6 +134,15 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (player.IsOutOfRoad)
+            {
+                if (player.Score >= 1)
+                {
+                    player.Score--;
+                }
+                player.Health--;
+            }
+
             foreach (Bonus bonus in this.BonusesList)
             {
                 //check if any bonuses are colliding with player
@@ -171,22 +180,8 @@
             {
                 bonus.Draw(spriteBatch);
             }
-
-            if (player.PositionX < Graphic.LeftOutOfRoadPosition || player.PositionX > Graphic.RightOutOfRoadPosition)
-            {
-                player.Color = Color.Red;
-                if (player.Score >= 10)
-                {
-                    player.Score--;
-                }
-                player.Health--;
-            }
-            else
-            {
-                player.Color = Color.White;
-            }
+            
             player.Draw(spriteBatch);
-
             hud.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
