@@ -7,9 +7,9 @@
     using Models.Vehicles;
     using NinjaRacer.Contracts;
 
-    public abstract class Obstacle : MovingObject, IRenderable, IObstacle
+    public abstract class Obstacle : MovingObject, IRenderable, IObstacle, ICollidable
     {
-        public int damagePoints;
+        private int damagePoints;
 
         public Obstacle(Texture2D texture, Vector2 position, int speed, int demagePoints) : base(texture, position, speed)
         {

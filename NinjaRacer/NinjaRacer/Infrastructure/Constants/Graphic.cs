@@ -11,14 +11,14 @@
         public const int BufferHeight = 100;
         public const int LeftOutOfRoadPosition = 200;
         public const int RightOutOfRoadPosition = 600;
-        public const int RoadMapSpeed = 100;
+        public const int RoadMapSpeed = 20;
         public const int InititalPlayerScore = 0;
         public const int InitialPlayerHealth = 160;
         public const int HealthBarCoordX = 620;
         public const int HealthBarCoordY = 100;
         public const int ScoreCoordX = 620;
         public const int ScoreCoordY = 50;
-        public const int MinSpeedToSpawnBonuses = 30;
+        public const int MinSpeedToSpawnBonuses = 10;
 
         public const string RootDirectory = "Content";
     }
