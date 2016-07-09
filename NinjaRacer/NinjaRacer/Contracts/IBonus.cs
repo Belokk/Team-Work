@@ -1,13 +1,7 @@
 ﻿namespace NinjaRacer.Contracts
 {
-    using Models.Vehicles;
-
-    interface IBonus : ICollidable
+    interface IBonus : IDestructable, ICollidable, IMovable, IRenderable
     {
         int BonusPoints { get; }
-           
-        bool IsVisible { get; set; }
-
-        void DestroyObject();
     }
 }

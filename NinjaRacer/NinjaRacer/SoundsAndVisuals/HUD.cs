@@ -1,23 +1,19 @@
-﻿using NinjaRacer.Models;
-
-namespace NinjaRacer.SoundsAndVisuals
+﻿namespace NinjaRacer.SoundsAndVisuals
 {
-    using System;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
-    using Microsoft.Xna.Framework.Input;
     using Contracts;
     using Models.Vehicles;
     using Infrastructure.Constants;
 
-    public class HUD : IRenderable
+    public class HUD : IHud, IRenderable
     {
 
         public readonly Vector2 ScorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
         public readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
         public readonly Vector2 PlayerSpeedPosoition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
-        
+
         private PlayerCar player;
         private int playerSpeed;
 
@@ -28,7 +24,6 @@ namespace NinjaRacer.SoundsAndVisuals
             this.ShowHud = true;
             this.PlayerScoreFont = null;
             this.PlayerHealth = player.Health;
-
         }
 
         public Texture2D Texture { get; private set; }
@@ -40,7 +35,7 @@ namespace NinjaRacer.SoundsAndVisuals
             set { this.player.Score = value; }
         }
 
-        public int PlayerHealth 
+        public int PlayerHealth
         {
             get { return this.player.Health; }
             set { this.player.Health = value; }
@@ -81,8 +76,16 @@ namespace NinjaRacer.SoundsAndVisuals
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(this.PlayerScoreFont, string.Format("Score {0}", this.PlayerScore), this.ScorePosition, Color.White);
-            spriteBatch.DrawString(this.PlayerScoreFont, string.Format("Speed {0}", this.PlayerSpeed), this.PlayerSpeedPosoition, Color.White);
+            spriteBatch.DrawString(
+                this.PlayerScoreFont, 
+                string.Format("Score {0}", this.PlayerScore), 
+                this.ScorePosition, Color.White);
+
+            spriteBatch.DrawString(
+                this.PlayerScoreFont, 
+                string.Format("Speed {0}", this.PlayerSpeed),
+                this.PlayerSpeedPosoition, Color.White);
+
             spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);
         }
 
