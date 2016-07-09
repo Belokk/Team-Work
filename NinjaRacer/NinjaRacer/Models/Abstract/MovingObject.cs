@@ -78,9 +78,9 @@
 
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
-                    throw new ArgumentException("Speed can not be assigned 0 or negative.");
+                    throw new ArgumentException("Speed can not be assigned negative.");
                 }
 
                 this.speed = value;

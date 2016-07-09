@@ -23,11 +23,16 @@
         SpriteBatch spriteBatch;
 
         private PlayerCar player;
+        private ProgressCar progressPlayer;
         private HUD hud;
         private readonly IList<Bonus> bonusesList;
 
         private int carInitialX = Graphic.CarInitialPositionX;
         private int carInitialY = Graphic.CarInitialPozitionY;
+
+        private int progressCarInitialX = Graphic.PlayerProgressPositionX;
+        private int progressCarInitialY = Graphic.PlayerProgressPositionY;
+        private int progressCarSpeed = 1;
         public const int TypesOfBonuses = 2;
 
         //  private int roadSpeed = Movement.RoadSpeed;
@@ -113,7 +118,10 @@
             player = new PlayerCar(Content.Load<Texture2D>("car"),
                 new Vector2(carInitialX - 36, carInitialY-50), Movement.CarSpeed);
 
-            hud = new HUD(player);
+            progressPlayer = new ProgressCar(Content.Load<Texture2D>("progressCar"),
+                new Vector2(progressCarInitialX, progressCarInitialY), progressCarSpeed);
+
+            hud = new HUD(player, progressPlayer);
             this.hud.LoadContent(this.Content, "healthbar");
         }
 

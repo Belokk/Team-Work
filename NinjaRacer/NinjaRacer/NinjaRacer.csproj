@@ -62,6 +62,7 @@
     <Compile Include="Models\Obstacle\TrafficCar.cs" />
     <Compile Include="Models\RoadMap.cs" />
     <Compile Include="Models\Vehicles\PlayerCar.cs" />
+    <Compile Include="Models\Vehicles\ProgressCar.cs" />
     <Compile Include="SoundsAndVisuals\HUD.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
