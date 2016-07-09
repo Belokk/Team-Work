@@ -15,7 +15,7 @@ namespace NinjaRacer.Models
     {
         private const float FirstCoordY = 0;
         private const float SecondCoordY = -600;
-        private const float CoordX = 200;
+        private const float CoordX = 59;
         private const int RoadHight = Graphic.WindowHeight;
         private const int RoadWidh = 400;
         private Vector2 secondPosition;
@@ -24,13 +24,13 @@ namespace NinjaRacer.Models
         private decimal acceleration = 0.1M;
 
         private RoadMap(Texture2D texture, Vector2 position, int speed)
-            : base(null, new Vector2(200, FirstCoordY), Graphic.RoadMapSpeed)
+            : base(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
         {
             this.secondPosition = new Vector2(CoordX, SecondCoordY);
         }
 
         private RoadMap()
-            : this(null, new Vector2(200, FirstCoordY), Graphic.RoadMapSpeed)
+            : this(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
         {
         }
 

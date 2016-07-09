@@ -91,7 +91,7 @@
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 //move right
-                if (this.PositionX < Graphic.WindowWidth - this.Texture.Width - Graphic.BufferWidth)
+                if (this.PositionX < Graphic.BufferWidthRight)
                 {
                     this.PositionX += this.Speed;
                 }
@@ -100,7 +100,7 @@
             {
                 // move left
 
-                if (this.PositionX > Graphic.BufferWidth)
+                if (this.PositionX > Graphic.BufferWidthLeft)
                 {
                     this.PositionX -= this.Speed;
                 }
