@@ -1,9 +1,6 @@
 ﻿namespace NinjaRacer.Contracts
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-
-    interface IObstacle : ICollidable, IRenderable, IMovable
+    interface IObstacle :  IDestructable, ICollidable, IMovable, IRenderable
     {
         int DamagePoints { get; }
     }

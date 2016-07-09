@@ -1,7 +1,6 @@
 ﻿
 namespace NinjaRacer.Contracts
 {
-    using NinjaRacer.Models;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
@@ -14,7 +13,7 @@ namespace NinjaRacer.Contracts
 
         void LoadContent(ContentManager content, string fileName);
 
-        void Update(GameTime gameTime, RoadMap map = null);
+        void Update(GameTime gameTime, int currentSpeed);
 
         void Draw(SpriteBatch spriteBatch);
     }

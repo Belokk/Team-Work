@@ -43,9 +43,11 @@
     <Compile Include="Contracts\IBonus.cs" />
     <Compile Include="Contracts\ICollidable.cs" />
     <Compile Include="Contracts\IDestructable.cs" />
+    <Compile Include="Contracts\IHud.cs" />
     <Compile Include="Contracts\IObstacle.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
+    <Compile Include="CrashException.cs" />
     <Compile Include="GameVisualization.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
@@ -80,7 +82,9 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,6 +5,5 @@
     interface IMovable: IRenderable
     {
         int Speed { get; }
-
     }
 }
