@@ -109,5 +109,10 @@
         {
             this.PositionY += this.Speed; //All of the moving objects implement this logic or simmilar(can be overriden)
         }
+
+        public void Update(GameTime gameTime, RoadMap map = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
