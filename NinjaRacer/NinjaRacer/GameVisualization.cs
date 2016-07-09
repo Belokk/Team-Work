@@ -56,7 +56,7 @@
         {
             //Creating random variables for X and Y axis of our bonuses
             int coordY = -100; // Bonuses will be created before they start appearing
-            int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition - 50);
+            int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition);
             int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
 
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
@@ -166,11 +166,27 @@
             //FirstRoadMap.Draw(spriteBatch);
             //SecondRoadMap.Draw(spriteBatch);
             road.Draw(spriteBatch);
+
             foreach (Bonus bonus in this.BonusesList)
             {
                 bonus.Draw(spriteBatch);
             }
+
+            if (player.PositionX < Graphic.LeftOutOfRoadPosition || player.PositionX > Graphic.RightOutOfRoadPosition)
+            {
+                player.Color = Color.Red;
+                if (player.Score >= 10)
+                {
+                    player.Score--;
+                }
+                player.Health--;
+            }
+            else
+            {
+                player.Color = Color.White;
+            }
             player.Draw(spriteBatch);
+
             hud.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);

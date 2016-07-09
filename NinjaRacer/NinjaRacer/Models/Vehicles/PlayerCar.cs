@@ -63,6 +63,8 @@
             }
         }
 
+        public Color Color { get; set; }
+
         public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
@@ -100,6 +102,11 @@
             //        this.position.Y += this.Speed;
             //    }
             //}
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.Texture, this.Position, this.Color);
         }
     }
 }
