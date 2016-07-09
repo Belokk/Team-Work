@@ -63,6 +63,29 @@
             }
         }
 
+        public bool IsOutOfRoad
+        {
+            get
+            {
+                return this.PositionX < Graphic.LeftOutOfRoadPosition || this.PositionX > Graphic.RightOutOfRoadPosition;
+            }
+        }
+        
+        public Color Color
+        {
+            get
+            {
+                if (this.IsOutOfRoad)
+                {
+                    return Color.Red;
+                }
+                else
+                {
+                    return Color.White;
+                }
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
@@ -100,6 +123,11 @@
             //        this.position.Y += this.Speed;
             //    }
             //}
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.Texture, this.Position, this.Color);
         }
     }
 }
