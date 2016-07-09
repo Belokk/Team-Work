@@ -67,18 +67,13 @@
             //Player must be moving with certain speed in order bonuses to be spawned
             if (this.BonusesList.Count < 2 && this.road.CurrentSpeed >= Graphic.MinSpeedToSpawnBonuses) // 2 - min bonuses on screen, 
             {
-                switch (randBonus)
+                if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
-                    case 0:
-                        this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>("scoreBonus"), 4));
-                        break;
-                    case 1:
-                        this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>("healthBonus"), 4));
-                        break;
-                        // Extend with more, if there is more than 2 types of bonus;
-                        //case 2:
-                        //    // bonusesList.Add(new SomeOtherKindOfBonus();)
-                        //    break;
+                    this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>("scoreBonus"), 4));
+                }
+                else
+                {
+                    this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>("healthBonus"), 4));
                 }
             }
 
@@ -120,7 +115,7 @@
             progressPlayer = new ProgressCar(Content.Load<Texture2D>("progressCar"),
                 new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
 
-            hud = new HUD(player, progressPlayer);
+            hud = new HUD(player, progressPlayer, "georgia");
             this.hud.LoadContent(this.Content, "healthbar");
         }
 
@@ -143,11 +138,16 @@
 
             if (player.IsOutOfRoad)
             {
+                player.Color = Color.Red;
                 if (player.Score >= 1)
                 {
                     player.Score--;
                 }
                 player.Health--;
+            }
+            else
+            {
+                player.Color = Color.White;
             }
 
             foreach (Bonus bonus in this.BonusesList)
