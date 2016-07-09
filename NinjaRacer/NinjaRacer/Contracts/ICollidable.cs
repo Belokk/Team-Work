@@ -1,8 +1,8 @@
 ﻿namespace NinjaRacer.Contracts
 {
     using Models.Vehicles;
-    interface ICollidable : IMovable, IRenderable
+    public interface ICollidable : IMovable, IRenderable
     {
-        void DetectCollision(PlayerCar playerCar);
+        void DetectCollision(IPlayer playerCar);
     }
 }

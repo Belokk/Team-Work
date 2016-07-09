@@ -17,7 +17,7 @@
         {
         }
 
-        public override void DetectCollision(PlayerCar player)
+        public override void DetectCollision(IPlayer player)
         {
             if (player.BoundingBox.Intersects(this.BoundingBox))
             {

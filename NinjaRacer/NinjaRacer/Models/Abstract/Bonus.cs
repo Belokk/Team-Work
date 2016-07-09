@@ -58,7 +58,7 @@
             this.IsVisible = false;
         }
 
-        public abstract void DetectCollision(PlayerCar playerCar);
+        public abstract void DetectCollision(IPlayer playerCar);
 
         // Update
         public override void Update(GameTime gameTime, int currentSpeed)

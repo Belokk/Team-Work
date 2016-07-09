@@ -10,16 +10,16 @@
     using System;
     using Microsoft.Xna.Framework.Content;
 
-    public class PlayerCar : Vehicle, IMovable
+    public class PlayerCar : MovingObject, IPlayer, IMovable
     {
-        private int score = Graphic.InititalPlayerScore;
-        private int health = Graphic.InitialPlayerHealth;
+        private int score = ScoreAndHealth.InititalPlayerScore;
+        private int health = ScoreAndHealth.InitialPlayerHealth;
 
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
         {
-            this.Health = Graphic.InitialPlayerHealth;
-            this.Score = Graphic.InititalPlayerScore;
+            this.Health = ScoreAndHealth.InitialPlayerHealth;
+            this.Score = ScoreAndHealth.InititalPlayerScore;
         }
 
         public int Score
@@ -73,7 +73,7 @@
 
         public Color Color { get; set; }
 
-        public override void Update(GameTime gameTime, int currentSpeed = 0)
+        public new void Update(GameTime gameTime, int speed=0)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {

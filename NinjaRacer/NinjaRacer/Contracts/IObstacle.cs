@@ -1,6 +1,6 @@
 ﻿namespace NinjaRacer.Contracts
 {
-    interface IObstacle :  IDestructable, ICollidable, IMovable, IRenderable
+  public  interface IObstacle :  IDestructable, ICollidable, IMovable, IRenderable
     {
         int DamagePoints { get; }
     }

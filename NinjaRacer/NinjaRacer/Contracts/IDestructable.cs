@@ -1,6 +1,6 @@
 ﻿namespace NinjaRacer.Contracts
 {
-    interface IDestructable : ICollidable, IMovable, IRenderable
+    public interface IDestructable : ICollidable, IMovable, IRenderable
     {
         bool IsVisible { get; }
 

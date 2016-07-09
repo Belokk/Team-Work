@@ -127,3 +127,21 @@
 /processorParam:TextureFormat=Color
 /build:progressCar.png
 
+#begin theme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:theme.mp3
+
+#begin bonus.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:bonus.wav
+
+#begin obstacle.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:obstacle.wav
+
