@@ -18,8 +18,8 @@ namespace NinjaRacer.Models.Bonuses
     {
         private const int healthBonus = 20;
 
-        public HealthBonus(Texture2D texture, Vector2 position, int speed) :
-            base(texture, position, speed)
+        public HealthBonus(Texture2D texture, int speed) :
+            base(texture, speed)
         {
         }
 

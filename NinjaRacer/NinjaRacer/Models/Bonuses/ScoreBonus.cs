@@ -12,8 +12,8 @@
     {
         private const int scoreBonus = 50;
 
-        public ScoreBonus(Texture2D texture, Vector2 position, int speed) : 
-            base(texture, position, speed)
+        public ScoreBonus(Texture2D texture, int speed) : 
+            base(texture, speed)
         {
         }
 

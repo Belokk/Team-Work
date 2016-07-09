@@ -9,14 +9,11 @@
 
     public class HUD : IHud, IRenderable
     {
-
         public readonly Vector2 ScorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
         public readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
         public readonly Vector2 PlayerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
-        public readonly Vector2 PlayerSpeedPosoition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
         private int acceleration = 0;
-
-
+        
         private PlayerCar player;
         private ProgressCar progressPlayer;
 
@@ -62,8 +59,7 @@
 
         public void Update(GameTime gameTime, int currentSpeed)
         {
-            this.BoundingBox = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y,
-    this.PlayerHealth, this.Texture.Width);
+            this.BoundingBox = new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
 
 
             this.PlayerSpeed = currentSpeed;
@@ -90,7 +86,7 @@
             spriteBatch.DrawString(
                 this.PlayerScoreFont, 
                 string.Format("Speed {0}", this.PlayerSpeed),
-                this.PlayerSpeedPosoition, Color.White);
+                this.PlayerSpeedPosition, Color.White);
 
             spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);
             spriteBatch.Draw(this.progressPlayer.Texture, this.progressPlayer.Position, Color.White);
