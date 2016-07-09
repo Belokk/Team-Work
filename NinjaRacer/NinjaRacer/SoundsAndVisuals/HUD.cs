@@ -70,11 +70,11 @@ namespace NinjaRacer.SoundsAndVisuals
                 this.PlayerHealth, this.Texture.Width);
         }
 
-        public void Update(GameTime gameTime, RoadMap map)
+        public void Update(GameTime gameTime, int currentSpeed)
         {
             this.Update(gameTime);
 
-            this.PlayerSpeed = map.CurrentSpeed;
+            this.PlayerSpeed = currentSpeed;
 
         }
 
