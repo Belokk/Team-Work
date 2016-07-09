@@ -13,6 +13,8 @@ namespace NinjaRacer.Contracts
 
         void LoadContent(ContentManager content, string fileName);
 
+        void Update(GameTime gameTime);
+
         void Draw(SpriteBatch spriteBatch);
     }
 }

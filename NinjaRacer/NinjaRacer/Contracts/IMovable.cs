@@ -2,11 +2,9 @@
 {
     using Microsoft.Xna.Framework;
 
-    interface IMovable
+    interface IMovable: IRenderable
     {
         int Speed { get; }
-
-        void Update(GameTime gameTime);
 
     }
 }
