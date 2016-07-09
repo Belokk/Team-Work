@@ -10,8 +10,8 @@
     public class SmallHole : Hole, IObstacle, IRenderable, ICollidable
     {
         private const int SmallHoleDamagePoints = 20;
-        public SmallHole(Texture2D texture, Vector2 position, int speed, int damagePoints) 
-            : base(texture, position, speed, SmallHoleDamagePoints)
+        public SmallHole(Texture2D texture, Vector2 position, int damagePoints) 
+            : base(texture, position, SmallHoleDamagePoints)
         {
             
         }

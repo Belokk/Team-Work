@@ -6,8 +6,8 @@
 
     public abstract class Hole : Obstacle, IDestructable, IObstacle, ICollidable, IRenderable
     {
-        public Hole(Texture2D texture, Vector2 position, int speed, int damagePoints) :
-            base(texture, position, speed, damagePoints)
+        public Hole(Texture2D texture, Vector2 position, int damagePoints) :
+            base(texture, position, damagePoints)
         {
         }
     }

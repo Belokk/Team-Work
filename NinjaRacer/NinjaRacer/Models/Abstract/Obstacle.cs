@@ -10,8 +10,8 @@
     {
         private int damagePoints;
 
-        public Obstacle(Texture2D texture, Vector2 position, int speed, int demagePoints) 
-            : base(texture, position, speed)
+        public Obstacle(Texture2D texture, Vector2 position, int demagePoints) 
+            : base(texture, position)
         {
             this.DamagePoints = demagePoints;
         }

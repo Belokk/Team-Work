@@ -10,16 +10,10 @@
     public class BigHole : Hole, IObstacle, IRenderable
     {
         private const int BigHoleDamagePoints = 40;
-        public BigHole(Texture2D texture, Vector2 position, int speed, int damagePoints) 
-            : base(texture, position, speed, damagePoints)
+        public BigHole(Texture2D texture, Vector2 position, int damagePoints) 
+            : base(texture, position, damagePoints)
         {
         }
-
-        public override void LoadContent(ContentManager content, string fileName)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update()
         {
             throw new NotImplementedException();

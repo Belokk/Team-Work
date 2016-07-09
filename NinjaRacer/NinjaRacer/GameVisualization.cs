@@ -141,7 +141,7 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (player.IsOutOfRoad)
+            if ((player.IsOutOfRoad) && this.road.CurrentSpeed > 0)
             {
                 player.Color = Color.Red;
                 if (player.Score >= 1)
@@ -180,7 +180,7 @@
         /// This is called when the game should draw itself.
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Green);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
             // TODO: List of IDrawable and  with foreach loop

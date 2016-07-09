@@ -14,12 +14,18 @@
         private int speed;
         private Texture2D texture;
 
-        public MovingObject(Texture2D texture, Vector2 position, int speed)
+        public MovingObject(Texture2D texture, Vector2 position)
         {
             this.Texture = texture;
             this.Position = position;
+        }
+
+        public MovingObject(Texture2D texture, Vector2 position, int speed)
+            : this(texture, position)
+        {
             this.Speed = speed;
         }
+
 
         public float PositionX
         {
