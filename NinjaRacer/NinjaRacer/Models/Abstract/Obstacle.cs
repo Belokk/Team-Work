@@ -3,7 +3,6 @@
     using System;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Content;
     using Models.Vehicles;
     using NinjaRacer.Contracts;
 
@@ -22,9 +21,9 @@
             {
                 return this.damagePoints;
             }
-            set
+            protected set
             {
-                if(value > 0)
+                if (value > 0)
                 {
                     this.damagePoints = value;
                 }
