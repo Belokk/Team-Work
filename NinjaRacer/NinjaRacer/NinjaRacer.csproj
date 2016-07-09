@@ -53,6 +53,7 @@
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
+    <Compile Include="Infrastructure\Constants\ScoreAndHealth.cs" />
     <Compile Include="Models\Abstract\Bonus.cs" />
     <Compile Include="Models\Abstract\Hole.cs" />
     <Compile Include="Models\Abstract\Obstacle.cs" />
@@ -68,6 +69,10 @@
     <Compile Include="Models\Vehicles\PlayerCar.cs" />
     <Compile Include="Models\Vehicles\ProgressCar.cs" />
     <Compile Include="SoundsAndVisuals\HUD.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundCaller.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundManager.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundPublisher.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundSubscriber.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

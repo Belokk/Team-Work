@@ -14,26 +14,11 @@ namespace NinjaRacer.Models.Bonuses
     using Microsoft.Xna.Framework.Graphics;
     using System;
 
-    public class HealthBonus : Bonus, IMovable, ICollidable, IDestructable
+    public class HealthBonus : Bonus, IMovable, IDestructable
     {
-        private const int healthBonus = 20;
-
         public HealthBonus(Texture2D texture, int speed) :
             base(texture, speed)
         {
-        }
-
-        public override void DetectCollision(PlayerCar player)
-        {
-            if (player.BoundingBox.Intersects(this.BoundingBox) && player.Health < 160)
-            {
-                player.Health += healthBonus;
-                if (player.Health > 160)
-                {
-                    player.Health = 160;
-                }
-                this.DestroyObject();
-            }
         }
     }
 }

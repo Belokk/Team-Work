@@ -10,20 +10,9 @@
 
     public class ScoreBonus : Bonus, IMovable, ICollidable, IDestructable
     {
-        private const int scoreBonus = 50;
-
         public ScoreBonus(Texture2D texture, int speed) : 
             base(texture, speed)
         {
-        }
-
-        public override void DetectCollision(PlayerCar player)
-        {
-            if (player.BoundingBox.Intersects(this.BoundingBox))
-            {
-                player.Score += scoreBonus;
-                this.DestroyObject();
-            }
         }
     }
 }

@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public abstract class Bonus : MovingObject, IMovable, ICollidable, IDestructable, IRenderable, IBonus
+    public abstract class Bonus : MovingObject, IMovable, IDestructable, IRenderable, IBonus
     {
         private const int MinBonusPoints = 5;
         private const int MaxBonusPoints = 200;
@@ -58,8 +58,6 @@
             this.IsVisible = false;
         }
 
-        public abstract void DetectCollision(PlayerCar playerCar);
-
         // Update
         public override void Update(GameTime gameTime, int currenstSpeed)
         {
@@ -78,6 +76,11 @@
             {
                 spriteBatch.Draw(this.Texture, this.Position, Color.White);
             }
+        }
+
+        public void DetectCollision(PlayerCar playerCar) // TODO: should be removed but other classes will break
+        {
+            throw new NotImplementedException();
         }
     }
 }
