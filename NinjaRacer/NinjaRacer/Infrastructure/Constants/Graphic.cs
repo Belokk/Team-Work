@@ -19,7 +19,7 @@
         public const int ScoreCoordX = 620;
         public const int ScoreCoordY = 50;
         public const int PlayerSpeedX = 620;
-        public const int PlayerSpeedY = 300;
+        public const int PlayerSpeedY = 500;
         public const int MinSpeedToSpawnBonuses = 10;
 
         public const string RootDirectory = "Content";
