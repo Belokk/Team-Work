@@ -43,6 +43,7 @@
     <Compile Include="Contracts\IBonus.cs" />
     <Compile Include="Contracts\ICollidable.cs" />
     <Compile Include="Contracts\IDestructable.cs" />
+    <Compile Include="Contracts\IHud.cs" />
     <Compile Include="Contracts\IObstacle.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Models\Obstacle\TrafficCar.cs" />
     <Compile Include="Models\RoadMap.cs" />
     <Compile Include="Models\Vehicles\PlayerCar.cs" />
+    <Compile Include="Models\Vehicles\ProgressCar.cs" />
     <Compile Include="SoundsAndVisuals\HUD.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

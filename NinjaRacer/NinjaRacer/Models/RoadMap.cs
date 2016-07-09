@@ -20,7 +20,7 @@ namespace NinjaRacer.Models
         private const int RoadWidh = 400;
         private Vector2 secondPosition;
         private static RoadMap instance = null;
-        private int currentSpeed = 3;
+        private int currentSpeed = 0;
         private decimal acceleration = 0.1M;
 
         private RoadMap(Texture2D texture, Vector2 position, int speed)
