@@ -14,6 +14,8 @@
         public const int RoadMapSpeed = 20;
         public const int HealthBarCoordX = 620;
         public const int HealthBarCoordY = 100;
+        public const int HealthBarBorderCoordX = HealthBarCoordX - 2;
+        public const int HealthBarBorderCoordY = HealthBarCoordY - 2;
         public const int ScoreCoordX = 620;
         public const int ScoreCoordY = 50;
         public const int PlayerSpeedX = 620;

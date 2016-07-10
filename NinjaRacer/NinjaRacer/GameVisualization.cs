@@ -29,7 +29,7 @@
 
         private IPlayer player;
         private ProgressCar progressPlayer;
-        private IHud hud;
+        private HUD hud;
         private readonly IList<Bonus> bonusesList;
         private readonly IList<Obstacle> obstaclesList;
 
@@ -164,7 +164,7 @@
                 new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
 
             hud = new HUD(player, progressPlayer, "8bitFont");
-            this.hud.LoadContent(this.Content, "healthbar");
+            this.hud.LoadContent(this.Content, "healthbar", "healthBarBorder");
         }
 
         /// UnloadContent will be called once per game and is the place to unload

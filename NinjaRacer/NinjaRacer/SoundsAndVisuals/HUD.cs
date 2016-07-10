@@ -29,6 +29,9 @@
         }
 
         public Texture2D Texture { get; private set; }
+
+        public Texture2D HealthBarBorderBox { get; private set; }
+
         public Rectangle BoundingBox
         {
             get
@@ -70,6 +73,12 @@
             this.Font = Content.Load<BitmapFont>(fontName);
             this.Texture = Content.Load<Texture2D>(healthBarFileName);
         }
+        public void LoadContent(ContentManager Content, string healthBarFileName, string healthBarBorderBoxFileName)
+        {
+            this.Font = Content.Load<BitmapFont>(fontName);
+            this.Texture = Content.Load<Texture2D>(healthBarFileName);
+            this.HealthBarBorderBox = Content.Load<Texture2D>(healthBarBorderBoxFileName);
+        }
 
         //Updatе
 
@@ -99,6 +108,13 @@
                 this.Font, 
                 string.Format("Speed {0}", this.PlayerSpeed),
                 this.PlayerSpeedPosition, Color.White);
+
+            if(this.HealthBarBorderBox != null)
+            {
+                spriteBatch.Draw(
+                    this.HealthBarBorderBox,
+                    new Vector2(Graphic.HealthBarBorderCoordX, Graphic.HealthBarBorderCoordY));
+            }
 
             spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);
             spriteBatch.Draw(this.progressPlayer.Texture, this.progressPlayer.Position, Color.White);
