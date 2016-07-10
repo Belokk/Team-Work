@@ -163,7 +163,7 @@
             progressPlayer = new ProgressCar(Content.Load<Texture2D>("progressCar"),
                 new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
 
-            hud = new HUD(player, progressPlayer, "georgia");
+            hud = new HUD(player, progressPlayer, "8bitFont");
             this.hud.LoadContent(this.Content, "healthbar");
         }
 

@@ -3,6 +3,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
+    using MonoGame.Extended.BitmapFonts;
     using Contracts;
     using Models.Vehicles;
     using Infrastructure.Constants;
@@ -48,7 +49,7 @@
 
         public int PlayerSpeed { get; set; }
         
-        public SpriteFont Font { get; set; }
+        public BitmapFont Font { get; set; }
 
         public Vector2 Position
         {
@@ -66,7 +67,7 @@
         //Load Content
         public void LoadContent(ContentManager Content, string healthBarFileName)
         {
-            this.Font = Content.Load<SpriteFont>(fontName);
+            this.Font = Content.Load<BitmapFont>(fontName);
             this.Texture = Content.Load<Texture2D>(healthBarFileName);
         }
 
