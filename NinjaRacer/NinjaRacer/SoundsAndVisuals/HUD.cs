@@ -15,6 +15,7 @@
         private readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
         private readonly Vector2 PlayerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
         private readonly string fontName;
+        private readonly string healthBarBorderBoxName;
         private int acceleration = 0;
         
         private IPlayer player;
@@ -26,6 +27,12 @@
             this.progressPlayer = progressPlayer;
             this.fontName = fontName;
             this.Font = null;
+        }
+
+        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName, string healthBarBorderBoxFileName)
+            : this(player, progressPlayer,fontName)
+        {
+            this.healthBarBorderBoxName = healthBarBorderBoxFileName;
         }
 
         public Texture2D Texture { get; private set; }
@@ -72,12 +79,10 @@
         {
             this.Font = Content.Load<BitmapFont>(fontName);
             this.Texture = Content.Load<Texture2D>(healthBarFileName);
-        }
-        public void LoadContent(ContentManager Content, string healthBarFileName, string healthBarBorderBoxFileName)
-        {
-            this.Font = Content.Load<BitmapFont>(fontName);
-            this.Texture = Content.Load<Texture2D>(healthBarFileName);
-            this.HealthBarBorderBox = Content.Load<Texture2D>(healthBarBorderBoxFileName);
+            if(this.healthBarBorderBoxName != null)
+            {
+                this.HealthBarBorderBox = Content.Load<Texture2D>(this.healthBarBorderBoxName);
+            }
         }
 
         //Updatе
