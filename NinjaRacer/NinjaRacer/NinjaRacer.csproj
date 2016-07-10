@@ -38,6 +38,9 @@
     <ApplicationIcon>
     </ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="CarCrashException.cs" />
     <Compile Include="Contracts\IBonus.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
+    <Compile Include="Infrastructure\Constants\ScoreAndHealth.cs" />
     <Compile Include="Models\Abstract\Bonus.cs" />
     <Compile Include="Models\Abstract\Hole.cs" />
     <Compile Include="Models\Abstract\Obstacle.cs" />
@@ -62,16 +66,26 @@
     <Compile Include="Models\Bonuses\HealthBonus.cs" />
     <Compile Include="Models\Bonuses\ScoreBonus.cs" />
     <Compile Include="Models\Obstacle\BigHole.cs" />
+    <Compile Include="Models\Obstacle\ObstacleType.cs" />
     <Compile Include="Models\Obstacle\SmallHole.cs" />
-    <Compile Include="Models\Obstacle\TrafficCar.cs" />
     <Compile Include="Models\RoadMap.cs" />
     <Compile Include="Models\Vehicles\PlayerCar.cs" />
     <Compile Include="Models\Vehicles\ProgressCar.cs" />
     <Compile Include="SoundsAndVisuals\HUD.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundCaller.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundManager.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundPublisher.cs" />
+    <Compile Include="SoundsAndVisuals\Sounds\SoundSubscriber.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Extended">
+      <HintPath>..\Extensions\MonoGame.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Content.Pipeline">
+      <HintPath>..\Extensions\MonoGame.Extended.Content.Pipeline.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -83,9 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

@@ -3,9 +3,11 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
+    using MonoGame.Extended.BitmapFonts;
     using Contracts;
     using Models.Vehicles;
     using Infrastructure.Constants;
+    using System;
 
     public class HUD : IHud, IRenderable
     {
@@ -13,12 +15,13 @@
         private readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
         private readonly Vector2 PlayerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
         private readonly string fontName;
+        private readonly string healthBarBorderBoxName;
         private int acceleration = 0;
         
-        private PlayerCar player;
+        private IPlayer player;
         private ProgressCar progressPlayer;
 
-        public HUD(PlayerCar player, ProgressCar progressPlayer, string fontName)
+        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName)
         {
             this.player = player;
             this.progressPlayer = progressPlayer;
@@ -26,7 +29,16 @@
             this.Font = null;
         }
 
+        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName, string healthBarBorderBoxFileName)
+            : this(player, progressPlayer,fontName)
+        {
+            this.healthBarBorderBoxName = healthBarBorderBoxFileName;
+        }
+
         public Texture2D Texture { get; private set; }
+
+        public Texture2D HealthBarBorderBox { get; private set; }
+
         public Rectangle BoundingBox
         {
             get
@@ -47,13 +59,30 @@
 
         public int PlayerSpeed { get; set; }
         
-        public SpriteFont Font { get; set; }
+        public BitmapFont Font { get; set; }
+
+        public Vector2 Position
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         //Load Content
         public void LoadContent(ContentManager Content, string healthBarFileName)
         {
-            this.Font = Content.Load<SpriteFont>(fontName);
+            this.Font = Content.Load<BitmapFont>(fontName);
             this.Texture = Content.Load<Texture2D>(healthBarFileName);
+            if(this.healthBarBorderBoxName != null)
+            {
+                this.HealthBarBorderBox = Content.Load<Texture2D>(this.healthBarBorderBoxName);
+            }
         }
 
         //Updatе
@@ -84,6 +113,13 @@
                 this.Font, 
                 string.Format("Speed {0}", this.PlayerSpeed),
                 this.PlayerSpeedPosition, Color.White);
+
+            if(this.HealthBarBorderBox != null)
+            {
+                spriteBatch.Draw(
+                    this.HealthBarBorderBox,
+                    new Vector2(Graphic.HealthBarBorderCoordX, Graphic.HealthBarBorderCoordY));
+            }
 
             spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);
             spriteBatch.Draw(this.progressPlayer.Texture, this.progressPlayer.Position, Color.White);

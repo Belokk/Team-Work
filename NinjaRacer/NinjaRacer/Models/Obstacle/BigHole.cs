@@ -7,22 +7,13 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
 
-    public class BigHole : Hole, IObstacle, IRenderable
+    public class BigHole : Hole, IObstacle, IRenderable, ICollidable
     {
-        private const int BigHoleDamagePoints = 40;
-        public BigHole(Texture2D texture, Vector2 position, int speed, int damagePoints) 
-            : base(texture, position, speed, damagePoints)
+        private const int BigHoleDamagePoints = 20;
+        public BigHole(Texture2D texture) 
+            : base(texture)
         {
-        }
-
-        public override void LoadContent(ContentManager content, string fileName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update()
-        {
-            throw new NotImplementedException();
+            this.DamagePoints = BigHoleDamagePoints;
         }
     }
 }

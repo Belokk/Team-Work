@@ -58,13 +58,13 @@
             this.IsVisible = false;
         }
 
-        public abstract void DetectCollision(PlayerCar playerCar);
+        public abstract void DetectCollision(IPlayer playerCar);
 
         // Update
-        public override void Update(GameTime gameTime, int currenstSpeed)
+        public override void Update(GameTime gameTime, int currentSpeed)
         {
             // update movement
-                this.PositionY = this.PositionY + (currenstSpeed > this.Speed ? this.Speed : currenstSpeed);
+                this.PositionY = this.PositionY + (currentSpeed > this.Speed ? this.Speed : currentSpeed);
             if (this.PositionY >= Graphic.WindowHeight)
             {
                 this.DestroyObject();

@@ -14,12 +14,18 @@
         private int speed;
         private Texture2D texture;
 
-        public MovingObject(Texture2D texture, Vector2 position, int speed)
+        public MovingObject(Texture2D texture, Vector2 position)
         {
             this.Texture = texture;
             this.Position = position;
+        }
+
+        public MovingObject(Texture2D texture, Vector2 position, int speed)
+            : this(texture, position)
+        {
             this.Speed = speed;
         }
+
 
         public float PositionX
         {
@@ -102,7 +108,7 @@
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, this.position);
+            spriteBatch.Draw(this.Texture, this.Position);
         }
 
         public virtual void Update(GameTime gameTime, int currentSpeed = 0)

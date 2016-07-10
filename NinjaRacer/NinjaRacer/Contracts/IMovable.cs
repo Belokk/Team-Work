@@ -2,8 +2,12 @@
 {
     using Microsoft.Xna.Framework;
 
-    interface IMovable: IRenderable
+    public interface IMovable : IRenderable
     {
         int Speed { get; }
+
+        float PositionX { get; set; }
+
+        float PositionY { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    interface IPlayer : IMovable, IRenderable
+  public  interface IPlayer : IMovable, IRenderable
     {
         int Score { get; set; }
 
@@ -11,6 +11,10 @@
 
         Color Color { get; set; }
 
+        bool IsInCollisionWithObstacle { get; set; }
+
         bool IsOutOfRoad { get; }
+
+        bool IsBeeingDamaged { get; }
     }
 }
