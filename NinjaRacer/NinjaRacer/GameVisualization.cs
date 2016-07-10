@@ -195,7 +195,7 @@
                 MediaPlayer.Stop();
             }
 
-            if ((player.) && this.road.CurrentSpeed > 0)
+            if ((player.IsBeeingDamaged) && this.road.CurrentSpeed > 0)
             {
                 // pretty annoying because its playing over and over again, maybe should be removed
                 //SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);

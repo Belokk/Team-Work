@@ -11,6 +11,10 @@
 
         Color Color { get; set; }
 
+        bool IsInCollisionWithObstacle { get; set; }
+
+        bool IsOutOfRoad { get; }
+
         bool IsBeeingDamaged { get; }
     }
 }
