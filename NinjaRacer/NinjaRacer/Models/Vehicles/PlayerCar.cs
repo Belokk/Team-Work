@@ -71,6 +71,16 @@
             }
         }
 
+        public bool IsInCollisionWithObstacle { get; set; }
+
+        public bool IsBeeingDamaged
+        {
+            get
+            {
+                return this.IsOutOfRoad || this.IsInCollisionWithObstacle;
+            }
+        }
+
         public Color Color { get; set; }
 
         public new void Update(GameTime gameTime, int speed=0)

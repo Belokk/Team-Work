@@ -108,7 +108,7 @@
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Texture, this.position);
+            spriteBatch.Draw(this.Texture, this.Position);
         }
 
         public virtual void Update(GameTime gameTime, int currentSpeed = 0)

@@ -1,6 +1,7 @@
 ﻿namespace NinjaRacer.Models.Abstract
 {
     using System;
+    using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Models.Vehicles;
@@ -9,11 +10,22 @@
     public abstract class Obstacle : MovingObject, IObstacle, IDestructable, ICollidable, IMovable, IRenderable
     {
         private int damagePoints;
+        private const int ObstacleSpawnCoordY = - 100;
+        private Random randomSpawnPositionX = new Random();
 
-        public Obstacle(Texture2D texture, Vector2 position, int demagePoints) 
-            : base(texture, position)
+        public Obstacle(Texture2D texture) 
+            : base(texture, new Vector2())
         {
-            this.DamagePoints = demagePoints;
+            this.Position = new Vector2(this.RandomSpawnPositionX, ObstacleSpawnCoordY);
+            this.IsVisible = true;
+        }
+
+        private int RandomSpawnPositionX
+        {
+            get
+            {
+                return randomSpawnPositionX.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition - this.Texture.Width);
+            }
         }
 
         public int DamagePoints
@@ -35,19 +47,29 @@
             }
         }
 
-        public bool IsVisible { get; protected set; }
+        public bool IsVisible { get; set; }
 
         public virtual void DestroyObject()
         {
             this.IsVisible = false;
         }
 
-        public virtual void DetectCollision(IPlayer playerCar)
+        public abstract void DetectCollision(IPlayer playerCar);
+
+        public override void Update(GameTime gameTime, int currentSpeed = 0)
         {
-            if (this.BoundingBox.Intersects(playerCar.BoundingBox))
+            this.Speed = currentSpeed;
+            this.PositionY = this.PositionY + currentSpeed;
+
+            if (this.PositionY >= Graphic.WindowHeight)
             {
-                playerCar.Health -= this.DamagePoints;
+                this.DestroyObject();
             }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+                spriteBatch.Draw(this.Texture, this.Position);
         }
     }
 }

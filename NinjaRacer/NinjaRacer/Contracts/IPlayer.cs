@@ -11,6 +11,6 @@
 
         Color Color { get; set; }
 
-        bool IsOutOfRoad { get; }
+        bool IsBeeingDamaged { get; }
     }
 }
