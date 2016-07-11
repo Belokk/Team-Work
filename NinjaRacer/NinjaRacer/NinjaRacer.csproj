@@ -42,7 +42,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CarCrashException.cs" />
     <Compile Include="Contracts\IBonus.cs" />
     <Compile Include="Contracts\ICollidable.cs" />
     <Compile Include="Contracts\IDestructable.cs" />
