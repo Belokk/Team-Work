@@ -228,28 +228,39 @@
             }
 
 
-            if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
+            try
             {
-                SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
-                player.Color = Color.Red;
-                if (player.Score >= 1)
+                if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
                 {
-                    player.Score--;
+                    SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+                    player.Color = Color.Red;
+                    if (player.Score >= 1)
+                    {
+                        player.Score--;
+                    }
+
+                    player.Health--;
+                }
+                else
+                {
+
+                    player.Color = Color.White;
+
                 }
 
-                player.Health--;
+                foreach (Obstacle obstacle in this.ObstaclesList)
+                {
+                    obstacle.DetectCollision(player);
+
+                    obstacle.Update(gameTime, this.player.CurrentSpeed);
+
+                }
             }
-            else
+            catch (CrashException)
             {
-                player.Color = Color.White;
+                Exit();
             }
 
-            foreach (Obstacle obstacle in this.ObstaclesList)
-            {
-                obstacle.DetectCollision(player);
-
-                obstacle.Update(gameTime, this.player.CurrentSpeed);
-            }
 
             foreach (IBonus bonus in this.BonusesList)
             {

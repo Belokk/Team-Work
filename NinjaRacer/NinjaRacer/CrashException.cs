@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace NinjaRacer
 {
-   internal class CrashException:ApplicationException
+   public class CrashException:ApplicationException
     {
         private int health;
 
         public CrashException(int health)
-            : base(string.Format("The player died! (health = {0})", health), null)
+            : base(string.Format("The car crashed! (health = {0})", health), null)
         {
             this.Health = health;
         }
