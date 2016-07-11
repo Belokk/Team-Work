@@ -121,7 +121,6 @@
                 }
                 else
                 {
-
                     this.bonusesList.Add(new HealthBonus(this.Content.Load<Texture2D>(HealthBonusImage), BonusSpeed));
                 }
             }
@@ -185,8 +184,7 @@
             // TODO: use this.Content to load your game content here
 
             this.SoundManager.LoadContent(this.Content, BonusColisionSoundFile, ObstacleColisionSoundFile, GameTheamMusicFile);
-
-
+            
             this.road.LoadContent(this.Content, BackgroundImage);
             //Just for fun
             MediaPlayer.Play(this.SoundManager.BGMusic);
@@ -199,8 +197,7 @@
 
             this.progressPlayer = new ProgressCar(Content.Load<Texture2D>(ProgressCarImage),
                 new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
-
-
+            
             this.hud = new HUD(player, progressPlayer, EightBitFontFile, HelthBarBorderImage);
             this.hud.LoadContent(this.Content, HealthBarImage);
         }
@@ -226,13 +223,16 @@
             {
                 MediaPlayer.Stop();
             }
-
-
+            
             try
             {
                 if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
                 {
-                    SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+                    if (!player.IsOutOfRoad)
+                    {
+                        SoundCaller obstacle = new SoundCaller(this.SoundManager.ObstacleSound);
+                    }
+                    
                     player.Color = Color.Red;
                     if (player.Score >= 1)
                     {
@@ -243,9 +243,7 @@
                 }
                 else
                 {
-
                     player.Color = Color.White;
-
                 }
 
                 foreach (Obstacle obstacle in this.ObstaclesList)
@@ -253,7 +251,6 @@
                     obstacle.DetectCollision(player);
 
                     obstacle.Update(gameTime, this.player.CurrentSpeed);
-
                 }
             }
             catch (CrashException)
