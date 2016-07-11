@@ -9,7 +9,6 @@
     using Infrastructure;
     using Infrastructure.Constants;
 
-
     public abstract class Obstacle : MovingObject, IObstacle, IDestructable, ICollidable, IMovable, IRenderable
     {
         private const int ObstacleSpawnCoordY = -100;
@@ -25,15 +24,7 @@
             this.IsVisible = true;
         }
 
-        private int RandomSpawnPositionX
-        {
-            get
-            {
-                return randomSpawnPositionX.Next(
-                    Graphic.LeftOutOfRoadPosition,
-                    Graphic.RightOutOfRoadPosition - this.Texture.Width);
-            }
-        }
+        public bool IsVisible { get; set; }
 
         public int DamagePoints
         {
@@ -44,16 +35,26 @@
 
             protected set
             {
-                var message = String.Format(
+                var message = string.Format(
                      Messages.NumberMustBeBetweenMinAndMax,
-                     nameof(this.DamagePoints), 0, int.MaxValue);
+                     nameof(this.DamagePoints),
+                     0,
+                     int.MaxValue);
                 Validator.ValidateIntRange(value, 0, int.MaxValue, message);
 
                 this.damagePoints = value;
             }
         }
 
-        public bool IsVisible { get; set; }
+        private int RandomSpawnPositionX
+        {
+            get
+            {
+                return this.randomSpawnPositionX.Next(
+                    Graphic.LeftOutOfRoadPosition,
+                    Graphic.RightOutOfRoadPosition - this.Texture.Width);
+            }
+        }
 
         public virtual void DestroyObject()
         {

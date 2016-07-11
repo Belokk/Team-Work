@@ -33,11 +33,11 @@
             ContentManager content, 
             string bonusFileName, 
             string obstacleFileName, 
-            string bgMusicFileName)
+            string backgroundMusicFileName)
         {
             this.BonusSound = content.Load<SoundEffect>(bonusFileName);
             this.ObstacleSound = content.Load<SoundEffect>(obstacleFileName);
-            this.BGMusic = content.Load<Song>(bgMusicFileName);
+            this.BGMusic = content.Load<Song>(backgroundMusicFileName);
         }
     }
 }

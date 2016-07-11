@@ -15,10 +15,11 @@
         private const int RoadHight = Graphic.WindowHeight;
         private const int RoadWidh = Graphic.WindowWidth / 2;
 
-        private Vector2 secondPosition;
         private static RoadMap instance = null;
 
-        private RoadMap(Texture2D texture, Vector2 position, int speed)
+        private Vector2 secondPosition;
+
+                private RoadMap(Texture2D texture, Vector2 position, int speed)
             : base(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
         {
             this.secondPosition = new Vector2(CoordX, SecondCoordY);
@@ -55,8 +56,6 @@
 
         public override void Update(GameTime gameTime, int updateSpeed)
         {
-
-
             this.PositionY += updateSpeed;
             this.secondPosition.Y += updateSpeed;
 

@@ -9,7 +9,6 @@
     using Contracts;
     using Abstract;
 
-
     public class PlayerCar : MovingObject, IPlayer, IMovable
     {
         private const int ReduceSpeedX = 2;
@@ -45,7 +44,7 @@
         {
             get
             {
-                return health;
+                return this.health;
             }
 
             set
@@ -104,7 +103,6 @@
                     this.CurrentSpeed += 1;
                 }
             }
-
             else if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 if (this.CurrentSpeed > 0 && this.CurrentSpeed % 2 == 0)
@@ -123,7 +121,6 @@
                     this.CurrentSpeed -= 1;
                 }
             }
-
 
             if ((Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D)) && this.CurrentSpeed > 0)
             {

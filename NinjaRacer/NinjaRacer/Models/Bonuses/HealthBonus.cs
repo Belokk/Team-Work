@@ -7,7 +7,7 @@
 
     public class HealthBonus : Bonus, IMovable, ICollidable, IDestructable
     {
-        private const int healthBonus = 20;
+        private const int VealthBonusPoints = 20;
 
         public HealthBonus(Texture2D texture, int speed) :
             base(texture, speed)
@@ -18,7 +18,7 @@
         {
             if (player.BoundingBox.Intersects(this.BoundingBox) && player.Health < ScoreAndHealth.InitialPlayerHealth)
             {
-                player.Health += healthBonus;
+                player.Health += VealthBonusPoints;
                 if (player.Health > 160)
                 {
                     player.Health = 160;
