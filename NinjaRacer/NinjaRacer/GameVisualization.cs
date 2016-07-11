@@ -108,11 +108,16 @@
             //Creating random variables for X and Y axis of our bonuses
             //int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition);
             int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
-
+            int randPush = this.RandomGenerator.Next(0, 100);
+            
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
             //Player must be moving with certain speed in order bonuses to be spawned
 
-            if (this.BonusesList.Count < 2 && this.player.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles) // 2 - min bonuses on screen,
+            // Old method
+            //if (this.BonusesList.Count < 2 && this.player.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles) // 2 - min bonuses on screen,
+
+            // New method for bonuses
+            if (this.BonusesList.Count < 1 && (randPush==randBonus))
             {
                 if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
@@ -140,11 +145,12 @@
         public void LoadObstacles()
         {
             int randomObstacle = this.RandomGenerator.Next(0, TypesOfObstacles + 2); //Decrease the chance for an obstacle to appear
+            int randPush = this.RandomGenerator.Next(0, 50);
 
             //Max obstacles on screen: 1
-            if (this.ObstaclesList.Count == 0 &&
 
-                this.player.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles)
+            // New method for bonuses
+            if (this.ObstaclesList.Count == 0 && randPush == randomObstacle)
             {
                 if ((ObstacleType)randomObstacle == ObstacleType.SmallHole)
                 {

@@ -54,8 +54,11 @@
     <Compile Include="GameVisualization.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
+    <Compile Include="Infrastructure\Constants\Mesages.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="Infrastructure\Constants\ScoreAndHealth.cs" />
+    <Compile Include="Infrastructure\Enum\GameState.cs" />
+    <Compile Include="Infrastructure\Validator.cs" />
     <Compile Include="Models\Abstract\Bonus.cs" />
     <Compile Include="Models\Abstract\Hole.cs" />
     <Compile Include="Models\Abstract\Obstacle.cs" />

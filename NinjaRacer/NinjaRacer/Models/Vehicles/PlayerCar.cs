@@ -36,6 +36,7 @@
             {
                 var message = string.Format(Mesages.NumberMustBeBetweenMinAndMax, nameof(this.Score), 0, int.MaxValue);
                 Validator.ValidateIntRange(value, 0, int.MaxValue, message);
+
                 this.score = value;
             }
         }
