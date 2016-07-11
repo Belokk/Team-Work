@@ -84,7 +84,7 @@
 
         public Color Color { get; set; }
 
-        public new void Update(GameTime gameTime, int speed = 0)
+        public override void Update(GameTime gameTime, int speed = 0)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
