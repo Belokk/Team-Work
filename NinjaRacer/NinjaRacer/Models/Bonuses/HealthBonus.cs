@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NinjaRacer.Models.Bonuses
+﻿namespace NinjaRacer.Models.Bonuses
 {
     using Contracts;
     using Abstract;
-    using Vehicles;
-    using SoundsAndVisuals;
-    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-    using System;
+    using Infrastructure.Constants;
 
     public class HealthBonus : Bonus, IMovable, ICollidable, IDestructable
     {
@@ -25,7 +16,7 @@ namespace NinjaRacer.Models.Bonuses
 
         public override void DetectCollision(IPlayer player)
         {
-            if (player.BoundingBox.Intersects(this.BoundingBox) && player.Health < 160)
+            if (player.BoundingBox.Intersects(this.BoundingBox) && player.Health < ScoreAndHealth.InitialPlayerHealth)
             {
                 player.Health += healthBonus;
                 if (player.Health > 160)

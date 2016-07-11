@@ -2,6 +2,7 @@
 {
     using System;
     using Contracts;
+    using Infrastructure;
     using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +12,6 @@
         private const int MinBonusPoints = 5;
         private const int MaxBonusPoints = 200;
         private const int BonusSpawnCoordY = -100;
-        private const string OutOfRangeMessage = "The bonus points should be between {0}, {1}";
         private Random randomSpawnPositionX = new Random();
         private int bonusPoints;
 
@@ -33,14 +33,12 @@
 
             private set
             {
-                if (value <= MinBonusPoints || value > MaxBonusPoints)
-                {
-                    throw new ArgumentOutOfRangeException(
-                        nameof(this.bonusPoints), 
-                        String.Format(OutOfRangeMessage,MinBonusPoints,MaxBonusPoints));
-                }
+                var message = String.Format(
+                    Messages.NumberMustBeBetweenMinAndMax,
+                    nameof(this.BonusPoints), MinBonusPoints, MaxBonusPoints);
+                Validator.ValidateIntRange(value, MinBonusPoints, MaxBonusPoints, message);
 
-                this.bonusPoints = value;
+                    this.bonusPoints = value;
             }
         }
 
@@ -61,7 +59,6 @@
 
         public abstract void DetectCollision(IPlayer playerCar);
 
-        // Update
         public override void Update(GameTime gameTime, int currentSpeed)
         {
             this.PositionY = this.PositionY + (currentSpeed > this.Speed ? this.Speed : currentSpeed);

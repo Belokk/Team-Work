@@ -5,13 +5,14 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    using Infrastructure.Constants;
     using Contracts;
+    using Infrastructure;
+    using Infrastructure.Constants;
+
 
     public abstract class Obstacle : MovingObject, IObstacle, IDestructable, ICollidable, IMovable, IRenderable
     {
         private const int ObstacleSpawnCoordY = -100;
-        private const string DamagePointsCannotBeZeroOrLess = "Damage points can't be 0 or less!";
 
         private int damagePoints;
 
@@ -29,7 +30,7 @@
             get
             {
                 return randomSpawnPositionX.Next(
-                    Graphic.LeftOutOfRoadPosition, 
+                    Graphic.LeftOutOfRoadPosition,
                     Graphic.RightOutOfRoadPosition - this.Texture.Width);
             }
         }
@@ -43,14 +44,12 @@
 
             protected set
             {
-                if (value > 0)
-                {
-                    this.damagePoints = value;
-                }
-                else
-                {
-                    throw new ArgumentException(DamagePointsCannotBeZeroOrLess);
-                }
+                var message = String.Format(
+                     Messages.NumberMustBeBetweenMinAndMax,
+                     nameof(this.DamagePoints), 0, int.MaxValue);
+                Validator.ValidateIntRange(value, 0, int.MaxValue, message);
+
+                this.damagePoints = value;
             }
         }
 
