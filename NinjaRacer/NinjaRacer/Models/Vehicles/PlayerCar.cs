@@ -8,7 +8,6 @@
     using Contracts;
     using Abstract;
     using System;
-    using Microsoft.Xna.Framework.Content;
 
     public class PlayerCar : MovingObject, IPlayer, IMovable
     {
