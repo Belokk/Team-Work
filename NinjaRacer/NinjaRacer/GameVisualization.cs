@@ -165,7 +165,7 @@
 
             this.progressPlayer = new ProgressCar(
                 Content.Load<Texture2D>("progressCar"),
-                new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
+                new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
 
             this.hud = new HUD(
                  player, progressPlayer, "8bitFont", "healthBarBorder");
@@ -243,12 +243,6 @@
                 }
 
                 bonus.Update(gameTime, this.road.CurrentSpeed);
-            }
-            // TODO: Add your update logic here   
-            // TODO: List of IDrowlable and update with foreach loop
-            //  FirstRoadMap.Update();
-            //  SecondRoadMap.Update();
-
             }
             // TODO: Add your update logic here   
             // TODO: List of IDrowlable and update with foreach loop
