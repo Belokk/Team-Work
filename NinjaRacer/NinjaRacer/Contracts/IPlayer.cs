@@ -16,5 +16,7 @@
         bool IsOutOfRoad { get; }
 
         bool IsBeeingDamaged { get; }
+
+        int CurrentSpeed { get; }
     }
 }

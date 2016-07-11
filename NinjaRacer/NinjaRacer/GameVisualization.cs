@@ -24,7 +24,7 @@
     /// </summary>
     public class GameVisualization : Game
     {
-        private readonly IRoad road = RoadMap.GetInstance();
+        private readonly IMovable road = RoadMap.GetInstance();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -86,7 +86,7 @@
 
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
             //Player must be moving with certain speed in order bonuses to be spawned
-            if (this.BonusesList.Count < 2 && this.road.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles) // 2 - min bonuses on screen, 
+            if (this.BonusesList.Count < 2 && this.player.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles) // 2 - min bonuses on screen, 
             {
                 if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
@@ -115,7 +115,7 @@
 
             //Max obstacles on screen: 1
             if (this.ObstaclesList.Count == 0 &&
-                this.road.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles)
+                this.player.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles)
             {
                 if ((ObstacleType)randomObstacle == ObstacleType.SmallHole)
                 {
@@ -194,7 +194,7 @@
                 MediaPlayer.Stop();
             }
 
-            if ((player.IsBeeingDamaged) && this.road.CurrentSpeed > 0)
+            if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
             {
                 // pretty annoying because its playing over and over again, maybe should be removed
                 //  SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
@@ -214,7 +214,7 @@
             foreach (Obstacle obstacle in this.ObstaclesList)
             {
                 obstacle.DetectCollision(player);
-                obstacle.Update(gameTime, this.road.CurrentSpeed);
+                obstacle.Update(gameTime, this.player.CurrentSpeed);
             }
 
             foreach (IBonus bonus in this.BonusesList)
@@ -242,18 +242,17 @@
                     }
                 }
 
-                bonus.Update(gameTime, this.road.CurrentSpeed);
+                bonus.Update(gameTime, this.player.CurrentSpeed);
             }
             // TODO: Add your update logic here   
             // TODO: List of IDrowlable and update with foreach loop
             //  FirstRoadMap.Update();
             //  SecondRoadMap.Update();
-
-            this.road.Update(gameTime);
             this.player.Update(gameTime);
+            this.road.Update(gameTime, player.CurrentSpeed);
             this.LoadBonuses();
             this.LoadObstacles();
-            this.hud.Update(gameTime, road.CurrentSpeed);
+            this.hud.Update(gameTime, player.CurrentSpeed);
 
             base.Update(gameTime);
         }

@@ -51,7 +51,6 @@
     <Compile Include="Contracts\IPlayer.cs" />
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
-    <Compile Include="Contracts\IRoad.cs" />
     <Compile Include="GameVisualization.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />

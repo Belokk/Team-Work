@@ -14,6 +14,7 @@
     {
         private int score = ScoreAndHealth.InititalPlayerScore;
         private int health = ScoreAndHealth.InitialPlayerHealth;
+        private int currentSpeed;
 
         public PlayerCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
@@ -84,29 +85,76 @@
 
         public Color Color { get; set; }
 
+        public int CurrentSpeed
+        {
+            get
+            {
+                return this.currentSpeed;
+            }
+
+            private set
+            {
+                this.currentSpeed = value;
+            }
+        }
+
         public override void Update(GameTime gameTime, int speed = 0)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
+                // acceleration
+                if (this.CurrentSpeed < this.Speed)
                 {
-                    //move right
-                    if (this.PositionX <= Graphic.RightOutOfRoadPosition - this.Texture.Width)
-                    {
-                        this.PositionX += this.Speed;
-                    }
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
-                {
-                    // move left
-
-                    if (this.PositionX > Graphic.LeftOutOfRoadPosition)
-                    {
-                        this.PositionX -= this.Speed;
-                    }
+                    this.CurrentSpeed += 1;
                 }
             }
+
+            else if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                // brake
+                if (this.CurrentSpeed > 0 && this.CurrentSpeed % 2 == 0)
+                {
+                    this.CurrentSpeed -= 2;
+                }
+                else if (this.CurrentSpeed > 0)
+                {
+                    this.CurrentSpeed -= 1;
+                }
+            }
+            else
+            {
+                if (this.CurrentSpeed > 0)
+                {
+                    this.CurrentSpeed -= 1;
+                }
+            }
+
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                //move right
+                if (this.PositionX <= Graphic.RightOutOfRoadPosition - this.Texture.Width)
+                {
+                    this.PositionX += this.Speed;
+                }
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                // move left
+
+                if (this.PositionX > Graphic.LeftOutOfRoadPosition)
+                {
+                    this.PositionX -= this.Speed;
+                }
+            }
+
+            //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
+            //{
+
+
+
+            //}
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             //{
