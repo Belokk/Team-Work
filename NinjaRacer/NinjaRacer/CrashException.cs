@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NinjaRacer
+﻿namespace NinjaRacer
 {
-   public class CrashException:ApplicationException
+    using System;
+
+    public class CrashException:ApplicationException
     {
+        private const string ExeptionMessage = "The car crashed! (health = {0})";
         private int health;
 
         public CrashException(int health)
-            : base(string.Format("The car crashed! (health = {0})", health), null)
+            : base(string.Format(ExeptionMessage, health), null)
         {
             this.Health = health;
         }

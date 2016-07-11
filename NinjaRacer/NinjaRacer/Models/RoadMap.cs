@@ -16,7 +16,7 @@
         private const float SecondCoordY = -600;
         private const float CoordX = 59;
         private const int RoadHight = Graphic.WindowHeight;
-        private const int RoadWidh = 400;
+        private const int RoadWidh = Graphic.WindowWidth / 2;
         private Vector2 secondPosition;
         private static RoadMap instance = null;
 
@@ -59,11 +59,11 @@
         // Update
         public override void Update(GameTime gameTime, int updateSpeed)
         {
-  
+
 
             this.PositionY += updateSpeed;
             this.secondPosition.Y += updateSpeed;
-            
+
             // Scrolling background (Repeating)
             if (this.PositionY >= Graphic.WindowHeight)
             {
