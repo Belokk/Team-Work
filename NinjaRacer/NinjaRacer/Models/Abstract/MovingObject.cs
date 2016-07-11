@@ -6,7 +6,9 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
 
+    using Infrastructure.Constants;
     using Contracts;
+
 
     public abstract class MovingObject : IMovable, IRenderable
     {
@@ -25,7 +27,6 @@
         {
             this.Speed = speed;
         }
-
 
         public float PositionX
         {
@@ -86,7 +87,7 @@
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Speed can not be assigned negative.");
+                    throw new ArgumentException(Movement.NegativeSpeed);
                 }
 
                 this.speed = value;
@@ -113,7 +114,7 @@
 
         public virtual void Update(GameTime gameTime, int currentSpeed = 0)
         {
-            this.PositionY += this.Speed; //All of the moving objects implement this logic or simmilar(can be overriden)
+            this.PositionY += this.Speed; 
         }
     }
 }

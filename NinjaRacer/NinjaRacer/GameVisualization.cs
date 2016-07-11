@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
@@ -22,7 +23,7 @@
     /// </summary>
     public class GameVisualization : Game
     {
-        private readonly RoadMap road = RoadMap.GetInstance();
+        private readonly IRoad road = RoadMap.GetInstance();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -30,15 +31,15 @@
         private IPlayer player;
         private ProgressCar progressPlayer;
         private IHud hud;
-        private readonly IList<Bonus> bonusesList;
-        private readonly IList<Obstacle> obstaclesList;
+        private readonly IList<IBonus> bonusesList;
+        private readonly IList<IObstacle> obstaclesList;
 
-        private int carInitialX = Graphic.CarInitialPositionX;
+        private  int carInitialX = Graphic.CarInitialPositionX;  // Is it nessesary
         private int carInitialY = Graphic.CarInitialPozitionY;
 
-        private int progressCarInitialX = Graphic.PlayerProgressPositionX;
-        private int progressCarInitialY = Graphic.PlayerProgressPositionY;
-        private int progressCarSpeed = 0;
+        private const int progressCarInitialX = Graphic.PlayerProgressPositionX;
+        private const int progressCarInitialY = Graphic.PlayerProgressPositionY;
+        private const int InitialProgressCarSpeed = 0;
         public const int TypesOfBonuses = 2;
         public const int TypesOfObstacles = 2;
 
@@ -49,26 +50,26 @@
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = Graphic.WindowWidth;
             graphics.PreferredBackBufferHeight = Graphic.WindowHeight;
-            Content.RootDirectory = Graphic.RootDirectory;
-            this.bonusesList = new List<Bonus>();
-            this.obstaclesList = new List<Obstacle>();
+            Content.RootDirectory = "Content";
+            this.bonusesList = new List<IBonus>();
+            this.obstaclesList = new List<IObstacle>();
             this.RandomGenerator = new Random();
             this.SoundManager = SoundManager.Instance;
         }
 
-        public IList<Bonus> BonusesList
+        public IList<IBonus> BonusesList
         {
             get
             {
-                return new List<Bonus>(this.bonusesList);
+                return new List<IBonus>(this.bonusesList);
             }
         }
 
-        public IList<Obstacle> ObstaclesList
+        public IList<IObstacle> ObstaclesList
         {
             get
             {
-                return new List<Obstacle>(this.obstaclesList);
+                return new List<IObstacle>(this.obstaclesList);
             }
         }
 
@@ -112,9 +113,9 @@
             int randomObstacle = this.RandomGenerator.Next(0, TypesOfObstacles + 2); //Decrease the chance for an obstacle to appear
 
             //Max obstacles on screen: 1
-            if (this.ObstaclesList.Count == 0 && this.road.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles)
+            if (this.ObstaclesList.Count == 0 && 
+                this.road.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles)
             {
-
                 if ((ObstacleType) randomObstacle == ObstacleType.SmallHole)
                 {
                     this.obstaclesList.Add(new SmallHole(this.Content.Load<Texture2D>("smallRoadHole")));
@@ -158,7 +159,7 @@
             // Changed start position
 
             player = new PlayerCar(Content.Load<Texture2D>("car"),
-                new Vector2(carInitialX - 36, carInitialY-50), Movement.CarSpeed);
+                new Vector2(carInitialX, carInitialY), Movement.CarSpeed);
 
             progressPlayer = new ProgressCar(Content.Load<Texture2D>("progressCar"),
                 new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
@@ -167,30 +168,31 @@
             this.hud.LoadContent(this.Content, "healthbar");
         }
 
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
+        ///// UnloadContent will be called once per game and is the place to unload
+        ///// game-specific content.
 
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-
+        //protected override void UnloadContent()
+        //{
+        //    // TODO: Unload any non ContentManager content here
+        //}
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
                 Exit();
+            }
             
-            // if (game.state == menu && Keyboard.GetState().IsKeyDown(Keys.Enter))
-            //if (Keyboard.GetState().IsKeyDown(Keys.Enter)) 
-            //{
-            //    MediaPlayer.Play(this.SoundManager.BGMusic);
-            //}
-            // if (game.state == gameOver)
-            else if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            //if (game.state == menu && keyboard.getstate().iskeydown(keys.enter))
+            //    if (keyboard.getstate().iskeydown(keys.enter))
+            //    {
+            //        mediaplayer.play(this.soundmanager.bgmusic);
+            //    }
+            //if (game.state == gameover)
+           /* else*/ if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 MediaPlayer.Stop();
             }
@@ -198,7 +200,7 @@
             if ((player.IsBeeingDamaged) && this.road.CurrentSpeed > 0)
             {
                 // pretty annoying because its playing over and over again, maybe should be removed
-                //SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+              //  SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
                 player.Color = Color.Red;
                 if (player.Score >= 1)
                 {
@@ -221,7 +223,6 @@
             {
                 //check if any bonuses are colliding with player
                 // if they are set visible to false
-
                 if (player.BoundingBox.Intersects(bonus.BoundingBox))
                 {
                     if (bonus.GetType().Name == "ScoreBonus")

@@ -2,7 +2,6 @@
 {
     using System;
     using Contracts;
-    using Vehicles;
     using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -21,8 +20,6 @@
         {
             this.Position = new Vector2(this.RandomPositionX, BonusSpawnCoordY);
             this.IsVisible = true;
-          //  this.BonusPoints = bonusPoints;
-
         }
 
         public bool IsVisible { get; set; }
@@ -63,7 +60,6 @@
         // Update
         public override void Update(GameTime gameTime, int currentSpeed)
         {
-            // update movement
                 this.PositionY = this.PositionY + (currentSpeed > this.Speed ? this.Speed : currentSpeed);
             if (this.PositionY >= Graphic.WindowHeight)
             {
@@ -71,13 +67,13 @@
             }
         }
 
-        // Draw
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            if (this.IsVisible)
-            {
-                spriteBatch.Draw(this.Texture, this.Position, Color.White);
-            }
-        }
+        //// Draw
+        //public override void Draw(SpriteBatch spriteBatch)
+        //{
+        //    if (this.IsVisible)
+        //    {
+        //        spriteBatch.Draw(this.Texture, this.Position, Color.White);
+        //    }
+        //}
     }
 }

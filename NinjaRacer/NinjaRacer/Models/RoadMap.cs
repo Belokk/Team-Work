@@ -11,7 +11,7 @@ namespace NinjaRacer.Models
     using Abstract;
     using Microsoft.Xna.Framework.Content;
 
-    public class RoadMap : MovingObject, IMovable, IRenderable
+    public class RoadMap : MovingObject, IMovable, IRenderable, IRoad
     {
         private const float FirstCoordY = 0;
         private const float SecondCoordY = -600;
@@ -21,7 +21,7 @@ namespace NinjaRacer.Models
         private Vector2 secondPosition;
         private static RoadMap instance = null;
         private int currentSpeed = 0;
-        private decimal acceleration = 0.1M;
+        private decimal acceleration = 0.1M;  // 
 
         private RoadMap(Texture2D texture, Vector2 position, int speed)
             : base(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
@@ -46,7 +46,13 @@ namespace NinjaRacer.Models
             }
         }
 
-        public Vector2 SecondPosition { get { return this.secondPosition; } }
+        public Vector2 SecondPosition
+        {
+            get
+            {
+                return this.secondPosition;
+            }
+        }
 
         public static RoadMap GetInstance()
         {
@@ -57,7 +63,7 @@ namespace NinjaRacer.Models
 
             return instance;
         }
-                
+
         //Draw
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -68,21 +74,9 @@ namespace NinjaRacer.Models
         // Update
         public override void Update(GameTime gameTime, int currentSpeed = 0)
         {
-            // Setting speed for background scrolling
-
-            // Old method for gameplay
-
-            ////this.position.Y = this.position.Y + this.Speed;
-            ////this.secondPosition.Y = this.secondPosition.Y + this.Speed;
-
-
-            // New method for gameplay
-            // Property Speed -> must be Top Speed => current top speed is 100;
-            
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 // acceleration
-
                 if (this.CurrentSpeed < Speed)
                 {
                     this.CurrentSpeed += 1;
@@ -94,12 +88,11 @@ namespace NinjaRacer.Models
             else if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 // brake
-                             
                 if (this.CurrentSpeed > 0 && this.CurrentSpeed % 2 == 0)
                 {
                     this.CurrentSpeed -= 2;
                 }
-                else if (this.CurrentSpeed > 0 )
+                else if (this.CurrentSpeed > 0)
                 {
                     this.CurrentSpeed -= 1;
                 }
