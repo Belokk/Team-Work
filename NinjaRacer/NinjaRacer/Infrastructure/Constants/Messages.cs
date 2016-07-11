@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NinjaRacer.Infrastructure.Constants
 {
-   public class Mesages
+   public class Messages
     {
         public const string NumberMustBeBetweenMinAndMax = "{0} must be between {1} and {2}!";
     }

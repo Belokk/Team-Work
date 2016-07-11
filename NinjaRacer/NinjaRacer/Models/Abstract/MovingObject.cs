@@ -9,8 +9,6 @@
     using Contracts;
     using Infrastructure.Constants;
 
-
-
     public abstract class MovingObject : IMovable
     {
         private Vector2 position;

@@ -53,15 +53,15 @@
     <Compile Include="CrashException.cs" />
     <Compile Include="GameVisualization.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="Infrastructure\Constants\Mesages.cs" />
+    <Compile Include="Infrastructure\Constants\Messages.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="Infrastructure\Constants\ScoreAndHealth.cs" />
+    <Compile Include="Infrastructure\Enum\GameState.cs" />
     <Compile Include="Infrastructure\Validator.cs" />
     <Compile Include="Models\Abstract\Bonus.cs" />
     <Compile Include="Models\Abstract\Hole.cs" />
     <Compile Include="Models\Abstract\Obstacle.cs" />
-    <Compile Include="Models\Abstract\Vehicle.cs" />
     <Compile Include="Models\Abstract\MovingObject.cs" />
     <Compile Include="Models\Bonuses\BonusType.cs" />
     <Compile Include="Models\Bonuses\HealthBonus.cs" />

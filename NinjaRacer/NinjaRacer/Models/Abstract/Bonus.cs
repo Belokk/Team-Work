@@ -34,7 +34,7 @@
             private set
             {
                 var message = String.Format(
-                    Mesages.NumberMustBeBetweenMinAndMax,
+                    Messages.NumberMustBeBetweenMinAndMax,
                     nameof(this.BonusPoints), MinBonusPoints, MaxBonusPoints);
                 Validator.ValidateIntRange(value, MinBonusPoints, MaxBonusPoints, message);
 
