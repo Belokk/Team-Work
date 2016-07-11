@@ -32,6 +32,7 @@ namespace NinjaRacer.Models.Bonuses
                 {
                     player.Health = 160;
                 }
+
                 this.DestroyObject();
             }
         }

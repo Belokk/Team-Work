@@ -18,6 +18,7 @@
     using Models.Bonuses;
     using Models.Obstacle;
     using Infrastructure.Constants;
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -34,7 +35,7 @@
         private readonly IList<IBonus> bonusesList;
         private readonly IList<IObstacle> obstaclesList;
 
-        private  int carInitialX = Graphic.CarInitialPositionX;  // Is it nessesary
+        private int carInitialX = Graphic.CarInitialPositionX;  // Is it nessesary
         private int carInitialY = Graphic.CarInitialPozitionY;
 
         private const int progressCarInitialX = Graphic.PlayerProgressPositionX;
@@ -81,7 +82,7 @@
         {
             //Creating random variables for X and Y axis of our bonuses
             //int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition);
-            int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses); 
+            int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
 
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
             //Player must be moving with certain speed in order bonuses to be spawned
@@ -113,14 +114,14 @@
             int randomObstacle = this.RandomGenerator.Next(0, TypesOfObstacles + 2); //Decrease the chance for an obstacle to appear
 
             //Max obstacles on screen: 1
-            if (this.ObstaclesList.Count == 0 && 
+            if (this.ObstaclesList.Count == 0 &&
                 this.road.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles)
             {
-                if ((ObstacleType) randomObstacle == ObstacleType.SmallHole)
+                if ((ObstacleType)randomObstacle == ObstacleType.SmallHole)
                 {
                     this.obstaclesList.Add(new SmallHole(this.Content.Load<Texture2D>("smallRoadHole")));
                 }
-                else if((ObstacleType) randomObstacle == ObstacleType.BigHole)
+                else if ((ObstacleType)randomObstacle == ObstacleType.BigHole)
                 {
                     this.obstaclesList.Add(new BigHole(this.Content.Load<Texture2D>("bigRoadHole")));
                 }
@@ -148,7 +149,7 @@
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
             this.SoundManager.LoadContent(this.Content, "bonus", "obstacle", "theme");
@@ -158,26 +159,21 @@
             MediaPlayer.Play(this.SoundManager.BGMusic);
             // Changed start position
 
-            player = new PlayerCar(Content.Load<Texture2D>("car"),
+            this.player = new PlayerCar(
+                Content.Load<Texture2D>("car"),
                 new Vector2(carInitialX, carInitialY), Movement.CarSpeed);
 
-            progressPlayer = new ProgressCar(Content.Load<Texture2D>("progressCar"),
+            this.progressPlayer = new ProgressCar(
+                Content.Load<Texture2D>("progressCar"),
                 new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
 
-            hud = new HUD(player, progressPlayer, "8bitFont", "healthBarBorder");
+            this.hud = new HUD(
+                 player, progressPlayer, "8bitFont", "healthBarBorder");
             this.hud.LoadContent(this.Content, "healthbar");
         }
 
-        ///// UnloadContent will be called once per game and is the place to unload
-        ///// game-specific content.
-
-        //protected override void UnloadContent()
-        //{
-        //    // TODO: Unload any non ContentManager content here
-        //}
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
@@ -185,14 +181,15 @@
             {
                 Exit();
             }
-            
-            //if (game.state == menu && keyboard.getstate().iskeydown(keys.enter))
+
+            /*if (game.state == menu && keyboard.getstate().iskeydown(keys.enter))
             //    if (keyboard.getstate().iskeydown(keys.enter))
             //    {
             //        mediaplayer.play(this.soundmanager.bgmusic);
             //    }
             //if (game.state == gameover)
-           /* else*/ if (Keyboard.GetState().IsKeyDown(Keys.Down))
+             else*/
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 MediaPlayer.Stop();
             }
@@ -200,12 +197,13 @@
             if ((player.IsBeeingDamaged) && this.road.CurrentSpeed > 0)
             {
                 // pretty annoying because its playing over and over again, maybe should be removed
-              //  SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+                //  SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
                 player.Color = Color.Red;
                 if (player.Score >= 1)
                 {
                     player.Score--;
                 }
+
                 player.Health--;
             }
             else
@@ -213,11 +211,11 @@
                 player.Color = Color.White;
             }
 
-           foreach (Obstacle obstacle in this.ObstaclesList)
-           {
-               obstacle.DetectCollision(player);
-               obstacle.Update(gameTime, road.CurrentSpeed);
-           }
+            foreach (Obstacle obstacle in this.ObstaclesList)
+            {
+                obstacle.DetectCollision(player);
+                obstacle.Update(gameTime, this.road.CurrentSpeed);
+            }
 
             foreach (IBonus bonus in this.BonusesList)
             {
@@ -239,21 +237,23 @@
                         {
                             player.Health = 160;
                         }
+
                         bonus.DestroyObject();
                     }
                 }
-                bonus.Update(gameTime, road.CurrentSpeed);
+
+                bonus.Update(gameTime, this.road.CurrentSpeed);
             }
             // TODO: Add your update logic here   
             // TODO: List of IDrowlable and update with foreach loop
             //  FirstRoadMap.Update();
             //  SecondRoadMap.Update();
 
-            road.Update(gameTime);
-            player.Update(gameTime);
+            this.road.Update(gameTime);
+            this.player.Update(gameTime);
             this.LoadBonuses();
             this.LoadObstacles();
-            hud.Update(gameTime, road.CurrentSpeed);
+            this.hud.Update(gameTime, road.CurrentSpeed);
 
             base.Update(gameTime);
         }
@@ -263,27 +263,27 @@
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            this.spriteBatch.Begin();
             // TODO: List of IDrawable and  with foreach loop
             //FirstRoadMap.Draw(spriteBatch);
             //SecondRoadMap.Draw(spriteBatch);
 
-            road.Draw(spriteBatch);
+            road.Draw(this.spriteBatch);
 
-            foreach(IObstacle obstacle in this.ObstaclesList)
+            foreach (IObstacle obstacle in this.ObstaclesList)
             {
-                obstacle.Draw(spriteBatch);
+                obstacle.Draw(this.spriteBatch);
             }
+
             foreach (IBonus bonus in this.BonusesList)
             {
-                bonus.Draw(spriteBatch);
+                bonus.Draw(this.spriteBatch);
             }
-            
-            player.Draw(spriteBatch);
-            hud.Draw(spriteBatch);
-            spriteBatch.End();
+
+            player.Draw(this.spriteBatch);
+            hud.Draw(this.spriteBatch);
+            this.spriteBatch.End();
             base.Draw(gameTime);
         }
     }
 }
-

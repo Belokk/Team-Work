@@ -1,5 +1,4 @@
-﻿
-namespace NinjaRacer.Contracts
+﻿namespace NinjaRacer.Contracts
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -9,13 +8,13 @@ namespace NinjaRacer.Contracts
     {
         Texture2D Texture { get; }
 
-        Vector2 Position { get;set; }
+        Vector2 Position { get; set; }
 
         Rectangle BoundingBox { get; }
 
         void LoadContent(ContentManager content, string fileName);
 
-        void Update(GameTime gameTime, int currentSpeed=0);
+        void Update(GameTime gameTime, int updateSpeed = 0);
 
         void Draw(SpriteBatch spriteBatch);
     }

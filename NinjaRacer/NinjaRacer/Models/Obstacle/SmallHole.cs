@@ -10,6 +10,7 @@
     public class SmallHole : Hole, IObstacle, IRenderable, ICollidable
     {
         private const int SmallHoleDamagePoints = 10;
+
         public SmallHole(Texture2D texture) 
             : base(texture)
         {

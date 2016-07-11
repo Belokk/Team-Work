@@ -3,7 +3,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-  public  interface IPlayer : IMovable, IRenderable
+    public interface IPlayer : IMovable, IRenderable
     {
         int Score { get; set; }
 
