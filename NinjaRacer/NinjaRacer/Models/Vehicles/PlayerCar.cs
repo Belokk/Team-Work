@@ -11,6 +11,8 @@
 
     public class PlayerCar : MovingObject, IPlayer, IMovable
     {
+        private const int ReduceSpeedX = 2;
+
         private int score = ScoreAndHealth.InititalPlayerScore;
         private int health = ScoreAndHealth.InitialPlayerHealth;
         private int currentSpeed;
@@ -129,22 +131,22 @@
             }
 
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
+            if ((Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D)) && this.CurrentSpeed > 0)
             {
                 //move right
                 if (this.PositionX <= Graphic.RightOutOfRoadPosition - this.Texture.Width)
                 {
-                    this.PositionX += this.Speed;
+                    this.PositionX += (int)(this.CurrentSpeed / ReduceSpeedX);
                 }
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
+            if ((Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A)) && this.CurrentSpeed > 0)
             {
                 // move left
 
                 if (this.PositionX > Graphic.LeftOutOfRoadPosition)
                 {
-                    this.PositionX -= this.Speed;
+                    this.PositionX -= (int)(this.CurrentSpeed / ReduceSpeedX);
                 }
             }
 
