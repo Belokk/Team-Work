@@ -11,7 +11,7 @@
 
 
 
-    public abstract class MovingObject : IMovable, IRenderable
+    public abstract class MovingObject : IMovable
     {
         private Vector2 position;
         private int speed;

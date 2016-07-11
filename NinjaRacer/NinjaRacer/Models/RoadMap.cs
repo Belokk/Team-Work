@@ -10,7 +10,7 @@
     using Abstract;
     using Microsoft.Xna.Framework.Content;
 
-    public class RoadMap : MovingObject, IMovable, IRenderable, IRoad
+    public class RoadMap : MovingObject, IMovable, IRenderable
     {
         private const float FirstCoordY = 0;
         private const float SecondCoordY = -600;
@@ -19,8 +19,6 @@
         private const int RoadWidh = 400;
         private Vector2 secondPosition;
         private static RoadMap instance = null;
-        private int currentSpeed = 0;
-        private decimal acceleration = 0.1M;  // 
 
         private RoadMap(Texture2D texture, Vector2 position, int speed)
             : base(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
@@ -31,19 +29,6 @@
         private RoadMap()
             : this(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
         {
-        }
-
-        public int CurrentSpeed
-        {
-            get
-            {
-                return this.currentSpeed;
-            }
-
-            private set
-            {
-                this.currentSpeed = value;
-            }
         }
 
         public Vector2 SecondPosition
@@ -72,47 +57,13 @@
         }
 
         // Update
-        public override void Update(GameTime gameTime, int updateSpeed = 0)
+        public override void Update(GameTime gameTime, int updateSpeed)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                // acceleration
-                if (this.CurrentSpeed < this.Speed)
-                {
-                    this.CurrentSpeed += 1;
-                }
+  
 
-                this.PositionY += this.CurrentSpeed;
-                this.secondPosition.Y += this.CurrentSpeed;
-            }
-
-            else if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                // brake
-                if (this.CurrentSpeed > 0 && this.CurrentSpeed % 2 == 0)
-                {
-                    this.CurrentSpeed -= 2;
-                }
-                else if (this.CurrentSpeed > 0)
-                {
-                    this.CurrentSpeed -= 1;
-                }
-
-                this.PositionY += this.CurrentSpeed;
-                this.secondPosition.Y += this.CurrentSpeed;
-            }
-            else
-            {
-                if (this.CurrentSpeed > 0)
-                {
-                    this.CurrentSpeed -= 1;
-                }
-
-                this.PositionY += this.CurrentSpeed;
-
-                this.secondPosition.Y += this.CurrentSpeed;
-            }
-
+            this.PositionY += updateSpeed;
+            this.secondPosition.Y += updateSpeed;
+            
             // Scrolling background (Repeating)
             if (this.PositionY >= Graphic.WindowHeight)
             {
