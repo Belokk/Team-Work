@@ -20,7 +20,7 @@
 
     public class GameVisualization : Game
     {
-        private readonly IRoad road = RoadMap.GetInstance();
+        private readonly IMovable road = RoadMap.GetInstance();
         private int progressCarInitialX = Graphic.PlayerProgressPositionX;
         private int progressCarInitialY = Graphic.PlayerProgressPositionY;
 
@@ -46,8 +46,6 @@
         private const string HelthBarBorderImage = "healthBarBorder";
         private const string HealthBarImage = "healthbar";
         private const string ScoreBonusName = "ScoreBonus";
-
-        private readonly IRoad road = RoadMap.GetInstance();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -199,13 +197,11 @@
                 Content.Load<Texture2D>(CarImage),
                 new Vector2(carInitialX, carInitialY), Movement.CarSpeed);
 
-            this.progressPlayer = new ProgressCar(
-                Content.Load<Texture2D>(ProgressCarImage),
+            this.progressPlayer = new ProgressCar(Content.Load<Texture2D>(ProgressCarImage),
+                new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
 
 
-            this.hud = new HUD(
-
-                 player, progressPlayer, EightBitFontFile, HelthBarBorderImage);
+            this.hud = new HUD(player, progressPlayer, EightBitFontFile, HelthBarBorderImage);
             this.hud.LoadContent(this.Content, HealthBarImage);
         }
 
@@ -287,7 +283,7 @@
             // TODO: Add your update logic here
             // TODO: List of IDrowlable and update with foreach loop
 
-            this.road.Update(gameTime);
+            this.road.Update(gameTime, player.CurrentSpeed);
             this.player.Update(gameTime);
             this.LoadBonuses();
             this.LoadObstacles();
