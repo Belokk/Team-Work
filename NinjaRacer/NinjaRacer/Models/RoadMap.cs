@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.Xna.Framework.Input;
-
-namespace NinjaRacer.Models
+﻿namespace NinjaRacer.Models
 {
+    using System;
+    using Microsoft.Xna.Framework.Input;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
@@ -40,6 +39,7 @@ namespace NinjaRacer.Models
             {
                 return this.currentSpeed;
             }
+
             private set
             {
                 this.currentSpeed = value;
@@ -72,15 +72,16 @@ namespace NinjaRacer.Models
         }
 
         // Update
-        public override void Update(GameTime gameTime, int currentSpeed = 0)
+        public override void Update(GameTime gameTime, int updateSpeed = 0)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 // acceleration
-                if (this.CurrentSpeed < Speed)
+                if (this.CurrentSpeed < this.Speed)
                 {
                     this.CurrentSpeed += 1;
                 }
+
                 this.PositionY += this.CurrentSpeed;
                 this.secondPosition.Y += this.CurrentSpeed;
             }
@@ -106,6 +107,7 @@ namespace NinjaRacer.Models
                 {
                     this.CurrentSpeed -= 1;
                 }
+
                 this.PositionY += this.CurrentSpeed;
 
                 this.secondPosition.Y += this.CurrentSpeed;

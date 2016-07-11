@@ -17,7 +17,7 @@
         private readonly string fontName;
         private readonly string healthBarBorderBoxName;
         private int acceleration = 0;
-        
+
         private IPlayer player;
         private ProgressCar progressPlayer;
 
@@ -30,7 +30,7 @@
         }
 
         internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName, string healthBarBorderBoxFileName)
-            : this(player, progressPlayer,fontName)
+            : this(player, progressPlayer, fontName)
         {
             this.healthBarBorderBoxName = healthBarBorderBoxFileName;
         }
@@ -58,7 +58,7 @@
         }
 
         public int PlayerSpeed { get; set; }
-        
+
         public BitmapFont Font { get; set; }
 
         public Vector2 Position
@@ -77,9 +77,9 @@
         //Load Content
         public void LoadContent(ContentManager Content, string healthBarFileName)
         {
-            this.Font = Content.Load<BitmapFont>(fontName);
+            this.Font = Content.Load<BitmapFont>(this.fontName);
             this.Texture = Content.Load<Texture2D>(healthBarFileName);
-            if(this.healthBarBorderBoxName != null)
+            if (this.healthBarBorderBoxName != null)
             {
                 this.HealthBarBorderBox = Content.Load<Texture2D>(this.healthBarBorderBoxName);
             }
@@ -90,7 +90,7 @@
         public void Update(GameTime gameTime, int currentSpeed)
         {
             this.PlayerSpeed = currentSpeed;
-            acceleration += this.PlayerSpeed;
+            this.acceleration += this.PlayerSpeed;
 
             if (this.acceleration >= 1000)
             {
@@ -105,16 +105,16 @@
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(
-                this.Font, 
-                string.Format("Score {0}", this.PlayerScore), 
+                this.Font,
+                string.Format("Score {0}", this.PlayerScore),
                 this.ScorePosition, Color.White);
 
             spriteBatch.DrawString(
-                this.Font, 
+                this.Font,
                 string.Format("Speed {0}", this.PlayerSpeed),
                 this.PlayerSpeedPosition, Color.White);
 
-            if(this.HealthBarBorderBox != null)
+            if (this.HealthBarBorderBox != null)
             {
                 spriteBatch.Draw(
                     this.HealthBarBorderBox,

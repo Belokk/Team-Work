@@ -10,10 +10,10 @@
     public abstract class Obstacle : MovingObject, IObstacle, IDestructable, ICollidable, IMovable, IRenderable
     {
         private int damagePoints;
-        private const int ObstacleSpawnCoordY = - 100;
+        private const int ObstacleSpawnCoordY = -100;
         private Random randomSpawnPositionX = new Random();
 
-        public Obstacle(Texture2D texture) 
+        public Obstacle(Texture2D texture)
             : base(texture, new Vector2())
         {
             this.Position = new Vector2(this.RandomSpawnPositionX, ObstacleSpawnCoordY);
@@ -34,6 +34,7 @@
             {
                 return this.damagePoints;
             }
+
             protected set
             {
                 if (value > 0)
@@ -69,7 +70,7 @@
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-                spriteBatch.Draw(this.Texture, this.Position);
+            spriteBatch.Draw(this.Texture, this.Position);
         }
     }
 }

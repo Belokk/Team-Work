@@ -19,7 +19,7 @@
         {
             if (playerCar.BoundingBox.Intersects(this.BoundingBox))
             {
-                if(!this.HasBeenDrivenThrough)
+                if (!this.HasBeenDrivenThrough)
                 {
                     this.HasBeenDrivenThrough = true;
                     playerCar.IsInCollisionWithObstacle = true;

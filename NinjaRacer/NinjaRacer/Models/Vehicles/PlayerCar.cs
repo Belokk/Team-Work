@@ -84,7 +84,7 @@
 
         public Color Color { get; set; }
 
-        public new void Update(GameTime gameTime, int speed=0)
+        public new void Update(GameTime gameTime, int speed = 0)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -96,17 +96,18 @@
                         this.PositionX += this.Speed;
                     }
                 }
+
                 if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
                 {
                     // move left
 
                     if (this.PositionX > Graphic.LeftOutOfRoadPosition)
                     {
-                        this.PositionY -= this.Speed;
+                        this.PositionX -= this.Speed;
                     }
                 }
             }
-            
+
             //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
             //{
             //    // move up
@@ -133,4 +134,3 @@
         }
     }
 }
-

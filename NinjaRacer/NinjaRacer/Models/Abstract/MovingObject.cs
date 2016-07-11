@@ -34,17 +34,20 @@
             {
                 return this.position.X;
             }
+
             set
             {
                 this.position.X = value;
             }
         }
+
         public float PositionY
         {
             get
             {
                 return this.position.Y;
             }
+
             set
             {
                 this.position.Y = value;
@@ -70,6 +73,7 @@
             {
                 return this.texture;
             }
+
             private set
             {
                 this.texture = value;
@@ -112,7 +116,7 @@
             spriteBatch.Draw(this.Texture, this.Position);
         }
 
-        public virtual void Update(GameTime gameTime, int currentSpeed = 0)
+        public virtual void Update(GameTime gameTime, int updateSpeed = 0)
         {
             this.PositionY += this.Speed; 
         }
