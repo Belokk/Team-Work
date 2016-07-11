@@ -9,8 +9,8 @@
         public const int CarInitialPozitionY = 400;
         public const int BufferWidth = 200;
         public const int BufferHeight = 100;
-        public const int LeftOutOfRoadPosition = 217;
-        public const int RightOutOfRoadPosition = 545;
+        public const int LeftOutOfRoadPosition = 223;
+        public const int RightOutOfRoadPosition = 551;
         public const int RoadMapSpeed = 20;
         public const int HealthBarCoordX = 620;
         public const int HealthBarCoordY = 100;
