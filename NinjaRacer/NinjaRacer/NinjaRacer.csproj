@@ -54,7 +54,6 @@
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Messages.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
-    <Compile Include="Infrastructure\Constants\Mesages.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="Infrastructure\Constants\ScoreAndHealth.cs" />
     <Compile Include="Infrastructure\Enum\GameState.cs" />

@@ -27,7 +27,7 @@
         private const int InitialProgressCarSpeed = 0;
         private const int TypesOfBonuses = 2;
         private const int TypesOfObstacles = 2;
-        private const int BonusSpeed = 4;
+        private const int BonusSpeed = 0;
 
         private const string ContentRootDirectory = "Content";
         private const string ScoreBonusImage = "scoreBonus";
