@@ -13,7 +13,6 @@
     public abstract class Obstacle : MovingObject, IObstacle, IDestructable, ICollidable, IMovable, IRenderable
     {
         private const int ObstacleSpawnCoordY = -100;
-        // private const string DamagePointsCannotBeZeroOrLess = "Damage points can't be 0 or less!";
 
         private int damagePoints;
 
@@ -46,12 +45,11 @@
             protected set
             {
                 var message = String.Format(
-                     Mesages.NumberMustBeBetweenMinAndMax,
+                     Messages.NumberMustBeBetweenMinAndMax,
                      nameof(this.DamagePoints), 0, int.MaxValue);
                 Validator.ValidateIntRange(value, 0, int.MaxValue, message);
 
                 this.damagePoints = value;
-
             }
         }
 
