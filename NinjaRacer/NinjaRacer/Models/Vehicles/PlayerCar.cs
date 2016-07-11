@@ -67,7 +67,8 @@
         {
             get
             {
-                return this.PositionX <= Graphic.LeftOutOfRoadPosition || this.PositionX >= Graphic.RightOutOfRoadPosition - this.Texture.Width;
+                return this.PositionX <= Graphic.LeftOutOfRoadPosition ||
+                     this.PositionX >= Graphic.RightOutOfRoadPosition - this.Texture.Width;
             }
         }
 
@@ -101,7 +102,7 @@
 
                     if (this.PositionX > Graphic.LeftOutOfRoadPosition)
                     {
-                        this.PositionX -= this.Speed;
+                        this.PositionY -= this.Speed;
                     }
                 }
             }
