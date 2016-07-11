@@ -35,7 +35,9 @@
             {
                 if (value <= MinBonusPoints || value > MaxBonusPoints)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(this.bonusPoints), OutOfRangeMessage);
+                    throw new ArgumentOutOfRangeException(
+                        nameof(this.bonusPoints), 
+                        String.Format(OutOfRangeMessage,MinBonusPoints,MaxBonusPoints));
                 }
 
                 this.bonusPoints = value;
@@ -46,7 +48,9 @@
         {
             get
             {
-                return this.randomSpawnPositionX.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition - this.Texture.Width);
+                return this.randomSpawnPositionX.Next(
+                    Graphic.LeftOutOfRoadPosition,
+                    Graphic.RightOutOfRoadPosition - this.Texture.Width);
             }
         }
 
@@ -60,20 +64,12 @@
         // Update
         public override void Update(GameTime gameTime, int currentSpeed)
         {
-                this.PositionY = this.PositionY + (currentSpeed > this.Speed ? this.Speed : currentSpeed);
+            this.PositionY = this.PositionY + (currentSpeed > this.Speed ? this.Speed : currentSpeed);
+
             if (this.PositionY >= Graphic.WindowHeight)
             {
                 this.DestroyObject();
             }
         }
-
-        //// Draw
-        //public override void Draw(SpriteBatch spriteBatch)
-        //{
-        //    if (this.IsVisible)
-        //    {
-        //        spriteBatch.Draw(this.Texture, this.Position, Color.White);
-        //    }
-        //}
     }
 }

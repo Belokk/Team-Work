@@ -42,7 +42,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CarCrashException.cs" />
     <Compile Include="Contracts\IBonus.cs" />
     <Compile Include="Contracts\ICollidable.cs" />
     <Compile Include="Contracts\IDestructable.cs" />
@@ -52,11 +51,13 @@
     <Compile Include="Contracts\IRenderable.cs" />
     <Compile Include="Contracts\IMovable.cs" />
     <Compile Include="Contracts\IRoad.cs" />
+    <Compile Include="CrashException.cs" />
     <Compile Include="GameVisualization.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="Infrastructure\Constants\ScoreAndHealth.cs" />
+    <Compile Include="Infrastructure\Enum\GameState.cs" />
     <Compile Include="Models\Abstract\Bonus.cs" />
     <Compile Include="Models\Abstract\Hole.cs" />
     <Compile Include="Models\Abstract\Obstacle.cs" />

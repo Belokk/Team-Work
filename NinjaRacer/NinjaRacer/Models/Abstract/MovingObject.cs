@@ -6,8 +6,9 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
 
-    using Infrastructure.Constants;
     using Contracts;
+    using Infrastructure.Constants;
+
 
 
     public abstract class MovingObject : IMovable, IRenderable
@@ -118,7 +119,7 @@
 
         public virtual void Update(GameTime gameTime, int updateSpeed = 0)
         {
-            this.PositionY += this.Speed; 
+            this.PositionY += this.Speed;
         }
     }
 }

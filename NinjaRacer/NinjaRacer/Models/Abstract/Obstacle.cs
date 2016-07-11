@@ -1,16 +1,20 @@
 ﻿namespace NinjaRacer.Models.Abstract
 {
     using System;
-    using Infrastructure.Constants;
+
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-    using Models.Vehicles;
-    using NinjaRacer.Contracts;
+
+    using Infrastructure.Constants;
+    using Contracts;
 
     public abstract class Obstacle : MovingObject, IObstacle, IDestructable, ICollidable, IMovable, IRenderable
     {
-        private int damagePoints;
         private const int ObstacleSpawnCoordY = -100;
+        private const string DamagePointsCannotBeZeroOrLess = "Damage points can't be 0 or less!";
+
+        private int damagePoints;
+
         private Random randomSpawnPositionX = new Random();
 
         public Obstacle(Texture2D texture)
@@ -24,7 +28,9 @@
         {
             get
             {
-                return randomSpawnPositionX.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition - this.Texture.Width);
+                return randomSpawnPositionX.Next(
+                    Graphic.LeftOutOfRoadPosition, 
+                    Graphic.RightOutOfRoadPosition - this.Texture.Width);
             }
         }
 
@@ -43,7 +49,7 @@
                 }
                 else
                 {
-                    throw new ArgumentException("Damage points can't be 0 or less");
+                    throw new ArgumentException(DamagePointsCannotBeZeroOrLess);
                 }
             }
         }
@@ -55,7 +61,7 @@
             this.IsVisible = false;
         }
 
-        public abstract void DetectCollision(IPlayer playerCar);
+        public abstract void DetectCollision(IPlayer playerVechile);
 
         public override void Update(GameTime gameTime, int currentSpeed = 0)
         {
