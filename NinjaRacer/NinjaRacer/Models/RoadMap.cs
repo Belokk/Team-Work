@@ -14,7 +14,7 @@
     {
         private const float FirstCoordY = 0;
         private const float SecondCoordY = -600;
-        private const float CoordX = 50;
+        private const float CoordX = 59;
         private const int RoadHight = Graphic.WindowHeight;
         private const int RoadWidh = 400;
         private Vector2 secondPosition;
