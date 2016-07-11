@@ -11,11 +11,5 @@
 
     public class GameEngine
     {
-        private readonly ICollection<IObstacle> obstacles;
-        //  private readonly ICollection<Bo> bonuces;
-
-
-
-
     }
 }

@@ -2,9 +2,10 @@
 {
     public class Movement
     {
-        public const int RoadSpeed = 10;
+        //  public const int RoadSpeed = 10;
         public const int CarSpeed = 20;
-        
+        public const int Zero = 0;
+
         public const string NegativeSpeed = "Speed can not be assigned negative.";
     }
 }

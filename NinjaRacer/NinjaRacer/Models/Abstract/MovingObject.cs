@@ -8,7 +8,7 @@
 
     using Contracts;
     using Infrastructure.Constants;
-
+    using Infrastructure;
     public abstract class MovingObject : IMovable
     {
         private Vector2 position;
@@ -88,10 +88,10 @@
 
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException(Movement.NegativeSpeed);
-                }
+                var message = String.Format(
+                   Messages.NumberMustBeBetweenMinAndMax,
+                   nameof(this.Speed), Movement.Zero, Movement.CarSpeed);
+                Validator.ValidateIntRange(value, Movement.Zero, Movement.CarSpeed, message);
 
                 this.speed = value;
             }

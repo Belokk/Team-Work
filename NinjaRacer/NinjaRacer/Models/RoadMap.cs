@@ -1,14 +1,11 @@
 ﻿namespace NinjaRacer.Models
 {
-    using System;
-    using Microsoft.Xna.Framework.Input;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     using Infrastructure.Constants;
     using Contracts;
     using Abstract;
-    using Microsoft.Xna.Framework.Content;
 
     public class RoadMap : MovingObject, IMovable, IRenderable
     {
@@ -17,6 +14,7 @@
         private const float CoordX = 59;
         private const int RoadHight = Graphic.WindowHeight;
         private const int RoadWidh = Graphic.WindowWidth / 2;
+
         private Vector2 secondPosition;
         private static RoadMap instance = null;
 
@@ -49,14 +47,12 @@
             return instance;
         }
 
-        //Draw
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, this.Position, Color.White);
             spriteBatch.Draw(this.Texture, this.SecondPosition, Color.White);
         }
 
-        // Update
         public override void Update(GameTime gameTime, int updateSpeed)
         {
 
@@ -64,7 +60,6 @@
             this.PositionY += updateSpeed;
             this.secondPosition.Y += updateSpeed;
 
-            // Scrolling background (Repeating)
             if (this.PositionY >= Graphic.WindowHeight)
             {
                 this.PositionY = 0;

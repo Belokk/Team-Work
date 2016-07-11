@@ -20,10 +20,6 @@
 
     public class GameVisualization : Game
     {
-        private readonly IMovable road = RoadMap.GetInstance();
-        private int progressCarInitialX = Graphic.PlayerProgressPositionX;
-        private int progressCarInitialY = Graphic.PlayerProgressPositionY;
-
         private const int InitialProgressCarSpeed = 0;
         private const int TypesOfBonuses = 2;
         private const int TypesOfObstacles = 2;
@@ -47,8 +43,13 @@
         private const string HealthBarImage = "healthbar";
         private const string ScoreBonusName = "ScoreBonus";
 
+        private readonly IMovable road = RoadMap.GetInstance();
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        private int progressCarInitialX = Graphic.PlayerProgressPositionX;
+        private int progressCarInitialY = Graphic.PlayerProgressPositionY;
 
         private IPlayer player;
         private ProgressCar progressPlayer;
@@ -56,12 +57,8 @@
         private readonly IList<IBonus> bonusesList;
         private readonly IList<IObstacle> obstaclesList;
 
-        private int carInitialX = Graphic.CarInitialPositionX;  // Is it nessesary
+        private int carInitialX = Graphic.CarInitialPositionX;
         private int carInitialY = Graphic.CarInitialPozitionY;
-
-
-
-        //  private int roadSpeed = Movement.RoadSpeed;
 
         public GameVisualization()
         {
@@ -184,7 +181,7 @@
             // TODO: use this.Content to load your game content here
 
             this.SoundManager.LoadContent(this.Content, BonusColisionSoundFile, ObstacleColisionSoundFile, GameTheamMusicFile);
-            
+
             this.road.LoadContent(this.Content, BackgroundImage);
             //Just for fun
             MediaPlayer.Play(this.SoundManager.BGMusic);
@@ -197,7 +194,7 @@
 
             this.progressPlayer = new ProgressCar(Content.Load<Texture2D>(ProgressCarImage),
                 new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
-            
+
             this.hud = new HUD(player, progressPlayer, EightBitFontFile, HelthBarBorderImage);
             this.hud.LoadContent(this.Content, HealthBarImage);
         }
@@ -223,7 +220,7 @@
             {
                 MediaPlayer.Stop();
             }
-            
+
             try
             {
                 if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
@@ -232,7 +229,7 @@
                     {
                         SoundCaller obstacle = new SoundCaller(this.SoundManager.ObstacleSound);
                     }
-                    
+
                     player.Color = Color.Red;
                     if (player.Score >= 1)
                     {
@@ -311,7 +308,7 @@
             //FirstRoadMap.Draw(spriteBatch);
             //SecondRoadMap.Draw(spriteBatch);
 
-            road.Draw(this.spriteBatch);
+            this.road.Draw(this.spriteBatch);
 
             foreach (IObstacle obstacle in this.ObstaclesList)
             {

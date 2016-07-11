@@ -18,7 +18,6 @@
             this.Speed = speed;
             this.PositionY = this.PositionY - this.Speed;
             this.Speed = 0;
-
         }
     }
 }
