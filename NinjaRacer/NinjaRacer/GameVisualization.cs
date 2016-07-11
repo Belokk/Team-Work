@@ -162,7 +162,7 @@
                 new Vector2(carInitialX, carInitialY), Movement.CarSpeed);
 
             progressPlayer = new ProgressCar(Content.Load<Texture2D>("progressCar"),
-                new Vector2(progressCarInitialX, progressCarInitialY), player.Score);
+                new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
 
             hud = new HUD(player, progressPlayer, "8bitFont", "healthBarBorder");
             this.hud.LoadContent(this.Content, "healthbar");
