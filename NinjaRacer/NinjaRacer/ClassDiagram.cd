@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NinjaRacer.CrashException" Collapsed="true">
+    <Position X="13.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>CrashException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.GameVisualization" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCRgMEgEgFQWR4DBAAAIADAECEB2gBCBIAABAAVAIZQ=</HashCode>
+      <FileName>GameVisualization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.StartUp" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>StartUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.Infrastructure.Constants.Graphic" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEAgCACCAAGAAAAAAEABABRAAAAAAAAQAAAAQAAAEQ=</HashCode>
+      <FileName>Infrastructure\Constants\Graphic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.Infrastructure.Constants.Messages" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Constants\Messages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.Infrastructure.Constants.Movement" Collapsed="true">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAQAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Constants\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.Infrastructure.Constants.ScoreAndHealth" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAFAAAAAAgAAAIA=</HashCode>
+      <FileName>Infrastructure\Constants\ScoreAndHealth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.Infrastructure.Validator" Collapsed="true">
+    <Position X="15" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Validator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.Models.Abstract.Bonus" Collapsed="true">
+    <Position X="4.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUEAAAAAAAAFAAAgAAAAAAAAAAAEAAAAAgAACAFAAA=</HashCode>
+      <FileName>Models\Abstract\Bonus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Abstract.Hole" Collapsed="true">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Abstract\Hole.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Abstract.MovingObject" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAgAAAAIAABACAAAwAAAAIAAAAAAAQ=</HashCode>
+      <FileName>Models\Abstract\MovingObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Abstract.Obstacle" Collapsed="true">
+    <Position X="7.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAQAAAFgAAAAAAAAAAAAAAEAAAAAhAAgAAAAA=</HashCode>
+      <FileName>Models\Abstract\Obstacle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Bonuses.HealthBonus" Collapsed="true">
+    <Position X="5.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Bonuses\HealthBonus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Bonuses.ScoreBonus" Collapsed="true">
+    <Position X="3" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Bonuses\ScoreBonus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Obstacle.BigHole" Collapsed="true">
+    <Position X="7.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\Obstacle\BigHole.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Obstacle.SmallHole" Collapsed="true">
+    <Position X="9.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Obstacle\SmallHole.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.RoadMap" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAgAAAAAAAAAARABAAAAAQgAAAAAAQAA=</HashCode>
+      <FileName>Models\RoadMap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Vehicles.PlayerCar" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAAAAAAggAAAAIABAAEAAAABBAAAAAgIAgAAg=</HashCode>
+      <FileName>Models\Vehicles\PlayerCar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.Models.Vehicles.ProgressCar" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Vehicles\ProgressCar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NinjaRacer.SoundsAndVisuals.HUD" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAKAAAACCgQigAAAAABAACAAAAQBIAIAAAACgIQ=</HashCode>
+      <FileName>SoundsAndVisuals\HUD.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NinjaRacer.SoundsAndVisuals.Sounds.SoundManager" Collapsed="true">
+    <Position X="11" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAEAIAAAAACAAQAAAAAAAAAQ=</HashCode>
+      <FileName>SoundsAndVisuals\Sounds\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.SoundsAndVisuals.Sounds.SoundPublisher" Collapsed="true">
+    <Position X="13.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>SoundsAndVisuals\Sounds\SoundPublisher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NinjaRacer.SoundsAndVisuals.Sounds.SoundSubscriber" Collapsed="true">
+    <Position X="15.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundsAndVisuals\Sounds\SoundSubscriber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="NinjaRacer.SoundsAndVisuals.Sounds.SoundCaller" Collapsed="true">
+    <Position X="11" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundsAndVisuals\Sounds\SoundCaller.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="NinjaRacer.Contracts.IBonus" Collapsed="true" HideInheritanceLine="true">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IDestructable" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2" Y="6.812" />
+        <Point X="2.375" Y="6.812" />
+        <Point X="2.375" Y="5.562" />
+        <Point X="2.75" Y="5.562" />
+      </Path>
+    </InheritanceLine>
+    <InheritanceLine Type="NinjaRacer.Contracts.ICollidable" IsHidden="true" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IMovable" IsHidden="true" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IRenderable" IsHidden="true" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBonus.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NinjaRacer.Contracts.ICollidable" Collapsed="true" HideInheritanceLine="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IRenderable" IsHidden="true" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\ICollidable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NinjaRacer.Contracts.IDestructable" Collapsed="true" HideInheritanceLine="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IMovable" IsHidden="true" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IRenderable" IsHidden="true" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IDestructable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NinjaRacer.Contracts.IHud" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAABAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Contracts\IHud.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NinjaRacer.Contracts.IMovable" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NinjaRacer.Contracts.IObstacle" Collapsed="true" HideInheritanceLine="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <InheritanceLine Type="NinjaRacer.Contracts.ICollidable" IsHidden="true" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IMovable" IsHidden="true" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IRenderable" IsHidden="true" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Contracts\IObstacle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NinjaRacer.Contracts.IPlayer" Collapsed="true" HideInheritanceLine="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <InheritanceLine Type="NinjaRacer.Contracts.IRenderable" IsHidden="true" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAgAAAAAABAAEAAAAABAAAAAgAAgAAA=</HashCode>
+      <FileName>Contracts\IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NinjaRacer.Contracts.IRenderable" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAgAAAAAAAAACAAAAAAAAIAAAAAAAQ=</HashCode>
+      <FileName>Contracts\IRenderable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="NinjaRacer.Infrastructure.Enum.GameType" Collapsed="true">
+    <Position X="13.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Enum\GameType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="NinjaRacer.Models.Bonuses.BonusType" Collapsed="true">
+    <Position X="11.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Bonuses\BonusType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="NinjaRacer.Models.Obstacle.ObstacleType" Collapsed="true">
+    <Position X="15.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Obstacle\ObstacleType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
