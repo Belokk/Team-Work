@@ -16,6 +16,7 @@
         private readonly Vector2 playerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
         private readonly string fontName;
         private readonly string healthBarBorderBoxName;
+        private readonly string progressCarFinishLine;
         private int acceleration = 0;
 
         private IPlayer player;
@@ -29,15 +30,18 @@
             this.Font = null;
         }
 
-        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName, string healthBarBorderBoxFileName)
+        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName, string healthBarBorderBoxFileName, string progressCarFinishLine)
             : this(player, progressPlayer, fontName)
         {
+            this.progressCarFinishLine = progressCarFinishLine;
             this.healthBarBorderBoxName = healthBarBorderBoxFileName;
         }
 
         public Texture2D Texture { get; private set; }
 
         public Texture2D HealthBarBorderBox { get; private set; }
+
+        public Texture2D ProgressCarFinishFlag { get; private set; }
 
         public Rectangle BoundingBox
         {
@@ -82,6 +86,10 @@
             {
                 this.HealthBarBorderBox = content.Load<Texture2D>(this.healthBarBorderBoxName);
             }
+            if(this.progressCarFinishLine != null)
+            {
+                this.ProgressCarFinishFlag = content.Load<Texture2D>(this.progressCarFinishLine);
+            }
         }
 
         public void Update(GameTime gameTime, int currentSpeed)
@@ -115,6 +123,13 @@
                 spriteBatch.Draw(
                     this.HealthBarBorderBox,
                     new Vector2(Graphic.HealthBarBorderCoordX, Graphic.HealthBarBorderCoordY));
+            }
+
+            if(this.ProgressCarFinishFlag != null)
+            {
+                spriteBatch.Draw(
+                    this.ProgressCarFinishFlag,
+                    new Vector2(Graphic.ProgressCarFinishPositionX, Graphic.ProgressCarFinishPositionY));
             }
 
             spriteBatch.Draw(this.Texture, this.BoundingBox, Color.White);

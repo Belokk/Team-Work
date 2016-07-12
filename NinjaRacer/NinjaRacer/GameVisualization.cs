@@ -31,6 +31,9 @@
         private const string HealthBonusImage = "healthBonus";
         private const string SmallRoadHoleImage = "smallRoadHole";
         private const string bigRoadHoleImage = "bigRoadHole";
+        private const string StartMenuImage = "StartGame";
+        private const string GameOverMenuImage = "EndGame";
+        private const string YouWinMenuImage = "Winner";
 
         private const string BonusColisionSoundFile = "bonus";
         private const string ObstacleColisionSoundFile = "obstacle";
@@ -42,7 +45,11 @@
         private const string EightBitFontFile = "8bitFont";
         private const string HelthBarBorderImage = "healthBarBorder";
         private const string HealthBarImage = "healthbar";
+        private const string ProgressCarFinishFlag = "FinishFlag";
         private const string ScoreBonusName = "ScoreBonus";
+
+        private const GameType defaultGameType = GameType.Menu;
+        private Vector2 menuImagePosition = new Vector2(0, 0);
 
         private readonly IMovable road = RoadMap.GetInstance();
 
@@ -108,11 +115,17 @@
 
         public GraphicsDeviceManager Graphics { get; private set; }
 
-        public object MenuImage { get; private set; }
+        public Texture2D MenuImage { get; private set; }
 
-        public object GameOverImage { get; private set; }
+        public Texture2D GameOverImage { get; private set; }
 
-        public object GameState { get; private set; }
+        public Texture2D YouWinImage { get; private set; }
+
+        public GameType GameState { get; private set; }
+
+        public bool DontPlayMusic { get; set; }
+
+        public bool MuteWasPressed { get; set; }
 
         private void AddGameObject(IRenderable rendableObject)
         {
@@ -186,11 +199,16 @@
         {
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            this.GameState = defaultGameType;
+
             this.SoundManager.LoadContent(this.Content, BonusColisionSoundFile, ObstacleColisionSoundFile, GameTheamMusicFile);
 
+            MediaPlayer.Play(this.SoundManager.BGMusic);
             this.road.LoadContent(this.Content, BackgroundImage);
 
-            MediaPlayer.Play(this.SoundManager.BGMusic);
+            this.MenuImage = Content.Load<Texture2D>(StartMenuImage);
+            this.GameOverImage = Content.Load<Texture2D>(GameOverMenuImage);
+            this.YouWinImage = Content.Load<Texture2D>(YouWinMenuImage);
 
             this.player = new PlayerCar(
                 Content.Load<Texture2D>(CarImage),
@@ -199,7 +217,7 @@
             this.progressPlayer = new ProgressCar(Content.Load<Texture2D>(ProgressCarImage),
                 new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
 
-            this.hud = new HUD(player, progressPlayer, EightBitFontFile, HelthBarBorderImage);
+            this.hud = new HUD(player, progressPlayer, EightBitFontFile, HelthBarBorderImage, ProgressCarFinishFlag);
             this.hud.LoadContent(this.Content, HealthBarImage);
         }
 
@@ -211,94 +229,143 @@
                 Exit();
             }
 
-            /*if (game.state == menu && keyboard.getstate().iskeydown(keys.enter))
+            //if (game.state == menu && keyboard.getstate().iskeydown(keys.enter))
             //    if (keyboard.getstate().iskeydown(keys.enter))
             //    {
-            //        mediaplayer.play(this.soundmanager.bgmusic);
             //    }
             //if (game.state == gameover)
-             else*/
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            //else
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
             {
-                MediaPlayer.Stop();
-            }
-
-            try
-            {
-                if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
+                if (!this.MuteWasPressed)
                 {
-                    if (!player.IsOutOfRoad)
-                    {
-                        SoundCaller obstacle = new SoundCaller(this.SoundManager.ObstacleSound);
-                    }
-
-                    player.Color = Color.Red;
-                    if (player.Score >= 1)
-                    {
-                        player.Score--;
-                    }
-
-                    player.Health--;
-                }
-                else
-                {
-                    player.Color = Color.White;
-                }
-
-                foreach (Obstacle obstacle in this.ObstaclesList)
-                {
-                    obstacle.DetectCollision(player);
-
-                    obstacle.Update(gameTime, this.player.CurrentSpeed);
+                    this.MuteWasPressed = true;
+                    this.DontPlayMusic = !this.DontPlayMusic;
                 }
             }
-            catch (CrashException)
+            else
             {
-                Exit();
+                this.MuteWasPressed = false;
+            }
+            if(!DontPlayMusic)
+            {
+                MediaPlayer.Resume();
+            }
+            else
+            {
+                MediaPlayer.Pause();
             }
 
-            foreach (IBonus bonus in this.BonusesList)
+            if (this.GameState == defaultGameType)
             {
-                if (player.BoundingBox.Intersects(bonus.BoundingBox))
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-
-                    if (bonus.GetType().Name == ScoreBonusName)
+                    this.GameState = GameType.Play;
+                }
+            }
+            else if (this.GameState == GameType.Play)
+            {
+                try
+                {
+                    if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
                     {
-                        SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
-                        player.Score += ScoreAndHealth.ScoreBonus;
-                        bonus.DestroyObject();
-                    }
-                    else if (player.Health < ScoreAndHealth.InitialPlayerHealth)
-                    {
-                        SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
-                        player.Health += ScoreAndHealth.HealthBonus;
-                        if (player.Health > ScoreAndHealth.InitialPlayerHealth)
+                        if (!player.IsOutOfRoad)
                         {
-                            player.Health = ScoreAndHealth.InitialPlayerHealth; ;
+                            SoundCaller obstacle = new SoundCaller(this.SoundManager.ObstacleSound);
                         }
 
-                        bonus.DestroyObject();
+                        player.Color = Color.Red;
+                        if (player.Score >= 1)
+                        {
+                            player.Score--;
+                        }
+
+                        player.Health--;
+                    }
+                    else
+                    {
+                        player.Color = Color.White;
+                    }
+
+                    foreach (Obstacle obstacle in this.ObstaclesList)
+                    {
+                        obstacle.DetectCollision(player);
+
+                        obstacle.Update(gameTime, this.player.CurrentSpeed);
                     }
                 }
+                catch (CrashException)
+                {
+                    this.GameState = GameType.Crash;
+                }
 
-                bonus.Update(gameTime, this.player.CurrentSpeed);
+                foreach (IBonus bonus in this.BonusesList)
+                {
+                    if (player.BoundingBox.Intersects(bonus.BoundingBox))
+                    {
+
+                        if (bonus.GetType().Name == ScoreBonusName)
+                        {
+                            SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+                            player.Score += ScoreAndHealth.ScoreBonus;
+                            bonus.DestroyObject();
+                        }
+                        else if (player.Health < ScoreAndHealth.InitialPlayerHealth)
+                        {
+                            SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
+                            player.Health += ScoreAndHealth.HealthBonus;
+                            if (player.Health > ScoreAndHealth.InitialPlayerHealth)
+                            {
+                                player.Health = ScoreAndHealth.InitialPlayerHealth; ;
+                            }
+
+                            bonus.DestroyObject();
+                        }
+                    }
+
+                    bonus.Update(gameTime, this.player.CurrentSpeed);
+                }
+                if(this.progressPlayer.PositionY == 0)
+                {
+                    this.GameState = GameType.End;
+                }
+                this.road.Update(gameTime, player.CurrentSpeed);
+                this.player.Update(gameTime);
+                this.LoadBonuses();
+                this.LoadObstacles();
+                this.hud.Update(gameTime, player.CurrentSpeed);
+
+                this.AddGameObject(this.road);
+                foreach (var item in BonusesList)
+                {
+                    this.AddGameObject(item);
+                }
+                this.AddGameObject(this.player);
+                this.AddGameObject(this.progressPlayer);
+                this.AddGameObject(this.hud);
+
             }
-
-            this.road.Update(gameTime, player.CurrentSpeed);
-            this.player.Update(gameTime);
-            this.LoadBonuses();
-            this.LoadObstacles();
-            this.hud.Update(gameTime, player.CurrentSpeed);
-
-            this.AddGameObject(this.road);
-            foreach (var item in BonusesList)
+            else if(this.GameState == GameType.Crash)
             {
-                this.AddGameObject(item);
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    Exit();
+                }
             }
-            this.AddGameObject(this.player);
-            this.AddGameObject(this.progressPlayer);
-            this.AddGameObject(this.hud);
-
+            else if(this.GameState == GameType.End)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    Exit();
+                }
+            }
+            else if(this.GameState == GameType.End)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    Exit();
+                }
+            }
 
             base.Update(gameTime);
         }
@@ -309,20 +376,34 @@
 
             this.spriteBatch.Begin();
 
-            this.road.Draw(this.spriteBatch);
-
-            foreach (IObstacle obstacle in this.ObstaclesList)
+            if(this.GameState == defaultGameType)
             {
-                obstacle.Draw(this.spriteBatch);
+                spriteBatch.Draw(this.MenuImage, menuImagePosition);
             }
-
-            foreach (IBonus bonus in this.BonusesList)
+            else if (this.GameState == GameType.Play)
             {
-                bonus.Draw(this.spriteBatch);
-            }
+                this.road.Draw(this.spriteBatch);
 
-            player.Draw(this.spriteBatch);
-            hud.Draw(this.spriteBatch);
+                foreach (IObstacle obstacle in this.ObstaclesList)
+                {
+                    obstacle.Draw(this.spriteBatch);
+                }
+
+                foreach (IBonus bonus in this.BonusesList)
+                {
+                    bonus.Draw(this.spriteBatch);
+                }
+                player.Draw(this.spriteBatch);
+                hud.Draw(this.spriteBatch);
+            }
+            else if(this.GameState == GameType.Crash)
+            {
+                spriteBatch.Draw(this.GameOverImage, menuImagePosition);
+            }
+            else if(this.GameState == GameType.End)
+            {
+                spriteBatch.Draw(this.YouWinImage, menuImagePosition);
+            }
             this.spriteBatch.End();
             base.Draw(gameTime);
         }
