@@ -56,7 +56,7 @@
     <Compile Include="Infrastructure\Constants\Graphic.cs" />
     <Compile Include="Infrastructure\Constants\Movement.cs" />
     <Compile Include="Infrastructure\Constants\ScoreAndHealth.cs" />
-    <Compile Include="Infrastructure\Enum\GameState.cs" />
+    <Compile Include="Infrastructure\Enum\GameType.cs" />
     <Compile Include="Infrastructure\Validator.cs" />
     <Compile Include="Models\Abstract\Bonus.cs" />
     <Compile Include="Models\Abstract\Hole.cs" />

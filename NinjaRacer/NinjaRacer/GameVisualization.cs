@@ -9,6 +9,7 @@
     using Microsoft.Xna.Framework.Media;
 
     using Contracts;
+    using Infrastructure.Enum;
     using SoundsAndVisuals;
     using SoundsAndVisuals.Sounds;
     using Models;
@@ -56,27 +57,22 @@
         private IHud hud;
         private readonly IList<IBonus> bonusesList;
         private readonly IList<IObstacle> obstaclesList;
-
-        private int carInitialX = Graphic.CarInitialPositionX;
-        private int carInitialY = Graphic.CarInitialPozitionY;
+        private IList<IRenderable> gameObjects;
 
         public GameVisualization()
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = Graphic.WindowWidth;
-            graphics.PreferredBackBufferHeight = Graphic.WindowHeight;
-            Content.RootDirectory = ContentRootDirectory;
+            this.Graphics = new GraphicsDeviceManager(this);
+            this.Graphics.PreferredBackBufferWidth = Graphic.WindowWidth;
+            this.Graphics.PreferredBackBufferHeight = Graphic.WindowHeight;
+            this.Content.RootDirectory = ContentRootDirectory;
             this.bonusesList = new List<IBonus>();
             this.obstaclesList = new List<IObstacle>();
+            this.gameObjects = new List<IRenderable>();
             this.RandomGenerator = new Random();
             this.SoundManager = SoundManager.Instance;
-        }
-        public static string BigRoadHoleImage
-        {
-            get
-            {
-                return bigRoadHoleImage;
-            }
+            this.MenuImage = null;
+            this.GameOverImage = null;
+            this.GameState = GameType.Menu;
         }
 
         public IList<IBonus> BonusesList
@@ -95,26 +91,39 @@
             }
         }
 
+        public IList<IRenderable> GameObjects
+        {
+            get
+            {
+                return new List<IRenderable>(this.gameObjects);
+            }
+            private set
+            {
+            }
+        }
+
         public Random RandomGenerator { get; private set; }
 
         public SoundManager SoundManager { get; private set; }
 
-        
+        public GraphicsDeviceManager Graphics { get; private set; }
+
+        public object MenuImage { get; private set; }
+
+        public object GameOverImage { get; private set; }
+
+        public object GameState { get; private set; }
+
+        private void AddGameObject(IRenderable rendableObject)
+        {
+            this.GameObjects.Add(rendableObject);
+        }
 
         public void LoadBonuses()
         {
-            //Creating random variables for X and Y axis of our bonuses
-            //int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition);
             int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
             int randPush = this.RandomGenerator.Next(0, 100);
 
-            //if there are less than 2 bonuses on the screen, then create more until there are 2 again
-            //Player must be moving with certain speed in order bonuses to be spawned
-
-            // Old method
-            //if (this.BonusesList.Count < 2 && this.player.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles) // 2 - min bonuses on screen,
-
-            // New method for bonuses
             if (this.BonusesList.Count < 1 && (randPush == randBonus))
             {
                 if ((BonusType)randBonus == BonusType.ScoreBonus)
@@ -128,7 +137,6 @@
                 }
             }
 
-            // If any of the bonuses in the list were destroyed (or invisible), then remove them from the list
             for (int i = 0; i < this.BonusesList.Count; i++)
             {
                 if (!this.bonusesList[i].IsVisible)
@@ -141,12 +149,10 @@
 
         public void LoadObstacles()
         {
-            int randomObstacle = this.RandomGenerator.Next(0, TypesOfObstacles + 2); //Decrease the chance for an obstacle to appear
+            int randomObstacle = this.RandomGenerator.Next(0, TypesOfObstacles + 2);
             int randPush = this.RandomGenerator.Next(0, 50);
 
-            //Max obstacles on screen: 1
 
-            // New method for bonuses
             if (this.ObstaclesList.Count == 0 && randPush == randomObstacle)
             {
                 if ((ObstacleType)randomObstacle == ObstacleType.SmallHole)
@@ -173,31 +179,22 @@
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             base.Initialize();
         }
 
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
 
             this.SoundManager.LoadContent(this.Content, BonusColisionSoundFile, ObstacleColisionSoundFile, GameTheamMusicFile);
 
             this.road.LoadContent(this.Content, BackgroundImage);
-            //Just for fun
+
             MediaPlayer.Play(this.SoundManager.BGMusic);
-            // Changed start position
 
             this.player = new PlayerCar(
-
                 Content.Load<Texture2D>(CarImage),
-                new Vector2(carInitialX, carInitialY), Movement.CarSpeed);
+                new Vector2(Graphic.CarInitialPositionX, Graphic.CarInitialPositionX), Movement.CarSpeed);
 
             this.progressPlayer = new ProgressCar(Content.Load<Texture2D>(ProgressCarImage),
                 new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
@@ -206,8 +203,6 @@
             this.hud.LoadContent(this.Content, HealthBarImage);
         }
 
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
@@ -262,11 +257,8 @@
                 Exit();
             }
 
-
             foreach (IBonus bonus in this.BonusesList)
             {
-                //check if any bonuses are colliding with player
-                // if they are set visible to false
                 if (player.BoundingBox.Intersects(bonus.BoundingBox))
                 {
 
@@ -276,43 +268,46 @@
                         player.Score += ScoreAndHealth.ScoreBonus;
                         bonus.DestroyObject();
                     }
-                    else if (player.Health < 160) // HealthBonus
+                    else if (player.Health < ScoreAndHealth.InitialPlayerHealth)
                     {
                         SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
                         player.Health += ScoreAndHealth.HealthBonus;
-                        if (player.Health > 160)
+                        if (player.Health > ScoreAndHealth.InitialPlayerHealth)
                         {
-                            player.Health = 160;
+                            player.Health = ScoreAndHealth.InitialPlayerHealth; ;
                         }
 
                         bonus.DestroyObject();
                     }
                 }
 
-
                 bonus.Update(gameTime, this.player.CurrentSpeed);
             }
-            // TODO: Add your update logic here
-            // TODO: List of IDrowlable and update with foreach loop
 
             this.road.Update(gameTime, player.CurrentSpeed);
             this.player.Update(gameTime);
             this.LoadBonuses();
             this.LoadObstacles();
-
             this.hud.Update(gameTime, player.CurrentSpeed);
+
+            this.AddGameObject(this.road);
+            foreach (var item in BonusesList)
+            {
+                this.AddGameObject(item);
+            }
+            this.AddGameObject(this.player);
+            this.AddGameObject(this.progressPlayer);
+            this.AddGameObject(this.hud);
+
 
             base.Update(gameTime);
         }
 
-        /// This is called when the game should draw itself.
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
 
             this.spriteBatch.Begin();
-            // TODO: List of IDrawable and  with foreach loop
-
 
             this.road.Draw(this.spriteBatch);
 

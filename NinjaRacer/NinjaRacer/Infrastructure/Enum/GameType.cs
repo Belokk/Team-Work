@@ -1,8 +1,8 @@
 ﻿namespace NinjaRacer.Infrastructure.Enum
 {
-    public enum GameState
+    public enum GameType
     {
-        Start,
+        Menu,
         Play,
         End
     }
