@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CrashException:ApplicationException
+    public class CrashException : ApplicationException
     {
         private const string ExeptionMessage = "The car crashed! (health = {0})";
         private int health;

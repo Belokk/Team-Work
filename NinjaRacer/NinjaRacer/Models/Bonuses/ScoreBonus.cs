@@ -10,9 +10,9 @@
 
     public class ScoreBonus : Bonus, IMovable, ICollidable, IDestructable
     {
-        private const int scoreBonus = 50;
+        private const int ScoreBonusPoints = 50;
 
-        public ScoreBonus(Texture2D texture, int speed) : 
+        public ScoreBonus(Texture2D texture, int speed) :
             base(texture, speed)
         {
         }
@@ -21,7 +21,7 @@
         {
             if (player.BoundingBox.Intersects(this.BoundingBox))
             {
-                player.Score += scoreBonus;
+                player.Score += ScoreBonusPoints;
                 this.DestroyObject();
             }
         }

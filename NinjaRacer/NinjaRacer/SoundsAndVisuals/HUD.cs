@@ -11,9 +11,9 @@
 
     public class HUD : IHud, IRenderable
     {
-        private readonly Vector2 ScorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
-        private readonly Vector2 HealthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
-        private readonly Vector2 PlayerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
+        private readonly Vector2 scorePosition = new Vector2(Graphic.ScoreCoordX, Graphic.ScoreCoordY);
+        private readonly Vector2 healthBarPosition = new Vector2(Graphic.HealthBarCoordX, Graphic.HealthBarCoordY);
+        private readonly Vector2 playerSpeedPosition = new Vector2(Graphic.PlayerSpeedX, Graphic.PlayerSpeedY);
         private readonly string fontName;
         private readonly string healthBarBorderBoxName;
         private int acceleration = 0;
@@ -43,7 +43,7 @@
         {
             get
             {
-                return new Rectangle((int)HealthBarPosition.X, (int)HealthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
+                return new Rectangle((int)healthBarPosition.X, (int)healthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
             }
         }
 
@@ -74,18 +74,15 @@
             }
         }
 
-        //Load Content
-        public void LoadContent(ContentManager Content, string healthBarFileName)
+        public void LoadContent(ContentManager content, string healthBarFileName)
         {
-            this.Font = Content.Load<BitmapFont>(this.fontName);
-            this.Texture = Content.Load<Texture2D>(healthBarFileName);
+            this.Font = content.Load<BitmapFont>(this.fontName);
+            this.Texture = content.Load<Texture2D>(healthBarFileName);
             if (this.healthBarBorderBoxName != null)
             {
-                this.HealthBarBorderBox = Content.Load<Texture2D>(this.healthBarBorderBoxName);
+                this.HealthBarBorderBox = content.Load<Texture2D>(this.healthBarBorderBoxName);
             }
         }
-
-        //Updatе
 
         public void Update(GameTime gameTime, int currentSpeed)
         {
@@ -101,18 +98,17 @@
             this.progressPlayer.Update(gameTime, this.progressPlayer.Speed);
         }
 
-        //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(
                 this.Font,
                 string.Format("Score {0}", this.PlayerScore),
-                this.ScorePosition, Color.White);
+                this.scorePosition, Color.White);
 
             spriteBatch.DrawString(
                 this.Font,
                 string.Format("Speed {0}", this.PlayerSpeed),
-                this.PlayerSpeedPosition, Color.White);
+                this.playerSpeedPosition, Color.White);
 
             if (this.HealthBarBorderBox != null)
             {

@@ -23,7 +23,7 @@
         private const int InitialProgressCarSpeed = 0;
         private const int TypesOfBonuses = 2;
         private const int TypesOfObstacles = 2;
-        private const int BonusSpeed = 0;
+        private const int BonusSpeed = 4;
 
         private const string ContentRootDirectory = "Content";
         private const string ScoreBonusImage = "scoreBonus";
@@ -45,8 +45,8 @@
 
         private readonly IMovable road = RoadMap.GetInstance();
 
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
         private int progressCarInitialX = Graphic.PlayerProgressPositionX;
         private int progressCarInitialY = Graphic.PlayerProgressPositionY;
@@ -71,6 +71,13 @@
             this.RandomGenerator = new Random();
             this.SoundManager = SoundManager.Instance;
         }
+        public static string BigRoadHoleImage
+        {
+            get
+            {
+                return bigRoadHoleImage;
+            }
+        }
 
         public IList<IBonus> BonusesList
         {
@@ -92,13 +99,7 @@
 
         public SoundManager SoundManager { get; private set; }
 
-        public static string BigRoadHoleImage
-        {
-            get
-            {
-                return bigRoadHoleImage;
-            }
-        }
+        
 
         public void LoadBonuses()
         {
@@ -106,7 +107,7 @@
             //int randX = this.RandomGenerator.Next(Graphic.LeftOutOfRoadPosition, Graphic.RightOutOfRoadPosition);
             int randBonus = this.RandomGenerator.Next(0, TypesOfBonuses);
             int randPush = this.RandomGenerator.Next(0, 100);
-            
+
             //if there are less than 2 bonuses on the screen, then create more until there are 2 again
             //Player must be moving with certain speed in order bonuses to be spawned
 
@@ -114,7 +115,7 @@
             //if (this.BonusesList.Count < 2 && this.player.CurrentSpeed >= ScoreAndHealth.MinSpeedToSpawnBonusesAndObstacles) // 2 - min bonuses on screen,
 
             // New method for bonuses
-            if (this.BonusesList.Count < 1 && (randPush==randBonus))
+            if (this.BonusesList.Count < 1 && (randPush == randBonus))
             {
                 if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
@@ -311,8 +312,7 @@
 
             this.spriteBatch.Begin();
             // TODO: List of IDrawable and  with foreach loop
-            //FirstRoadMap.Draw(spriteBatch);
-            //SecondRoadMap.Draw(spriteBatch);
+
 
             this.road.Draw(this.spriteBatch);
 

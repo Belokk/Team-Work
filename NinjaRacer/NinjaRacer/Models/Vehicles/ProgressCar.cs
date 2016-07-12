@@ -6,7 +6,7 @@
     using Abstract;
     using Contracts;
 
-    public class ProgressCar :MovingObject , IMovable
+    public class ProgressCar : MovingObject, IMovable
     {
         public ProgressCar(Texture2D texture, Vector2 position, int speed)
             : base(texture, position, speed)
