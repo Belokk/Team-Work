@@ -12,7 +12,7 @@ This is the documentation for the team work assignment for the OOP course of Tel
 
 A rather simple, yet very entertaining to play 2d racing game, inspired from "Road Fighter" - an old NES Game(8 bit), created using the Monogame framework for Visual Studio(based on Microsoft's XNA game studio)
 The Main goal of the game is to survive and ultimately reach your goal - become the Ninja Racer. To make the Game more interesting, there are obstacles(holes) and bonuses(health and score). The player's car is moved using the "**WASD"** or the **arrow keys**.
-There is 8 bit music playing in the background, but, if you wish, you could stop it and resume it anytime by pressing **M**л
+There is 8 bit music playing in the background, but, if you wish, you could stop it and resume it anytime by pressing **M**
 
 ### Team members:
 
