@@ -47,7 +47,7 @@
         {
             get
             {
-                return new Rectangle((int)healthBarPosition.X, (int)healthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
+                return new Rectangle((int)this.healthBarPosition.X, (int)this.healthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
             }
         }
 
@@ -108,15 +108,13 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(
-                this.Font,
-                string.Format("Score {0}", this.PlayerScore),
-                this.scorePosition, Color.White);
+            spriteBatch.DrawString(this.Font, string.Format("Score {0}", this.PlayerScore), this.scorePosition, Color.White);
 
             spriteBatch.DrawString(
                 this.Font,
                 string.Format("Speed {0,3} km/h", this.PlayerSpeed * 6),
-                this.playerSpeedPosition, Color.White);
+                this.playerSpeedPosition,
+                Color.White);
 
             if (this.HealthBarBorderBox != null)
             {
