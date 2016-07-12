@@ -4,6 +4,7 @@
     {
         Menu,
         Play,
+        Crash,
         End
     }
 }
