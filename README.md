@@ -29,4 +29,4 @@ There is 8 bit music playing in the background, but, if you wish, you could stop
 
 #### Class Diagram:
 
-![Class Diagram](https://github.com/Belokk/Team-Work/ClassDiagram.png)
+![Class Diagram](./ClassDiagram.png)
