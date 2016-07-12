@@ -47,19 +47,15 @@
         private const string HealthBarImage = "healthbar";
         private const string ProgressCarFinishFlag = "FinishFlag";
         private const string ScoreBonusName = "ScoreBonus";
-
         private const GameType defaultGameType = GameType.Menu;
-        private Vector2 menuImagePosition = new Vector2(0, 0);
 
         private readonly IMovable road = RoadMap.GetInstance();
 
+        private Vector2 menuImagePosition = new Vector2(0, 0);
         private SpriteBatch spriteBatch;
 
-        private int progressCarInitialX = Graphic.PlayerProgressPositionX;
-        private int progressCarInitialY = Graphic.PlayerProgressPositionY;
-
         private IPlayer player;
-        private ProgressCar progressPlayer;
+        private IMovable progressPlayer;
         private IHud hud;
         private readonly IList<IBonus> bonusesList;
         private readonly IList<IObstacle> obstaclesList;
@@ -214,9 +210,9 @@
                 new Vector2(Graphic.CarInitialPositionX, Graphic.CarInitialPositionX), Movement.CarSpeed);
 
             this.progressPlayer = new ProgressCar(Content.Load<Texture2D>(ProgressCarImage),
-                new Vector2(progressCarInitialX, progressCarInitialY), InitialProgressCarSpeed);
+                new Vector2(Graphic.PlayerProgressPositionX, Graphic.PlayerProgressPositionY), InitialProgressCarSpeed);
 
-            this.hud = new HUD(player, progressPlayer, EightBitFontFile, HelthBarBorderImage, ProgressCarFinishFlag);
+            this.hud = new HUD(this.player, this.progressPlayer, EightBitFontFile, HelthBarBorderImage, ProgressCarFinishFlag);
             this.hud.LoadContent(this.Content, HealthBarImage);
         }
 
@@ -225,7 +221,7 @@
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                Exit();
+                this.Exit();
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.M))
@@ -240,7 +236,7 @@
             {
                 this.MuteWasPressed = false;
             }
-            if(!DontPlayMusic)
+            if (!this.DontPlayMusic)
             {
                 MediaPlayer.Resume();
             }
@@ -260,29 +256,29 @@
             {
                 try
                 {
-                    if ((player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
+                    if ((this.player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
                     {
-                        if (!player.IsOutOfRoad)
+                        if (!this.player.IsOutOfRoad)
                         {
                             SoundCaller obstacle = new SoundCaller(this.SoundManager.ObstacleSound);
                         }
 
-                        player.Color = Color.Red;
-                        if (player.Score >= 1)
+                        this.player.Color = Color.Red;
+                        if (this.player.Score >= 1)
                         {
-                            player.Score--;
+                            this.player.Score--;
                         }
 
-                        player.Health--;
+                        this.player.Health--;
                     }
                     else
                     {
-                        player.Color = Color.White;
+                        this.player.Color = Color.White;
                     }
 
                     foreach (Obstacle obstacle in this.ObstaclesList)
                     {
-                        obstacle.DetectCollision(player);
+                        obstacle.DetectCollision(this.player);
 
                         obstacle.Update(gameTime, this.player.CurrentSpeed);
                     }
@@ -294,22 +290,22 @@
 
                 foreach (IBonus bonus in this.BonusesList)
                 {
-                    if (player.BoundingBox.Intersects(bonus.BoundingBox))
+                    if (this.player.BoundingBox.Intersects(bonus.BoundingBox))
                     {
 
                         if (bonus.GetType().Name == ScoreBonusName)
                         {
                             SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
-                            player.Score += ScoreAndHealth.ScoreBonus;
+                            this.player.Score += ScoreAndHealth.ScoreBonus;
                             bonus.DestroyObject();
                         }
-                        else if (player.Health < ScoreAndHealth.InitialPlayerHealth)
+                        else if (this.player.Health < ScoreAndHealth.InitialPlayerHealth)
                         {
                             SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
-                            player.Health += ScoreAndHealth.HealthBonus;
-                            if (player.Health > ScoreAndHealth.InitialPlayerHealth)
+                            this.player.Health += ScoreAndHealth.HealthBonus;
+                            if (this.player.Health > ScoreAndHealth.InitialPlayerHealth)
                             {
-                                player.Health = ScoreAndHealth.InitialPlayerHealth; ;
+                                this.player.Health = ScoreAndHealth.InitialPlayerHealth; ;
                             }
 
                             bonus.DestroyObject();
@@ -318,18 +314,18 @@
 
                     bonus.Update(gameTime, this.player.CurrentSpeed);
                 }
-                if(this.progressPlayer.PositionY == 0)
+                if (this.progressPlayer.PositionY == 0)
                 {
                     this.GameState = GameType.End;
                 }
-                this.road.Update(gameTime, player.CurrentSpeed);
+                this.road.Update(gameTime, this.player.CurrentSpeed);
                 this.player.Update(gameTime);
                 this.LoadBonuses();
                 this.LoadObstacles();
-                this.hud.Update(gameTime, player.CurrentSpeed);
+                this.hud.Update(gameTime, this.player.CurrentSpeed);
 
                 this.AddGameObject(this.road);
-                foreach (var item in BonusesList)
+                foreach (var item in this.BonusesList)
                 {
                     this.AddGameObject(item);
                 }
@@ -338,25 +334,25 @@
                 this.AddGameObject(this.hud);
 
             }
-            else if(this.GameState == GameType.Crash)
+            else if (this.GameState == GameType.Crash)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-                    Exit();
+                    this.Exit();
                 }
             }
-            else if(this.GameState == GameType.End)
+            else if (this.GameState == GameType.End)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-                    Exit();
+                    this.Exit();
                 }
             }
-            else if(this.GameState == GameType.End)
+            else if (this.GameState == GameType.End)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-                    Exit();
+                    this.Exit();
                 }
             }
 
@@ -369,9 +365,9 @@
 
             this.spriteBatch.Begin();
 
-            if(this.GameState == defaultGameType)
+            if (this.GameState == defaultGameType)
             {
-                spriteBatch.Draw(this.MenuImage, menuImagePosition);
+                this.spriteBatch.Draw(this.MenuImage, this.menuImagePosition);
             }
             else if (this.GameState == GameType.Play)
             {
@@ -386,16 +382,16 @@
                 {
                     bonus.Draw(this.spriteBatch);
                 }
-                player.Draw(this.spriteBatch);
-                hud.Draw(this.spriteBatch);
+                this.player.Draw(this.spriteBatch);
+                this.hud.Draw(this.spriteBatch);
             }
-            else if(this.GameState == GameType.Crash)
+            else if (this.GameState == GameType.Crash)
             {
-                spriteBatch.Draw(this.GameOverImage, menuImagePosition);
+                this.spriteBatch.Draw(this.GameOverImage, this.menuImagePosition);
             }
-            else if(this.GameState == GameType.End)
+            else if (this.GameState == GameType.End)
             {
-                spriteBatch.Draw(this.YouWinImage, menuImagePosition);
+                this.spriteBatch.Draw(this.YouWinImage, this.menuImagePosition);
             }
             this.spriteBatch.End();
             base.Draw(gameTime);

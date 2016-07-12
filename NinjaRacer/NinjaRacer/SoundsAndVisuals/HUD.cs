@@ -5,9 +5,7 @@
     using Microsoft.Xna.Framework.Content;
     using MonoGame.Extended.BitmapFonts;
     using Contracts;
-    using Models.Vehicles;
     using Infrastructure.Constants;
-    using System;
 
     public class HUD : IHud, IRenderable
     {
@@ -20,9 +18,9 @@
         private int acceleration = 0;
 
         private IPlayer player;
-        private ProgressCar progressPlayer;
+        private IMovable progressPlayer;
 
-        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName)
+        internal HUD(IPlayer player, IMovable progressPlayer, string fontName)
         {
             this.player = player;
             this.progressPlayer = progressPlayer;
@@ -30,7 +28,11 @@
             this.Font = null;
         }
 
-        internal HUD(IPlayer player, ProgressCar progressPlayer, string fontName, string healthBarBorderBoxFileName, string progressCarFinishLine)
+        internal HUD(IPlayer player,
+            IMovable progressPlayer,
+            string fontName,
+            string healthBarBorderBoxFileName,
+            string progressCarFinishLine)
             : this(player, progressPlayer, fontName)
         {
             this.progressCarFinishLine = progressCarFinishLine;
@@ -47,7 +49,11 @@
         {
             get
             {
-                return new Rectangle((int)this.healthBarPosition.X, (int)this.healthBarPosition.Y, this.PlayerHealth, this.Texture.Width);
+                return new Rectangle(
+                    (int)this.healthBarPosition.X,
+                    (int)this.healthBarPosition.Y,
+                    this.PlayerHealth,
+                    this.Texture.Width);
             }
         }
 
@@ -65,18 +71,7 @@
 
         public BitmapFont Font { get; set; }
 
-        public Vector2 Position
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
 
         public void LoadContent(ContentManager content, string healthBarFileName)
         {
@@ -86,7 +81,7 @@
             {
                 this.HealthBarBorderBox = content.Load<Texture2D>(this.healthBarBorderBoxName);
             }
-            if(this.progressCarFinishLine != null)
+            if (this.progressCarFinishLine != null)
             {
                 this.ProgressCarFinishFlag = content.Load<Texture2D>(this.progressCarFinishLine);
             }
@@ -123,7 +118,7 @@
                     new Vector2(Graphic.HealthBarBorderCoordX, Graphic.HealthBarBorderCoordY));
             }
 
-            if(this.ProgressCarFinishFlag != null)
+            if (this.ProgressCarFinishFlag != null)
             {
                 spriteBatch.Draw(
                     this.ProgressCarFinishFlag,
