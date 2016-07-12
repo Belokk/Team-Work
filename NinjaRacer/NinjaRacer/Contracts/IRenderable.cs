@@ -8,7 +8,7 @@
     {
         Texture2D Texture { get; }
 
-        Vector2 Position { get; set; }
+       
 
         Rectangle BoundingBox { get; }
 
