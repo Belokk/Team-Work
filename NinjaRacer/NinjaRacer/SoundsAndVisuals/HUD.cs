@@ -107,7 +107,7 @@
 
             spriteBatch.DrawString(
                 this.Font,
-                string.Format("Speed {0}", this.PlayerSpeed),
+                string.Format("Speed {0,3} km/h", this.PlayerSpeed * 6),
                 this.playerSpeedPosition, Color.White);
 
             if (this.HealthBarBorderBox != null)
