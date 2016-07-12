@@ -1,11 +1,10 @@
 ﻿namespace NinjaRacer.Models
 {
+    using Abstract;
+    using Contracts;
+    using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-
-    using Infrastructure.Constants;
-    using Contracts;
-    using Abstract;
 
     public class RoadMap : MovingObject, IMovable, IRenderable
     {
@@ -19,8 +18,8 @@
 
         private Vector2 secondPosition;
 
-                private RoadMap(Texture2D texture, Vector2 position, int speed)
-            : base(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
+        private RoadMap(Texture2D texture, Vector2 position, int speed)
+    : base(null, new Vector2(CoordX, FirstCoordY), Graphic.RoadMapSpeed)
         {
             this.secondPosition = new Vector2(CoordX, SecondCoordY);
         }

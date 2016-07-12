@@ -1,13 +1,12 @@
 ﻿namespace NinjaRacer.Models.Vehicles
 {
+    using Abstract;
+    using Contracts;
+    using Infrastructure;
+    using Infrastructure.Constants;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-
-    using Infrastructure;
-    using Infrastructure.Constants;
-    using Contracts;
-    using Abstract;
 
     public class PlayerCar : MovingObject, IPlayer, IMovable
     {

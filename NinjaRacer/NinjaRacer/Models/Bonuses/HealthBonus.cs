@@ -1,9 +1,9 @@
 ﻿namespace NinjaRacer.Models.Bonuses
 {
-    using Contracts;
     using Abstract;
-    using Microsoft.Xna.Framework.Graphics;
+    using Contracts;
     using Infrastructure.Constants;
+    using Microsoft.Xna.Framework.Graphics;
 
     public class HealthBonus : Bonus, IMovable, ICollidable, IDestructable
     {

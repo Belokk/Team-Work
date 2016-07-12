@@ -1,14 +1,12 @@
 ﻿namespace NinjaRacer.Contracts
 {
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Graphics;
 
     public interface IRenderable
     {
         Texture2D Texture { get; }
-
-       
 
         Rectangle BoundingBox { get; }
 

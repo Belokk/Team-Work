@@ -1,7 +1,7 @@
 ﻿namespace NinjaRacer.Models.Obstacle
 {
-    using Contracts;
     using Abstract;
+    using Contracts;
     using Microsoft.Xna.Framework.Graphics;
 
     public class SmallHole : Hole, IObstacle, IRenderable, ICollidable

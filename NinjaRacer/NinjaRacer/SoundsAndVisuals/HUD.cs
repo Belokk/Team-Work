@@ -1,11 +1,11 @@
 ﻿namespace NinjaRacer.SoundsAndVisuals
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Content;
-    using MonoGame.Extended.BitmapFonts;
     using Contracts;
     using Infrastructure.Constants;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Graphics;
+    using MonoGame.Extended.BitmapFonts;
 
     public class HUD : IHud, IRenderable
     {
@@ -28,7 +28,8 @@
             this.Font = null;
         }
 
-        internal HUD(IPlayer player,
+        internal HUD(
+            IPlayer player,
             IMovable progressPlayer,
             string fontName,
             string healthBarBorderBoxFileName,
@@ -71,8 +72,6 @@
 
         public BitmapFont Font { get; set; }
 
-
-
         public void LoadContent(ContentManager content, string healthBarFileName)
         {
             this.Font = content.Load<BitmapFont>(this.fontName);
@@ -81,6 +80,7 @@
             {
                 this.HealthBarBorderBox = content.Load<Texture2D>(this.healthBarBorderBoxName);
             }
+
             if (this.progressCarFinishLine != null)
             {
                 this.ProgressCarFinishFlag = content.Load<Texture2D>(this.progressCarFinishLine);

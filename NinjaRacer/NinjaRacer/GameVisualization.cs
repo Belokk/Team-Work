@@ -3,21 +3,20 @@
     using System;
     using System.Collections.Generic;
 
+    using Contracts;
+    using Infrastructure.Constants;
+    using Infrastructure.Enum;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Microsoft.Xna.Framework.Media;
-
-    using Contracts;
-    using Infrastructure.Enum;
-    using SoundsAndVisuals;
-    using SoundsAndVisuals.Sounds;
     using Models;
     using Models.Abstract;
-    using Models.Vehicles;
     using Models.Bonuses;
     using Models.Obstacle;
-    using Infrastructure.Constants;
+    using Models.Vehicles;
+    using SoundsAndVisuals;
+    using SoundsAndVisuals.Sounds;
 
     public class GameVisualization : Game
     {
@@ -30,7 +29,7 @@
         private const string ScoreBonusImage = "scoreBonus";
         private const string HealthBonusImage = "healthBonus";
         private const string SmallRoadHoleImage = "smallRoadHole";
-        private const string bigRoadHoleImage = "bigRoadHole";
+        private const string BigRoadHoleImage = "bigRoadHole";
         private const string StartMenuImage = "StartGame";
         private const string GameOverMenuImage = "EndGame";
         private const string YouWinMenuImage = "Winner";
@@ -47,9 +46,12 @@
         private const string HealthBarImage = "healthbar";
         private const string ProgressCarFinishFlag = "FinishFlag";
         private const string ScoreBonusName = "ScoreBonus";
-        private const GameType defaultGameType = GameType.Menu;
+        private const GameType DefaultGameType = GameType.Menu;
 
         private readonly IMovable road = RoadMap.GetInstance();
+
+        private readonly IList<IBonus> bonusesList;
+        private readonly IList<IObstacle> obstaclesList;
 
         private Vector2 menuImagePosition = new Vector2(0, 0);
         private SpriteBatch spriteBatch;
@@ -57,8 +59,7 @@
         private IPlayer player;
         private IMovable progressPlayer;
         private IHud hud;
-        private readonly IList<IBonus> bonusesList;
-        private readonly IList<IObstacle> obstaclesList;
+
         private IList<IRenderable> gameObjects;
 
         public GameVisualization()
@@ -99,6 +100,7 @@
             {
                 return new List<IRenderable>(this.gameObjects);
             }
+
             private set
             {
             }
@@ -136,7 +138,6 @@
             {
                 if ((BonusType)randBonus == BonusType.ScoreBonus)
                 {
-
                     this.bonusesList.Add(new ScoreBonus(this.Content.Load<Texture2D>(ScoreBonusImage), BonusSpeed));
                 }
                 else
@@ -160,18 +161,15 @@
             int randomObstacle = this.RandomGenerator.Next(0, TypesOfObstacles + 2);
             int randPush = this.RandomGenerator.Next(0, 50);
 
-
             if (this.ObstaclesList.Count == 0 && randPush == randomObstacle)
             {
                 if ((ObstacleType)randomObstacle == ObstacleType.SmallHole)
                 {
-
                     this.obstaclesList.Add(new SmallHole(this.Content.Load<Texture2D>(SmallRoadHoleImage)));
                 }
                 else if ((ObstacleType)randomObstacle == ObstacleType.BigHole)
                 {
-
-                    this.obstaclesList.Add(new BigHole(this.Content.Load<Texture2D>(bigRoadHoleImage)));
+                    this.obstaclesList.Add(new BigHole(this.Content.Load<Texture2D>(BigRoadHoleImage)));
                 }
             }
 
@@ -194,7 +192,7 @@
         {
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            this.GameState = defaultGameType;
+            this.GameState = DefaultGameType;
 
             this.SoundManager.LoadContent(this.Content, BonusColisionSoundFile, ObstacleColisionSoundFile, GameTheamMusicFile);
 
@@ -207,10 +205,13 @@
 
             this.player = new PlayerCar(
                 Content.Load<Texture2D>(CarImage),
-                new Vector2(Graphic.CarInitialPositionX, Graphic.CarInitialPositionX), Movement.CarSpeed);
+                new Vector2(Graphic.CarInitialPositionX, Graphic.CarInitialPositionX),
+                Movement.CarSpeed);
 
-            this.progressPlayer = new ProgressCar(Content.Load<Texture2D>(ProgressCarImage),
-                new Vector2(Graphic.PlayerProgressPositionX, Graphic.PlayerProgressPositionY), InitialProgressCarSpeed);
+            this.progressPlayer = new ProgressCar(
+                Content.Load<Texture2D>(ProgressCarImage),
+                new Vector2(Graphic.PlayerProgressPositionX, Graphic.PlayerProgressPositionY),
+                InitialProgressCarSpeed);
 
             this.hud = new HUD(this.player, this.progressPlayer, EightBitFontFile, HelthBarBorderImage, ProgressCarFinishFlag);
             this.hud.LoadContent(this.Content, HealthBarImage);
@@ -236,6 +237,7 @@
             {
                 this.MuteWasPressed = false;
             }
+
             if (!this.DontPlayMusic)
             {
                 MediaPlayer.Resume();
@@ -245,7 +247,7 @@
                 MediaPlayer.Pause();
             }
 
-            if (this.GameState == defaultGameType)
+            if (this.GameState == DefaultGameType)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
@@ -256,7 +258,7 @@
             {
                 try
                 {
-                    if ((this.player.IsBeeingDamaged) && this.player.CurrentSpeed > 0)
+                    if (this.player.IsBeeingDamaged && this.player.CurrentSpeed > 0)
                     {
                         if (!this.player.IsOutOfRoad)
                         {
@@ -292,7 +294,6 @@
                 {
                     if (this.player.BoundingBox.Intersects(bonus.BoundingBox))
                     {
-
                         if (bonus.GetType().Name == ScoreBonusName)
                         {
                             SoundCaller bonusCollected = new SoundCaller(this.SoundManager.BonusSound);
@@ -305,7 +306,7 @@
                             this.player.Health += ScoreAndHealth.HealthBonus;
                             if (this.player.Health > ScoreAndHealth.InitialPlayerHealth)
                             {
-                                this.player.Health = ScoreAndHealth.InitialPlayerHealth; ;
+                                this.player.Health = ScoreAndHealth.InitialPlayerHealth;
                             }
 
                             bonus.DestroyObject();
@@ -314,10 +315,12 @@
 
                     bonus.Update(gameTime, this.player.CurrentSpeed);
                 }
+
                 if (this.progressPlayer.PositionY == 0)
                 {
                     this.GameState = GameType.End;
                 }
+
                 this.road.Update(gameTime, this.player.CurrentSpeed);
                 this.player.Update(gameTime);
                 this.LoadBonuses();
@@ -329,10 +332,10 @@
                 {
                     this.AddGameObject(item);
                 }
+
                 this.AddGameObject(this.player);
                 this.AddGameObject(this.progressPlayer);
                 this.AddGameObject(this.hud);
-
             }
             else if (this.GameState == GameType.Crash)
             {
@@ -365,7 +368,7 @@
 
             this.spriteBatch.Begin();
 
-            if (this.GameState == defaultGameType)
+            if (this.GameState == DefaultGameType)
             {
                 this.spriteBatch.Draw(this.MenuImage, this.menuImagePosition);
             }
@@ -382,6 +385,7 @@
                 {
                     bonus.Draw(this.spriteBatch);
                 }
+
                 this.player.Draw(this.spriteBatch);
                 this.hud.Draw(this.spriteBatch);
             }
@@ -393,6 +397,7 @@
             {
                 this.spriteBatch.Draw(this.YouWinImage, this.menuImagePosition);
             }
+
             this.spriteBatch.End();
             base.Draw(gameTime);
         }

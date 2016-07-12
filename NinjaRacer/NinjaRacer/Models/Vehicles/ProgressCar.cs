@@ -1,10 +1,9 @@
 ﻿namespace NinjaRacer.Models.Vehicles
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-
     using Abstract;
     using Contracts;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
 
     public class ProgressCar : MovingObject, IMovable
     {
