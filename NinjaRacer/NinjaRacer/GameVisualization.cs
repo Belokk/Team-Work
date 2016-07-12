@@ -53,7 +53,6 @@
 
         private readonly IMovable road = RoadMap.GetInstance();
 
-        private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
         private int progressCarInitialX = Graphic.PlayerProgressPositionX;
@@ -229,12 +228,6 @@
                 Exit();
             }
 
-            //if (game.state == menu && keyboard.getstate().iskeydown(keys.enter))
-            //    if (keyboard.getstate().iskeydown(keys.enter))
-            //    {
-            //    }
-            //if (game.state == gameover)
-            //else
             if (Keyboard.GetState().IsKeyDown(Keys.M))
             {
                 if (!this.MuteWasPressed)
