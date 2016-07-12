@@ -1,4 +1,4 @@
-﻿namespace NinjaRacer.Models.Bonuses
+﻿namespace NinjaRacer.Infrastructure.Enum
 {
     public enum BonusType
     {

@@ -61,11 +61,11 @@
     <Compile Include="Models\Abstract\Hole.cs" />
     <Compile Include="Models\Abstract\Obstacle.cs" />
     <Compile Include="Models\Abstract\MovingObject.cs" />
-    <Compile Include="Models\Bonuses\BonusType.cs" />
+    <Compile Include="Infrastructure\Enum\BonusType.cs" />
     <Compile Include="Models\Bonuses\HealthBonus.cs" />
     <Compile Include="Models\Bonuses\ScoreBonus.cs" />
     <Compile Include="Models\Obstacle\BigHole.cs" />
-    <Compile Include="Models\Obstacle\ObstacleType.cs" />
+    <Compile Include="Infrastructure\Enum\ObstacleType.cs" />
     <Compile Include="Models\Obstacle\SmallHole.cs" />
     <Compile Include="Models\RoadMap.cs" />
     <Compile Include="Models\Vehicles\PlayerCar.cs" />

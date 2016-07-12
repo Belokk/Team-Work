@@ -1,4 +1,4 @@
-﻿namespace NinjaRacer.Models.Obstacle
+﻿namespace NinjaRacer.Infrastructure.Enum
 {
     public enum ObstacleType
     {
